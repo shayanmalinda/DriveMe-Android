@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "161159282814",
+    "firebase_url": "https://driveme-9bd2a.firebaseio.com",
+    "project_id": "driveme-9bd2a",
+    "storage_bucket": "driveme-9bd2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161159282814:android:e2890cec869da973",
+        "android_client_info": {
+          "package_name": "com.driveme.driveme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161159282814-n8osi4nk0gunf0t4reh0fkb4f2s4krp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.driveme.driveme",
+            "certificate_hash": "d2d14f0af628f507cc5f4ad0acf4097c63e537c7"
+          }
+        },
+        {
+          "client_id": "161159282814-iqgsdsjitjmqro5n8u1jqhah0ptk0n31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqO1vkLr0x78qFraxw4kF0UHbSRvSaUOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161159282814-iqgsdsjitjmqro5n8u1jqhah0ptk0n31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
