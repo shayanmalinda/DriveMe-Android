@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassengerHomeActivity"></activity>
+        <activity android:name=".ParentHomeActivity"></activity>
+        <activity android:name=".PassengerHomeActivity" />
         <activity android:name=".ParentSignup1Activity" />
+        <activity android:name=".ParentSignup2Activity" />
         <activity android:name=".PassengerSignupActivity" />
         <activity android:name=".DriverHomeActivity" />
         <activity android:name=".SignupActivity" />

@@ -52,7 +52,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/name"
+                        android:id="@+id/childname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Name"
@@ -70,7 +70,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/age"
+                        android:id="@+id/childage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Age"
@@ -88,7 +88,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/school"
+                        android:id="@+id/childschool"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="School"
@@ -105,7 +105,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/schoolphone"
+                        android:id="@+id/childschoolphone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="School Phone Number"
@@ -113,7 +113,7 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"/>
+                        android:inputType="number"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -136,7 +136,7 @@
                     android:background="@drawable/roundbtn"
                     android:textSize="15dp"
                     android:layout_weight="1"
-                    android:id="@+id/signup"/>
+                    android:id="@+id/parentsignup"/>
 
             </LinearLayout>
 

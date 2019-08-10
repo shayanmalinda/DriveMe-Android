@@ -55,6 +55,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         CharacterRole c = new CharacterRole();
         final String role = c.getRole();
+        if (role != null) {
+            if(role.equals("passenger")){
+                setTitle("DriveMe - Passenger");
+            }
+            if(role.equals("parent")){
+                setTitle("DriveMe - Parent");
+            }
+            if(role.equals("driver")){
+                setTitle("DriveMe - Driver");
+            }
+            if(role.equals("owner")){
+                setTitle("DriveMe - Owner");
+            }
+
+        }
 
         signup = findViewById(R.id.btnSignup);
         login = findViewById(R.id.btnLogin);
@@ -66,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                 if(role!=null){
                     if(role.equals("passenger")){
                         intent = new Intent(LoginActivity.this, PassengerSignupActivity.class);
+                        startActivity(intent);
+                    }
+                    if(role.equals("parent")){
+                        intent = new Intent(LoginActivity.this, ParentSignup1Activity.class);
                         startActivity(intent);
                     }
 
@@ -90,6 +109,14 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else{
                             authPassenger();
+                        }
+                    }
+                    if(role.equals("parent")){
+                        if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
+                            Toast.makeText(LoginActivity.this, "Username or Password is Empty", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            authParent();
                         }
                     }
 
@@ -167,6 +194,54 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void authParent(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setCancelable(false); // if you want user to wait for some process to finish,
+        builder.setView(R.layout.layout_loading_dialog);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+        final String email = etemail.getText().toString();
+        final String password = etpass.getText().toString();
+        db.collection("users/user/parent").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(!queryDocumentSnapshots.isEmpty()){
+                    Boolean validCredentials = false;
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    for(DocumentSnapshot d: list){
+                        Map<String, Object> details = d.getData();
+                        String dbemail = details.get("parentemail").toString();
+                        String dbpass = details.get("parentpass").toString();
+                        if(email.equals(dbemail) && password.equals(dbpass)){
+                            validCredentials = true;
+                            break;
+                        }
+                    }
+                    if(validCredentials){
+                        Intent intent = new Intent(LoginActivity.this,ParentHomeActivity.class);
+                        finish();
+                        dialog.dismiss();
+                        startActivity(intent);
+                    }
+                    else{
+                        dialog.dismiss();
+                        Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(LoginActivity.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 //    private void signin(){
 //        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
 //        startActivityForResult(signInIntent,101);

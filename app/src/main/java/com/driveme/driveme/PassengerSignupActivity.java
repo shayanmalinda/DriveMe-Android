@@ -39,6 +39,8 @@ public class PassengerSignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_signup);
 
+        setTitle("DriverMe - Passenger");
+
         db = FirebaseFirestore.getInstance();
 
         etemail = findViewById(R.id.txtemail);
