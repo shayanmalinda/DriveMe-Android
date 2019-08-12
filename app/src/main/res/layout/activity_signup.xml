@@ -150,7 +150,7 @@
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
                     android:text="SignUp"
-                    android:background="@drawable/roundbtn"
+                    android:background="@drawable/roundbtnaccent"
                     android:textSize="15dp"
                     android:layout_weight="1"/>
 

@@ -56,10 +56,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                style="?android:borderlessButtonStyle"
                 android:layout_margin="20px"
                 android:text="Passenger"
+                android:backgroundTint="@color/colorAccent"
                 android:id="@+id/btnPassenger"
-                android:background="@drawable/roundbtn"
+                android:background="@drawable/roundbtnaccent"
                 android:textColor="#fff"
                 android:textSize="22sp"
                 android:textAllCaps="false"/>
@@ -74,10 +76,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                style="?android:borderlessButtonStyle"
                 android:layout_margin="20px"
                 android:text="Parent"
+                android:backgroundTint="@color/colorAccent"
                 android:id="@+id/btnParent"
-                android:background="@drawable/roundbtn"
+                android:background="@drawable/roundbtnaccent"
                 android:textColor="#fff"
                 android:textSize="22sp"
                 android:textAllCaps="false"/>
@@ -92,10 +96,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                style="?android:borderlessButtonStyle"
                 android:layout_margin="20px"
                 android:text="Driver"
                 android:id="@+id/btnDriver"
-                android:background="@drawable/roundbtn"
+                android:backgroundTint="@color/colorAccent"
+                android:background="@drawable/roundbtnaccent"
                 android:textColor="#fff"
                 android:textSize="22sp"
                 android:textAllCaps="false"/>
@@ -110,10 +116,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                style="?android:borderlessButtonStyle"
                 android:layout_margin="20px"
                 android:text="Owner"
                 android:id="@+id/btnOwner"
-                android:background="@drawable/roundbtn"
+                android:backgroundTint="@color/colorAccent"
+                android:background="@drawable/roundbtnaccent"
                 android:textColor="#fff"
                 android:textSize="22sp"
                 android:textAllCaps="false"
