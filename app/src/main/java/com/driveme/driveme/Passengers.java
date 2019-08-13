@@ -1,7 +1,8 @@
 package com.driveme.driveme;
 
 public class Passengers {
-    public Passengers(String email, String address, String phone, String password) {
+    public Passengers(String name,String email, String address, String phone, String password) {
+        this.name = name;
         this.email = email;
         this.address = address;
         this.phone = phone;
@@ -11,6 +12,10 @@ public class Passengers {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getAddress() {
@@ -26,6 +31,7 @@ public class Passengers {
     }
 
     private String email;
+    private String name;
     private String address;
     private String phone;
     private String password;

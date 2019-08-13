@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 
+import java.math.BigInteger;
+
 public class ParentSignup1Activity extends AppCompatActivity {
 
     private EditText etemail;
@@ -66,11 +68,20 @@ public class ParentSignup1Activity extends AppCompatActivity {
                 else{
 
                     if(pass1.equals(pass2)){
+
+                        BigInteger passEncrypt = null;
+
+                        try{
+                            passEncrypt = new BigInteger(1, md5.encryptMD5(pass1.getBytes()));
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
                         Intent intent = new Intent(ParentSignup1Activity.this,ParentSignup2Activity.class);
                         intent.putExtra("email",email);
                         intent.putExtra("phone",phone);
                         intent.putExtra("address",address);
-                        intent.putExtra("pass",pass1);
+                        intent.putExtra("pass",passEncrypt.toString());
 
                         startActivity(intent);
 

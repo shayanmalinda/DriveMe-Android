@@ -74,6 +74,9 @@
                     android:layout_marginTop="15dp"
                     android:drawableLeft="@drawable/username_drawable_selector"
                     android:drawablePadding="10dp"
+                    android:nextFocusDown="@id/loginpassword"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -93,7 +96,8 @@
                     android:background="@drawable/edit_text_background"
                     android:drawableLeft="@drawable/password_drawable_selector"
                     android:drawablePadding="10dp"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:singleLine="true"/>
 
             </LinearLayout>
 

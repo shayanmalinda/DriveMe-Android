@@ -59,7 +59,10 @@
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_email_accent_24dp"
-                        android:drawablePadding="10dp"/>
+                        android:drawablePadding="10dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/parentphone"/>
 
                 </LinearLayout>
 
@@ -78,7 +81,10 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="phone"/>
+                        android:inputType="phone"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/parentaddress"/>
 
                 </LinearLayout>
 
@@ -95,7 +101,10 @@
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_home_black_24dp"
-                        android:drawablePadding="10dp"/>
+                        android:drawablePadding="10dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/parentpass1"/>
 
                 </LinearLayout>
 
@@ -113,7 +122,10 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/password_drawable_selector"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/parentpass2"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,7 +142,8 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/password_drawable_selector"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:singleLine="true"/>
                 </LinearLayout>
 
             </LinearLayout>

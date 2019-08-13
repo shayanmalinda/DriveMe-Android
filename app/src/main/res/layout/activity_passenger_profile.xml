@@ -4,8 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParentSignup2Activity"
+    tools:context=".PassengerProfileActivity"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:src="@drawable/person"
+            android:scaleType="fitCenter"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,31 +27,14 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:paddingTop="30dp">
+        android:layout_weight="2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.29">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Enter Your Child's Details"
-                android:textColor="@color/colorPrimaryDark"
-                android:gravity="center"
-                android:textSize="25dp"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.1"
+            android:layout_weight="0.7"
             android:orientation="vertical"
-            android:paddingTop="30dp" >
+            android:paddingTop="10dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,18 +48,18 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/childname"
+                    <TextView
+                        android:id="@+id/txtname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Name"
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_person_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/childage"/>
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        />
 
                 </LinearLayout>
 
@@ -72,58 +69,59 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/childage"
+                    <TextView
+                        android:id="@+id/txtemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Age"
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_favorite_black_24dp"
+                        android:drawableLeft="@drawable/ic_email_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="phone"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/childschool"/>
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        />
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/childschool"
+                    <TextView
+                        android:id="@+id/txtphone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="School"
-                        android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_home_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/childschoolphone"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/childschoolphone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="School Phone Number"
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="number"
-                        android:singleLine="true"/>
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:inputType="phone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_home_black_24dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:drawablePadding="10dp"/>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -131,22 +129,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
+                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
-                android:paddingTop="7dp"
-                android:paddingBottom="14dp">
+                android:paddingTop="7dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#fff"
+                    android:text="Change Password"
+                    android:background="@drawable/roundbtnprimary"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:id="@+id/btnchangepassword"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:paddingTop="7dp">
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
-                    android:text="Signup"
+                    android:text="Change Details"
                     android:background="@drawable/roundbtnaccent"
                     android:textSize="15dp"
                     android:layout_weight="1"
-                    android:id="@+id/parentsignup"/>
+                    android:id="@+id/btneditpassengerdetails"/>
 
             </LinearLayout>
 

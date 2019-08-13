@@ -52,6 +52,28 @@
                     android:layout_weight="1">
 
                     <EditText
+                        android:id="@+id/txtname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name"
+                        android:padding="12dp"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_person_accent_24dp"
+                        android:drawablePadding="10dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/txtemail"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <EditText
                         android:id="@+id/txtemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -59,7 +81,10 @@
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_email_accent_24dp"
-                        android:drawablePadding="10dp"/>
+                        android:drawablePadding="10dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/txtphone"/>
 
                 </LinearLayout>
 
@@ -78,7 +103,10 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="phone"/>
+                        android:inputType="phone"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/txtaddress"/>
 
                 </LinearLayout>
 
@@ -95,7 +123,10 @@
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/ic_home_black_24dp"
-                        android:drawablePadding="10dp"/>
+                        android:drawablePadding="10dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/txtpass1"/>
 
                 </LinearLayout>
 
@@ -113,7 +144,10 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/password_drawable_selector"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/txtpass2"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,7 +164,7 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/password_drawable_selector"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"/>
+                        android:singleLine="true"/>
                 </LinearLayout>
 
             </LinearLayout>

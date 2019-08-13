@@ -29,6 +29,7 @@ public class ParentSignup2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("DriveMe - Child");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_signup2);
 

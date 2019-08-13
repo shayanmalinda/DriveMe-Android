@@ -216,7 +216,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view6"
+            android:id="@+id/myprofile"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

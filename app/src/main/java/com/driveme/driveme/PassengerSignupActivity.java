@@ -16,9 +16,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.math.BigInteger;
+
 public class PassengerSignupActivity extends AppCompatActivity {
 
     private EditText etemail;
+    private EditText etname;
     private EditText etphone;
     private EditText etaddress;
     private EditText etpass1;
@@ -29,6 +32,7 @@ public class PassengerSignupActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private String email;
+    private String name;
     private String phone;
     private String address;
     private String pass1;
@@ -48,6 +52,7 @@ public class PassengerSignupActivity extends AppCompatActivity {
         etaddress = findViewById(R.id.txtaddress);
         etpass1 = findViewById(R.id.txtpass1);
         etpass2 = findViewById(R.id.txtpass2);
+        etname = findViewById(R.id.txtname);
         signup = findViewById(R.id.btnpassengersignup);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +65,13 @@ public class PassengerSignupActivity extends AppCompatActivity {
 
 
                 email = etemail.getText().toString();
+                name = etname.getText().toString();
                 phone = etphone.getText().toString();
                 address = etaddress.getText().toString();
                 pass1 = etpass1.getText().toString();
                 pass2 = etpass2.getText().toString();
 
-                if(email.isEmpty() || phone.isEmpty() || address.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
+                if(email.isEmpty() || name.isEmpty() || phone.isEmpty() || address.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
                     Toast.makeText(PassengerSignupActivity.this, "Inputs are Empty", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -73,7 +79,15 @@ public class PassengerSignupActivity extends AppCompatActivity {
                     if(pass1.equals(pass2)){
                         dialog.show();
                         CollectionReference dbPassenger = db.collection("users/user/passenger");
-                        Passengers passenger = new Passengers(email,address,phone,pass1);
+                        BigInteger passEncrypt = null;
+
+                        try{
+                            passEncrypt = new BigInteger(1, md5.encryptMD5(pass1.getBytes()));
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        Passengers passenger = new Passengers(name,email,address,phone,passEncrypt.toString());
 
 
                         dbPassenger.add(passenger).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

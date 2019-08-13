@@ -31,6 +31,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -155,6 +156,15 @@ public class LoginActivity extends AppCompatActivity {
 
         final String email = etemail.getText().toString();
         final String password = etpass.getText().toString();
+        BigInteger passEncrypt = null;
+
+        try{
+            passEncrypt = new BigInteger(1, md5.encryptMD5(password.getBytes()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        final String passEncryptString = passEncrypt.toString();
         db.collection("users/user/passenger").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -165,7 +175,9 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String, Object> details = d.getData();
                         String dbemail = details.get("email").toString();
                         String dbpass = details.get("password").toString();
-                        if(email.equals(dbemail) && password.equals(dbpass)){
+                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
+                            CurrentUser usr = new CurrentUser();
+                            usr.setCurrentuserID(d.getId());
                             validCredentials = true;
                             break;
                         }
@@ -204,6 +216,15 @@ public class LoginActivity extends AppCompatActivity {
 
         final String email = etemail.getText().toString();
         final String password = etpass.getText().toString();
+        BigInteger passEncrypt = null;
+
+        try{
+            passEncrypt = new BigInteger(1, md5.encryptMD5(password.getBytes()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        final String passEncryptString = passEncrypt.toString();
         db.collection("users/user/parent").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -214,12 +235,15 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String, Object> details = d.getData();
                         String dbemail = details.get("parentemail").toString();
                         String dbpass = details.get("parentpass").toString();
-                        if(email.equals(dbemail) && password.equals(dbpass)){
+                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
+                            CurrentUser usr = new CurrentUser();
+                            usr.setCurrentuserID(d.getId());
                             validCredentials = true;
                             break;
                         }
                     }
                     if(validCredentials){
+
                         Intent intent = new Intent(LoginActivity.this,ParentHomeActivity.class);
                         finish();
                         dialog.dismiss();
