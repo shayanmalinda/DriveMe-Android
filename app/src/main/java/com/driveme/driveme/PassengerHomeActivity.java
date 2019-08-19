@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class PassengerHomeActivity extends AppCompatActivity {
 
@@ -34,14 +35,13 @@ public class PassengerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(PassengerHomeActivity.this,PassengerRouteSearchActivity.class);
+//                Intent intent = new Intent(PassengerHomeActivity.this,PassengerRouteSearchActivity.class);
+//                startActivity(intent);
+
+                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
                 startActivity(intent);
 
-//                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
-//                startActivity(intent);
             }
         });
-
-
     }
 }

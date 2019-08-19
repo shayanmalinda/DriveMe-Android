@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.driveme.driveme">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -16,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".MapFragmentActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -27,10 +26,9 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8" />
 
-        <activity android:name=".DriverRouteActivity" />
-        <activity android:name=".PassengerRouteSearchActivity" />
+        <activity android:name=".DriverRouteActivity" /> <!-- <activity android:name=".PassengerRouteSearchActivity" /> -->
         <activity android:name=".Login2Activity" />
         <activity
             android:name=".PassengerPasswordChangeActivity"
@@ -38,7 +36,7 @@
         <activity android:name=".PassengerProfileEditActivity" />
         <activity android:name=".PassengerProfileActivity" />
         <activity android:name=".ParentHomeActivity" />
-        <activity android:name=".PassengerHomeActivity" />
+         <activity android:name=".PassengerHomeActivity" />
         <activity android:name=".ParentSignup1Activity" />
         <activity android:name=".ParentSignup2Activity" />
         <activity android:name=".PassengerSignupActivity" />
