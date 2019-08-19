@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 CharacterRole c = new CharacterRole();
                 c.setRole("driver");
-                Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+                Intent intent = new Intent(HomeActivity.this,Login2Activity.class);
                 startActivity(intent);
             }
         });

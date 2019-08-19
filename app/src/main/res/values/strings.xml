@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DriveMe</string>
+    <string name="title_activity_map_fragment">Map</string>
 </resources>

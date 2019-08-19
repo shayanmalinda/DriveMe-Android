@@ -10,6 +10,7 @@ import android.view.View;
 public class PassengerHomeActivity extends AppCompatActivity {
 
     private CardView myprofile;
+    private CardView routesearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +20,25 @@ public class PassengerHomeActivity extends AppCompatActivity {
         setTitle("Passenger - Home");
 
         myprofile = findViewById(R.id.myprofile);
+        routesearch = findViewById(R.id.searchroute);
+
         myprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PassengerHomeActivity.this,PassengerProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        routesearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(PassengerHomeActivity.this,PassengerRouteSearchActivity.class);
+                startActivity(intent);
+
+//                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
+//                startActivity(intent);
             }
         });
 
