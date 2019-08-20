@@ -30,32 +30,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
+        <TextView
+            android:id="@+id/btnstartlocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="4dp">
-
-
-            <fragment
-                android:id="@+id/autocompletefragment1"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                ></fragment>
-
-            <TextView
-                android:id="@+id/txtView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/edit_text_background"
+            android:hint="Select Location"
+            android:textSize="19sp"
+            android:inputType="none"
+            android:padding="15dp"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:drawableRight="@drawable/ic_my_location_accent_24dp"/>
 
 
     </LinearLayout>
@@ -69,7 +55,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="End Location"
+        android:text="Destination"
         android:textSize="24sp"
         android:textColor="@color/colorPrimaryDark"/>
 
@@ -79,34 +65,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
+        <TextView
+            android:id="@+id/btnendlocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="4dp">
-
-
-            <fragment
-                android:id="@+id/autocompletefragment2"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                ></fragment>
-
-            <TextView
-                android:id="@+id/txtView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"  />
-
-
-        </androidx.cardview.widget.CardView>
-
+            android:background="@drawable/edit_text_background"
+            android:hint="Select Location"
+            android:textSize="19sp"
+            android:inputType="none"
+            android:padding="15dp"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:drawableRight="@drawable/ic_my_location_accent_24dp"/>
 
     </LinearLayout>
 
@@ -117,7 +87,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="7dp"
         android:layout_marginTop="250dp">
 
         <Button
@@ -129,7 +98,7 @@
             android:background="@drawable/roundbtnaccent"
             android:textSize="19sp"
             android:id="@+id/btnSearch"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"/>
     </LinearLayout>
 </LinearLayout>

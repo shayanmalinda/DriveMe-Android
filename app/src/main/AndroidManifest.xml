@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MapFragmentActivity"></activity>
+        <activity android:name=".ChooseTimeActivity2"></activity>
+        <activity android:name=".MapFragmentActivity2" />
+        <activity android:name=".ChooseTimeActivity" />
+        <activity android:name=".DriverRouteActivity2" />
+        <activity android:name=".MapFragmentActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,9 +38,10 @@
             android:name=".PassengerPasswordChangeActivity"
             android:theme="@style/AppTheme.CustomeTheme" />
         <activity android:name=".PassengerProfileEditActivity" />
+        <activity android:name=".PassengerRouteSearchActivity" />
         <activity android:name=".PassengerProfileActivity" />
         <activity android:name=".ParentHomeActivity" />
-         <activity android:name=".PassengerHomeActivity" />
+        <activity android:name=".PassengerHomeActivity" />
         <activity android:name=".ParentSignup1Activity" />
         <activity android:name=".ParentSignup2Activity" />
         <activity android:name=".PassengerSignupActivity" />

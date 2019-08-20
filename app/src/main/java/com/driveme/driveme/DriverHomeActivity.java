@@ -23,6 +23,7 @@ public class DriverHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_home);
+        setTitle("Driver - Home");
 
         driverroute = findViewById(R.id.driverroute);
 
@@ -33,6 +34,7 @@ public class DriverHomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 

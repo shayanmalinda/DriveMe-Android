@@ -1,6 +1,7 @@
 package com.driveme.driveme;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,82 +27,64 @@ import java.util.Arrays;
 
 public class PassengerRouteSearchActivity extends AppCompatActivity {
 
-    String TAG = "placeautocomplete";
-    private Button btnSearch;
+    private TextView startLocation;
+    private TextView endLocation;
 
+    private Place startPlace;
+    private Place endPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_route_search);
-        final String[] startId = {null};
-        final String[] endId = new String[1];
-        btnSearch = findViewById(R.id.btnSearch);
 
+        setTitle("Route Search");
 
-        // Initialize Places.
-        Places.initialize(getApplicationContext(), "AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8");
-        // Create a new Places client instance.
-        PlacesClient placesClient = Places.createClient(this);
+        SelectedPlace sp = new SelectedPlace();
+        sp.setPlace(null);
 
-        // Initialize the AutocompleteSupportFragment.
-        AutocompleteSupportFragment autocompleteFragment1 = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.autocompletefragment1);
+        startLocation = findViewById(R.id.btnstartlocation);
+        endLocation = findViewById(R.id.btnendlocation);
 
-        AutocompleteSupportFragment autocompleteFragment2 = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.autocompletefragment2);
-
-        // Specify the types of place data to return.
-        autocompleteFragment1.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-        autocompleteFragment1.setHint("Start Location");
-
-
-        autocompleteFragment2.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-        autocompleteFragment2.setHint("End Location");
-
-        // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment1.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-//                Toast.makeText(PassengerRouteSearchActivity.this, ""+place.getName()    , Toast.LENGTH_SHORT).show();
-//                txtView.setText(place.getName()+","+place.getId());
-                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-                startId[0] = place.getId();
-            }
-
-            @Override
-            public void onError(@NonNull Status status) {
-                Log.i(TAG, "An error occurred: " + status);
-            }
-
-        });
-
-
-        autocompleteFragment2.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-//                Toast.makeText(PassengerRouteSearchActivity.this, ""+place.getName()    , Toast.LENGTH_SHORT).show();
-//                txtView.setText(place.getName()+","+place.getId());
-                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-                endId[0] = place.getId();
-            }
-
-            @Override
-            public void onError(@NonNull Status status) {
-                Log.i(TAG, "An error occurred: " + status);
-            }
-
-        });
-
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        startLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PassengerRouteSearchActivity.this, ""+startId[0]+"\n"+endId[0], Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PassengerRouteSearchActivity.this,MapFragmentActivity.class);
+                startActivityForResult(intent,1);
             }
         });
 
+        endLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PassengerRouteSearchActivity.this,MapFragmentActivity.class);
+                startActivityForResult(intent,2);
+            }
+        });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            SelectedPlace s = new SelectedPlace();
+            startPlace = s.getPlace();
+            if(startPlace!=null){
+                startLocation.setText(startPlace.getName().toString());
+            }
+        }
+        if(requestCode==2){
+            SelectedPlace s = new SelectedPlace();
+            endPlace = s.getPlace();
+            if(startPlace!=null) {
+                endLocation.setText(endPlace.getName().toString());
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

@@ -35,11 +35,11 @@ public class PassengerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                Intent intent = new Intent(PassengerHomeActivity.this,PassengerRouteSearchActivity.class);
-//                startActivity(intent);
-
-                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
+                Intent intent = new Intent(PassengerHomeActivity.this,PassengerRouteSearchActivity.class);
                 startActivity(intent);
+
+//                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
+//                startActivity(intent);
 
             }
         });
