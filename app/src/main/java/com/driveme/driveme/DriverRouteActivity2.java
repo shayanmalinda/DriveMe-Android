@@ -19,7 +19,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
@@ -28,7 +30,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DriverRouteActivity2 extends AppCompatActivity {
 
@@ -44,6 +48,18 @@ public class DriverRouteActivity2 extends AppCompatActivity {
     private Button btnReset;
     private Button btnDone;
     final List<String> checkpointlist = new ArrayList<String>();
+
+
+    String startPlaceId;
+    Double startPlaceLat;
+    Double startPlaceLng;
+    String startPlaceName;
+    String endPlaceId;
+    Double endPlaceLat;
+    Double endPlaceLng;
+    String endPlaceName;
+    String startTime;
+    String endTime;
 
 
     @Override
@@ -90,36 +106,71 @@ public class DriverRouteActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DriverRouteDetails dr = new DriverRouteDetails();
-                DriverRouteDetails2 dr2 = new DriverRouteDetails2(dr.getStartPlace(),dr.getEndPlace(),dr.getStartTime(),dr.getEndTime());
+
+                Place startPlace = dr.getStartPlace();
+                Place endPlace = dr.getEndPlace();
+
+                startPlaceId = startPlace.getId();
+                startPlaceLat = startPlace.getLatLng().latitude;
+                startPlaceLng = startPlace.getLatLng().longitude;
+                startPlaceName = startPlace.getName();
+
+                endPlaceId = endPlace.getId();
+                endPlaceLat = endPlace.getLatLng().latitude;
+                endPlaceLng = endPlace.getLatLng().longitude;
+                endPlaceName = endPlace.getName();
+
+                startTime = dr.getStartTime();
+                endTime = dr.getEndTime();
+
+                Map<String, Object> map = new HashMap<>();
+
+                map.put("startPlaceId",startPlaceId);
+                map.put("startPlaceLat",startPlaceLat);
+                map.put("startPlaceLng",startPlaceLng);
+                map.put("startPlaceName",startPlaceName);
+                map.put("endPlaceId",endPlaceId);
+                map.put("endPlaceLat",endPlaceLat);
+                map.put("endPlaceLng",endPlaceLng);
+                map.put("endPlaceName",endPlaceName);
+                map.put("startTime",startTime);
+                map.put("endTime",endTime);
+
+//                DriverRouteDetails2 dr2 = new DriverRouteDetails2(startPlaceId,startPlaceLat, startPlaceLng, startPlaceName, endPlaceId,
+//                        endPlaceLat,endPlaceLng,endPlaceName,startTime,endTime);
 
                 CurrentUser cu = new CurrentUser();
                 String userId = cu.getCurrentuserID();
 
+                db.collection("users/user/driver/").document(userId).update(map);
 
-                CollectionReference route = db.collection("users/user/driver/"+userId+"/routes");
+                addcheckpoints();
 
-                route.add(dr2).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-//                        dialog.dismiss();
-                        documentId = documentReference.getId();
-                        Toast.makeText(DriverRouteActivity2.this, "Route Added 1", Toast.LENGTH_SHORT).show();
-                        addcheckpoints();
-                        try {
-                            DriverRouteActivity.fa.finish();
-                        }
-                        catch (Exception e){
-                            e.printStackTrace();
-                        }
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-//                        dialog.dismiss();
-                        Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+//                CollectionReference route = db.collection("users/user/driver/"+userId);
+//
+//                route.add(dr2).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+////                        dialog.dismiss();
+//                        documentId = documentReference.getId();
+//                        Toast.makeText(DriverRouteActivity2.this, "Route Added 1", Toast.LENGTH_SHORT).show();
+//                        addcheckpoints();
+//                        try {
+//                            DriverRouteActivity.fa.finish();
+//                        }
+//                        catch (Exception e){
+//                            e.printStackTrace();
+//                        }
+//                        finish();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+////                        dialog.dismiss();
+//                        Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
             }
         });
@@ -132,19 +183,70 @@ public class DriverRouteActivity2 extends AppCompatActivity {
         String userId = cu.getCurrentuserID();
         DriverRouteDetails dr = new DriverRouteDetails();
         checkpoints = dr.getCheckpoints();
-        CollectionReference route2 = db.collection("users/user/driver/"+userId+"/routes/"+documentId+"/checkpoints");
+        final CollectionReference route2 = db.collection("users/user/driver/"+userId+"/checkpoints");
 
-        for(int n = 0; n < checkpoints.length(); n++){
 
-            CheckpointDetails cd = null;
+        CurrentUser cu2 = new CurrentUser();
+        final String userId2 = cu2.getCurrentuserID();
 
+        route2.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(!queryDocumentSnapshots.isEmpty()){
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    for(DocumentSnapshot d: list){
+                        db.collection("users/user/driver/"+userId2+"/checkpoints").document(d.getId()).update("isActive",false);
+                    }
+                }
+                insertcheckpoints(route2);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+
+    }
+
+    public  void insertcheckpoints(CollectionReference route2){
+
+
+        int order = 1;
+        CheckpointDetails cd = null;
+
+        //Adding startplace as a checkpoint
+        try {
+            cd = new CheckpointDetails(startPlaceId,startPlaceName,startPlaceLat.toString(),startPlaceLng.toString(),startTime, true,order,true,false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        route2.add(cd).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+//                        dialog.dismiss();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+//                        dialog.dismiss();
+                Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //adding checkpoints
+        for(int n = 0; n < checkpoints.length(); n++) {
+
+            order++;
             try {
                 JSONObject object = checkpoints.getJSONObject(n);
                 cd = new CheckpointDetails(object.getString("placeid"),
                         object.getString("placename"),
                         object.getString("placelat"),
                         object.getString("placelng"),
-                        object.getString("time"));
+                        object.getString("time"), true,order,false,false);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -153,7 +255,6 @@ public class DriverRouteActivity2 extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
 //                        dialog.dismiss();
-                    Toast.makeText(DriverRouteActivity2.this, "Route Added 2", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -164,6 +265,28 @@ public class DriverRouteActivity2 extends AppCompatActivity {
                 }
             });
         }
+
+        order++;
+        //Adding endplace as a checkpoint
+        try {
+            cd = new CheckpointDetails(endPlaceId,endPlaceName,endPlaceLat.toString(),endPlaceLng.toString(),endTime, true,order,false,true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        route2.add(cd).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+//                        dialog.dismiss();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+//                        dialog.dismiss();
+                Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
