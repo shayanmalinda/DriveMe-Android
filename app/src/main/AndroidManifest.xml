@@ -15,12 +15,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassengerRouteSearch2Activity"></activity>
-        <activity android:name=".ChooseTimeActivity2" />
-        <activity android:name=".MapFragmentActivity2" />
-        <activity android:name=".ChooseTimeActivity" />
-        <activity android:name=".DriverRouteActivity2" />
-        <activity android:name=".MapFragmentActivity" />
+        <activity android:name=".PassengerRouteSearch3Activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".PassengerRouteSearch2Activity"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".ChooseTimeActivity2"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".MapFragmentActivity2"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".ChooseTimeActivity"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".DriverRouteActivity2"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".MapFragmentActivity"
+            android:screenOrientation="portrait"  />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,24 +42,40 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8" />
 
-        <activity android:name=".DriverRouteActivity" /> <!-- <activity android:name=".PassengerRouteSearchActivity" /> -->
-        <activity android:name=".Login2Activity" />
+        <activity android:name=".DriverRouteActivity"
+            android:screenOrientation="portrait"  /> <!-- <activity android:name=".PassengerRouteSearchActivity" /> -->
+        <activity android:name=".Login2Activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PassengerPasswordChangeActivity"
-            android:theme="@style/AppTheme.CustomeTheme" />
-        <activity android:name=".PassengerProfileEditActivity" />
-        <activity android:name=".PassengerRouteSearchActivity" />
-        <activity android:name=".PassengerProfileActivity" />
-        <activity android:name=".ParentHomeActivity" />
-        <activity android:name=".PassengerHomeActivity" />
-        <activity android:name=".ParentSignup1Activity" />
-        <activity android:name=".ParentSignup2Activity" />
-        <activity android:name=".PassengerSignupActivity" />
-        <activity android:name=".DriverHomeActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme.CustomeTheme"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PassengerProfileEditActivity"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".PassengerRouteSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PassengerProfileActivity"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".ParentHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PassengerHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ParentSignup1Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ParentSignup2Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PassengerSignupActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DriverHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SignupActivity"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

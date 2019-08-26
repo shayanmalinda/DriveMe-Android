@@ -3,10 +3,31 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:background="@drawable/edit_text_background_accent"
+    android:gravity="center">
+
+
 
     <TextView
         android:id="@+id/driverId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/allowedPassengers"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/currentPassengers"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="invisible"
@@ -17,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:textSize="18sp"
         />
 
     <TextView
@@ -24,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:textSize="18sp"
         />
 
     <TextView
@@ -31,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:textSize="18sp"
         />
 
     <TextView
@@ -38,6 +62,62 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:textSize="18sp"
         />
+
+    <TextView
+        android:id="@+id/driverEmail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/driverTelephone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/vehicleType"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/isAC"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/vehicleNumber"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        />
+
+    <Button
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Details"
+        android:background="@drawable/roundbtnprimary"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/whiteText"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnviewdetails"
+        android:onClick="viewdetails"
+        android:textSize="19sp"
+        android:textAllCaps="false"/>
     
 </LinearLayout>
