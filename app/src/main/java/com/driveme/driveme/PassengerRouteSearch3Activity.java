@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -38,6 +40,8 @@ public class PassengerRouteSearch3Activity extends AppCompatActivity {
     TextView txtPlace;
     TextView txtTime;
 
+    Button btnAddRoute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,7 @@ public class PassengerRouteSearch3Activity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         txtPlace = findViewById(R.id.txtPlace);
         txtTime = findViewById(R.id.txtTime);
+        btnAddRoute = findViewById(R.id.addRoute);
 
         Bundle bundle = getIntent().getExtras();
         driverId = bundle.getString("driverId");
@@ -112,6 +117,18 @@ public class PassengerRouteSearch3Activity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
+            }
+        });
+
+        CurrentUser cu = new CurrentUser();
+        final String userId = cu.getCurrentuserID();
+
+        btnAddRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.document("users/user/passenger/"+userId).update("driverId",driverId);
+                Toast.makeText(PassengerRouteSearch3Activity.this, "Route Added Succesfully", Toast.LENGTH_SHORT).show();
+                PassengerRouteSearch3Activity.this.finish();
             }
         });
 

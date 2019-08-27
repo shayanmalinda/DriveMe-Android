@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class DriverHomeActivity extends AppCompatActivity {
 
     private CardView driverroute;
+    private CardView livelocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,20 @@ public class DriverHomeActivity extends AppCompatActivity {
         setTitle("Driver - Home");
 
         driverroute = findViewById(R.id.driverroute);
+        livelocation = findViewById(R.id.livelocation);
 
         driverroute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DriverHomeActivity.this,DriverRouteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        livelocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DriverHomeActivity.this,DriverMapActivity.class);
                 startActivity(intent);
             }
         });

@@ -12,6 +12,7 @@ public class PassengerHomeActivity extends AppCompatActivity {
 
     private CardView myprofile;
     private CardView routesearch;
+    private CardView driverlocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class PassengerHomeActivity extends AppCompatActivity {
 
         myprofile = findViewById(R.id.myprofile);
         routesearch = findViewById(R.id.searchroute);
+        driverlocation = findViewById(R.id.driverlocation);
 
         myprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +43,14 @@ public class PassengerHomeActivity extends AppCompatActivity {
 //                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
 //                startActivity(intent);
 
+            }
+        });
+
+        driverlocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PassengerHomeActivity.this,PassengerMapActivity.class);
+                startActivity(intent);
             }
         });
     }
