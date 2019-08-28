@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassengerMapActivity"></activity>
+        <activity android:name=".PassengerListActivity"></activity>
+        <activity android:name=".DriverPassengerListActivity" />
+        <activity android:name=".PassengerMapActivity" />
         <activity android:name=".DriverMapActivity" />
         <activity
             android:name=".PassengerRouteSearch3Activity"
@@ -22,6 +24,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MapFragmentActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapFragmentActivity3"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ChooseTimeActivity"

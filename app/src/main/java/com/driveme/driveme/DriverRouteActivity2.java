@@ -2,6 +2,7 @@ package com.driveme.driveme;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -179,6 +180,14 @@ public class DriverRouteActivity2 extends AppCompatActivity {
 
     private void addcheckpoints(){
 
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(DriverRouteActivity2.this);
+        builder.setCancelable(false); // if you want user to wait for some process to finish,
+        builder.setView(R.layout.layout_loading_dialog);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
         CurrentUser cu = new CurrentUser();
         String userId = cu.getCurrentuserID();
         DriverRouteDetails dr = new DriverRouteDetails();
@@ -199,6 +208,8 @@ public class DriverRouteActivity2 extends AppCompatActivity {
                     }
                 }
                 insertcheckpoints(route2);
+                dialog.dismiss();
+                Toast.makeText(DriverRouteActivity2.this, "Route Added", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -210,7 +221,6 @@ public class DriverRouteActivity2 extends AppCompatActivity {
     }
 
     public  void insertcheckpoints(CollectionReference route2){
-
 
         int order = 1;
         CheckpointDetails cd = null;
@@ -225,45 +235,48 @@ public class DriverRouteActivity2 extends AppCompatActivity {
         route2.add(cd).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-//                        dialog.dismiss();
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                        dialog.dismiss();
                 Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        //adding checkpoints
-        for(int n = 0; n < checkpoints.length(); n++) {
+        if (checkpoints != null) {
 
-            order++;
-            try {
-                JSONObject object = checkpoints.getJSONObject(n);
-                cd = new CheckpointDetails(object.getString("placeid"),
-                        object.getString("placename"),
-                        object.getString("placelat"),
-                        object.getString("placelng"),
-                        object.getString("time"), true,order,false,false);
-            } catch (JSONException e) {
-                e.printStackTrace();
+
+            //adding checkpoints
+            for(int n = 0; n < checkpoints.length(); n++) {
+
+                order++;
+                try {
+                    JSONObject object = checkpoints.getJSONObject(n);
+                    cd = new CheckpointDetails(object.getString("placeid"),
+                            object.getString("placename"),
+                            object.getString("placelat"),
+                            object.getString("placelng"),
+                            object.getString("time"), true,order,false,false);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                final int finalN = n;
+                route2.add(cd).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        if(finalN == checkpoints.length()-1){
+                            finish();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-
-            route2.add(cd).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-//                        dialog.dismiss();
-                    finish();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-//                        dialog.dismiss();
-                    Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
         }
 
         order++;
@@ -277,13 +290,11 @@ public class DriverRouteActivity2 extends AppCompatActivity {
         route2.add(cd).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-//                        dialog.dismiss();
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                        dialog.dismiss();
                 Toast.makeText(DriverRouteActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

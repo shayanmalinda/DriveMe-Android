@@ -3,6 +3,7 @@ package com.driveme.driveme;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -126,8 +127,10 @@ public class PassengerRouteSearch3Activity extends AppCompatActivity {
         btnAddRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.document("users/user/passenger/"+userId).update("driverId",driverId);
-                Toast.makeText(PassengerRouteSearch3Activity.this, "Route Added Succesfully", Toast.LENGTH_SHORT).show();
+                Intent intent  = new Intent(PassengerRouteSearch3Activity.this,MapFragmentActivity3.class);
+                intent.putExtra("userId",userId);
+                intent.putExtra("driverId",driverId);
+                startActivity(intent);
                 PassengerRouteSearch3Activity.this.finish();
             }
         });
