@@ -10,6 +10,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -82,7 +83,10 @@ public class PassengerMapActivity extends FragmentActivity implements OnMapReady
                         mMap.addMarker(new MarkerOptions().position(driver).title("Driver"));
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(driver));
                         if(zoomFlag){
-                            mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+                            mMap.getUiSettings().setZoomControlsEnabled(true);
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(lat,lng)).zoom(17).build();
+                            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
                         }
                         zoomFlag = false;
 

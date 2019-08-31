@@ -46,6 +46,25 @@ public class MapFragmentActivity extends FragmentActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_fragment);
 
+//        AutocompleteSupportFragment autocompleteFragment1 = (AutocompleteSupportFragment)
+//                getSupportFragmentManager().findFragmentById(R.id.map);
+//
+//        try{
+//            final View root = autocompleteFragment1.getView();
+//            root.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    root.findViewById(R.id.place_autocomplete_fragment)
+//                            .performClick();
+//                }
+//            });
+//
+//        }
+//        catch (Exception e){
+//
+//        }
+
+
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         btnselect = findViewById(R.id.btnselect);
         setupAutoCompleteFragment();

@@ -28,6 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseError;
@@ -43,7 +44,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     SupportMapFragment mapFragment;
     FusedLocationProviderClient mFusedLocationClient;
     boolean zoomFlag = true;
-    private LocationCallback locationCallback;
+    private LocationCallback    locationCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +89,12 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     mLastLocation = location;
                     LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    Double lat = latLng.latitude;
+                    Double lng = latLng.longitude;
                     if(zoomFlag){
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+                        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(lat,lng)).zoom(17).build();
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                        Toast.makeText(DriverMapActivity.this, "Location Sharing Enabled", Toast.LENGTH_SHORT).show();
                     }
                     zoomFlag = false;
 
@@ -150,7 +155,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onConnected(@Nullable Bundle bundle) {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
-        mLocationRequest.setFastestInterval(1000);
+        mLocationRequest.setFastestInterval(500);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

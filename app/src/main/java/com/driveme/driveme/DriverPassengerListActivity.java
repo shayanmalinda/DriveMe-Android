@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -29,6 +33,13 @@ public class DriverPassengerListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_passenger_list);
 
         setTitle("Passenger List");
+
+        getPassengerList();
+
+
+    }
+
+    public void getPassengerList(){
 
         db = FirebaseFirestore.getInstance();
         CurrentUser cu = new CurrentUser();
@@ -49,6 +60,7 @@ public class DriverPassengerListActivity extends AppCompatActivity {
                 for(QueryDocumentSnapshot querySnapshot: queryDocumentSnapshots){
                     if(querySnapshot.getString("driverId").equals(userId)){
                         HashMap<String,String> map  = new HashMap();
+                        map.put("passengerId",querySnapshot.getId());
                         map.put("name","Name  :   "+querySnapshot.getString("name"));
                         map.put("email","Email  :   "+querySnapshot.getString("email"));
                         map.put("address","Address  :   "+querySnapshot.getString("address"));
@@ -57,8 +69,8 @@ public class DriverPassengerListActivity extends AppCompatActivity {
                         list.add(map);
                     }
                     int layout = R.layout.item_passenger;
-                    String[] cols = {"name","email","address","phone","pickupLocation"};
-                    int[] views = {R.id.passengerName,R.id.passengerEmail,R.id.passengerAddress,R.id.passengerPhone,R.id.pickupLocation};
+                    String[] cols = {"passengerId","name","email","address","phone","pickupLocation"};
+                    int[] views = {R.id.passengerId,R.id.passengerName,R.id.passengerEmail,R.id.passengerAddress,R.id.passengerPhone,R.id.pickupLocation};
                     SimpleAdapter adapter = new SimpleAdapter(DriverPassengerListActivity.this,list,layout,cols,views);
                     lv.setAdapter(adapter);
                     dialog.dismiss();
@@ -71,6 +83,17 @@ public class DriverPassengerListActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    public void removePassenger(View v){
+
+        db = FirebaseFirestore.getInstance();
+
+        LinearLayout view = (LinearLayout)v.getParent();
+        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        String passengerId = txtpassengerId.getText().toString();
+
+        db.document("users/user/passenger/"+passengerId).update("driverId","");
+        getPassengerList();
     }
 }

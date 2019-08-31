@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassengerListActivity"></activity>
+        <activity android:name=".PassengerRouteActivity"></activity>
         <activity android:name=".DriverPassengerListActivity" />
         <activity android:name=".PassengerMapActivity" />
         <activity android:name=".DriverMapActivity" />

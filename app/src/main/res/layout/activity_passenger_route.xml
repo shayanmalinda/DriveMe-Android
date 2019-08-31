@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PassengerRouteSearch3Activity"
+    tools:context=".PassengerRouteActivity"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -111,6 +111,14 @@
             android:textSize="18sp"
             />
 
+        <TextView
+            android:id="@+id/mypickupLocation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
     </LinearLayout>
 
     <LinearLayout
@@ -176,12 +184,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choose a pickup Location"
+            android:text="Remove Route"
             android:background="@drawable/roundbtnaccent"
             android:backgroundTint="@color/colorAccent"
             android:textSize="20sp"
             android:textColor="@color/whiteText"
-            android:id="@+id/addRoute"/>
+            android:id="@+id/removeRoute"/>
 
     </LinearLayout>
 
