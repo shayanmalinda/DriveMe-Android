@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -54,7 +55,6 @@ public class ParentSignup1Activity extends AppCompatActivity {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ParentSignup1Activity.this, "Btn next clicked", Toast.LENGTH_SHORT).show();
 
                 String email = etemail.getText().toString();
                 String phone = etphone.getText().toString();
@@ -63,7 +63,14 @@ public class ParentSignup1Activity extends AppCompatActivity {
                 String pass2 = etpass2.getText().toString();
 
                 if(email.isEmpty() || phone.isEmpty() || address.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
-                    Toast.makeText(ParentSignup1Activity.this, "Inputs are Empty", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs are Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
                 else{
 
@@ -88,7 +95,14 @@ public class ParentSignup1Activity extends AppCompatActivity {
 
                     }
                     else{
-                        Toast.makeText(ParentSignup1Activity.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Mismatched", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.show();
                     }
 
                 }

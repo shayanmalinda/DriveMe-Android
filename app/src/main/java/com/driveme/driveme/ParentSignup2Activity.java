@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,7 +65,14 @@ public class ParentSignup2Activity extends AppCompatActivity {
                 String childschoolphone = etschoolphone.getText().toString();
 
                 if(childname.isEmpty() || childage.isEmpty() || childschool.isEmpty() || childschoolphone.isEmpty() ){
-                    Toast.makeText(ParentSignup2Activity.this, "Inputs are Empty", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs are Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
                 else{
 
@@ -77,7 +85,14 @@ public class ParentSignup2Activity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             dialog.dismiss();
-                            Toast.makeText(ParentSignup2Activity.this, "Parent Registered", Toast.LENGTH_SHORT).show();
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Resgistration Success", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
                             finish();
                             ParentSignup1Activity.fa.finish();
                         }

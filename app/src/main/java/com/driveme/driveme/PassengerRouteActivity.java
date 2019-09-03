@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -99,7 +100,14 @@ public class PassengerRouteActivity extends AppCompatActivity {
                 db.document("users/user/passenger/"+passengerId).update("driverId","");
                 finish();
 //                dialog2.dismiss();
-                Toast.makeText( PassengerRouteActivity.this, "Route Removed", Toast.LENGTH_SHORT).show();
+                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Route Removed", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
             }
         });
 

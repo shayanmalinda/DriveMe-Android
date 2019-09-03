@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -209,7 +210,14 @@ public class DriverRouteActivity2 extends AppCompatActivity {
                 }
                 insertcheckpoints(route2);
                 dialog.dismiss();
-                Toast.makeText(DriverRouteActivity2.this, "Route Added", Toast.LENGTH_SHORT).show();
+                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Route Added Successfully", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.internal.et;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -73,7 +74,14 @@ public class PassengerRouteSearch2Activity extends AppCompatActivity {
         final List<HashMap<String, String>> list = new ArrayList<>();
 
         if(filteredRoutes.isEmpty()){
-            Toast.makeText(this, "No Results", Toast.LENGTH_SHORT).show();
+            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Results", Snackbar.LENGTH_LONG);
+            snackbar.setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    snackbar.dismiss();
+                }
+            });
+            snackbar.show();
             dialog.dismiss();
         }
 

@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -134,7 +135,14 @@ public class LoginActivity extends AppCompatActivity {
                 if(role!=null){
                     if(role.equals("passenger")){
                         if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
-                            Toast.makeText(LoginActivity.this, "Username or Password is Empty", Toast.LENGTH_SHORT).show();
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
                         }
                         else{
                             RememberMe rm = new RememberMe();
@@ -151,7 +159,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     if(role.equals("parent")){
                         if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
-                            Toast.makeText(LoginActivity.this, "Username or Password is Empty", Toast.LENGTH_SHORT).show();
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
                         }
                         else{
                             RememberMe rm = new RememberMe();
@@ -237,12 +252,26 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else{
                         dialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Email or Password", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.show();
                     }
 
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Inputs", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -298,18 +327,39 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else{
                         dialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Username or Password", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.show();
                     }
 
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Inputs", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(LoginActivity.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Inputs", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
             }
         });
     }

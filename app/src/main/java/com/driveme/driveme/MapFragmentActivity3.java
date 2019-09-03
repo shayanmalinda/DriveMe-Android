@@ -24,6 +24,7 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
@@ -73,7 +74,14 @@ public class MapFragmentActivity3 extends FragmentActivity implements OnMapReady
                 db.document("users/user/passenger/"+userId).update("driverId",driverId);
                 db.document("users/user/passenger/"+userId).update("pickupLocation",myPlace.getName());
                 finish();
-                Toast.makeText(MapFragmentActivity3.this, "Route Added Succesfully", Toast.LENGTH_SHORT).show();
+                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Route Added Successfully", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
 
             }
         });

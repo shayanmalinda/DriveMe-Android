@@ -13,6 +13,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -94,7 +96,14 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     if(zoomFlag){
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(lat,lng)).zoom(17).build();
                         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                        Toast.makeText(DriverMapActivity.this, "Location Sharing Enabled", Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Location Sharing Enabled", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.show();
                     }
                     zoomFlag = false;
 
@@ -188,7 +197,14 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mapFragment.getMapAsync(this);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please Provide the permission", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Please Provide the Permission", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
             }
         }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -72,7 +73,14 @@ public class PassengerSignupActivity extends AppCompatActivity {
                 pass2 = etpass2.getText().toString();
 
                 if(email.isEmpty() || name.isEmpty() || phone.isEmpty() || address.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
-                    Toast.makeText(PassengerSignupActivity.this, "Inputs are Empty", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs Are Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
                 else{
 
@@ -94,7 +102,14 @@ public class PassengerSignupActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 dialog.dismiss();
-                                Toast.makeText(PassengerSignupActivity.this, "Passenger Registered", Toast.LENGTH_SHORT).show();
+                                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Registration Success", Snackbar.LENGTH_LONG);
+                                snackbar.setAction("Ok", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        snackbar.dismiss();
+                                    }
+                                });
+                                snackbar.show();
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -107,7 +122,14 @@ public class PassengerSignupActivity extends AppCompatActivity {
 
                     }
                     else{
-                        Toast.makeText(PassengerSignupActivity.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Mismatched", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.show();
                     }
 
                 }

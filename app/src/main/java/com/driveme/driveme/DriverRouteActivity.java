@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.sql.Driver;
 
@@ -86,7 +87,14 @@ public class DriverRouteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(startPlace==null || endPlace==null || startTimeString==null || endTimeString==null){
-                    Toast.makeText(DriverRouteActivity.this, "Empty Inputs", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs Can not be Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
                 else{
                     Intent intent = new Intent(DriverRouteActivity.this,DriverRouteActivity2.class);

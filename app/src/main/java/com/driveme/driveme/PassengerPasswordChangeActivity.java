@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -57,7 +58,14 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                 final String newpass1 = etnew1.getText().toString();
                 final String newpass2 = etnew2.getText().toString();
                 if(oldpassword.isEmpty() || newpass1.isEmpty() || newpass2.isEmpty()){
-                    Toast.makeText(PassengerPasswordChangeActivity.this, "Inputs are Empty", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs Are Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
                 }
                 else{
                     if(newpass1.equals(newpass2)){
@@ -96,11 +104,25 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                                     db.document("users/user/passenger/"+userId).update(userMap);
                                     finish();
                                     dialog.dismiss();
-                                    Toast.makeText(PassengerPasswordChangeActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Changed", Snackbar.LENGTH_LONG);
+                                    snackbar.setAction("Ok", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            snackbar.dismiss();
+                                        }
+                                    });
+                                    snackbar.show();
                                 }
                                 else{
                                     dialog.dismiss();
-                                    Toast.makeText(PassengerPasswordChangeActivity.this, "Invalid Old Password", Toast.LENGTH_SHORT).show();
+                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Old Password", Snackbar.LENGTH_LONG);
+                                    snackbar.setAction("Ok", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            snackbar.dismiss();
+                                        }
+                                    });
+                                    snackbar.show();
                                 }
                             }
                         });
@@ -109,7 +131,14 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
 
                     }
                     else{
-                        Toast.makeText(PassengerPasswordChangeActivity.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Mismatched", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.show();
                     }
                 }
             }

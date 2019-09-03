@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -109,7 +110,14 @@ public class PassengerHomeActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String driverId = documentSnapshot.getString("driverId");
                         if(driverId.isEmpty()){
-                            Toast.makeText(PassengerHomeActivity.this, "No Route have been added", Toast.LENGTH_SHORT).show();
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Route have been Added", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
                         }
                         else{
                             Intent intent = new Intent(PassengerHomeActivity.this,PassengerRouteActivity.class);
