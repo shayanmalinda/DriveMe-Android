@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -39,9 +41,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button signup;
     private Button login;
+    private CheckBox remembermeCheckbox;
 
     private EditText etemail;
     private EditText etpass;
+    private TextView txtRememberme;
 
     FirebaseFirestore db;
 
@@ -54,26 +58,53 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        signup = findViewById(R.id.btnSignup);
+        login = findViewById(R.id.btnLogin);
+        remembermeCheckbox = findViewById(R.id.remembermeCheckbox);
+        etemail = findViewById(R.id.loginemail);
+        etpass = findViewById(R.id.loginpassword);
+        txtRememberme = findViewById(R.id.txtRememberme);
+
+        txtRememberme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                remembermeCheckbox.performClick();
+            }
+        });
+
+
+        RememberMe rm = new RememberMe();
+
         CharacterRole c = new CharacterRole();
         final String role = c.getRole();
         if (role != null) {
             if(role.equals("passenger")){
                 setTitle("DriveMe - Passenger");
+                if(rm.isPassengerCheckbox()){
+                    remembermeCheckbox.setChecked(true);
+                    etemail.setText(rm.getPassengerEmail());
+                    etpass.setText(rm.getPassengerPassword());
+                }
             }
             if(role.equals("parent")){
                 setTitle("DriveMe - Parent");
+                if(rm.isParentCheckbox()){
+                    remembermeCheckbox.setActivated(true);
+                    etemail.setText(rm.getParentEmail());
+                    etpass.setText(rm.getParentPassword());
+                }
             }
             if(role.equals("driver")){
                 setTitle("DriveMe - Driver");
             }
             if(role.equals("owner")){
                 setTitle("DriveMe - Owner");
+                if(rm.isOwnerCheckbox()){
+                    remembermeCheckbox.setActivated(true);
+                }
             }
-
         }
 
-        signup = findViewById(R.id.btnSignup);
-        login = findViewById(R.id.btnLogin);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,15 +131,21 @@ public class LoginActivity extends AppCompatActivity {
 
                 db = FirebaseFirestore.getInstance();
 
-                etemail = findViewById(R.id.loginemail);
-                etpass = findViewById(R.id.loginpassword);
-
                 if(role!=null){
                     if(role.equals("passenger")){
                         if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
                             Toast.makeText(LoginActivity.this, "Username or Password is Empty", Toast.LENGTH_SHORT).show();
                         }
                         else{
+                            RememberMe rm = new RememberMe();
+                            if(remembermeCheckbox.isChecked()){
+                                rm.setPassengerCheckbox(true);
+                                rm.setPassengerEmail(etemail.getText().toString());
+                                rm.setPassengerPassword(etpass.getText().toString());
+                            }
+                            else{
+                                rm.setPassengerCheckbox(false);
+                            }
                             authPassenger();
                         }
                     }
@@ -117,11 +154,21 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Username or Password is Empty", Toast.LENGTH_SHORT).show();
                         }
                         else{
+                            RememberMe rm = new RememberMe();
+                            if(remembermeCheckbox.isChecked()){
+                                rm.setParentCheckbox(true);
+                                rm.setParentEmail(etemail.getText().toString());
+                                rm.setParentPassword(etpass.getText().toString());
+                            }
+                            else{
+                                rm.setParentCheckbox(false);
+                            }
                             authParent();
                         }
                     }
-
                 }
+
+
             }
         });
 

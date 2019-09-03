@@ -10,5 +10,7 @@ public class ParentHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home);
+
+        setTitle("Parent - Home");
     }
 }

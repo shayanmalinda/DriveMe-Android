@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,6 +29,8 @@ public class Login2Activity extends AppCompatActivity {
 
     private EditText etemail;
     private EditText etpass;
+    private CheckBox remembermeCheckbox;
+    private TextView txtRememberme;
 
     FirebaseFirestore db;
 
@@ -39,12 +43,37 @@ public class Login2Activity extends AppCompatActivity {
 
         login = findViewById(R.id.btnLogin);
         db = FirebaseFirestore.getInstance();
+        remembermeCheckbox = findViewById(R.id.remembermeCheckbox);
+        txtRememberme = findViewById(R.id.txtRememberme);
+        etemail = findViewById(R.id.loginemail);
+        etpass = findViewById(R.id.loginpassword);
+
+        txtRememberme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                remembermeCheckbox.performClick();
+            }
+        });
+
+        RememberMe rm = new RememberMe();
+        if(rm.isDriverCheckbox()){
+            remembermeCheckbox.setChecked(true);
+            etemail.setText(rm.getDriverEmail());
+            etpass.setText(rm.getDriverPassword());
+        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                etemail = findViewById(R.id.loginemail);
-                etpass = findViewById(R.id.loginpassword);
+                RememberMe rm = new RememberMe();
+                if(remembermeCheckbox.isChecked()){
+                    rm.setDriverCheckbox(true);
+                    rm.setDriverEmail(etemail.getText().toString());
+                    rm.setDriverPassword(etpass.getText().toString());
+                }
+                else{
+                    rm.setDriverCheckbox(false);
+                }
                 authDriver();
             }
         });

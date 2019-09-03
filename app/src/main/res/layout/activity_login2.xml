@@ -98,8 +98,8 @@
                     android:drawableLeft="@drawable/password_drawable_selector"
                     android:drawablePadding="10dp"
                     android:inputType="textPassword"
-                    android:text="driver"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:text="driver"/>
 
             </LinearLayout>
 
@@ -115,6 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:id="@+id/remembermeCheckbox"
                     />
 
                 <TextView
@@ -123,7 +124,8 @@
                     android:layout_weight="5"
                     android:text="Remember Me"
                     android:textSize="13dp"
-                    android:clickable="true"/>
+                    android:clickable="true"
+                    android:id="@+id/txtRememberme"/>
 
                 <TextView
                     android:layout_width="match_parent"

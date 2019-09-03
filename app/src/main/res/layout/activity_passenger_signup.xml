@@ -164,7 +164,8 @@
                         android:background="@drawable/edit_text_background"
                         android:drawableLeft="@drawable/password_drawable_selector"
                         android:drawablePadding="10dp"
-                        android:singleLine="true"/>
+                        android:singleLine="true"
+                        android:inputType="textPassword"/>
                 </LinearLayout>
 
             </LinearLayout>
