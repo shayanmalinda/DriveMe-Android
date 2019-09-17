@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,5 +96,30 @@ public class DriverPassengerListActivity extends AppCompatActivity {
 
         db.document("users/user/passenger/"+passengerId).update("driverId","");
         getPassengerList();
+    }
+
+    public void viewRatings(View v){
+
+        db = FirebaseFirestore.getInstance();
+
+        LinearLayout view = (LinearLayout)v.getParent();
+        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        String passengerId = txtpassengerId.getText().toString();
+
+        Intent intent = new Intent(DriverPassengerListActivity.this,DriverPassengerRatingsViewActivity.class);
+        intent.putExtra("passengerId",passengerId);
+        startActivity(intent);
+
+    }
+
+    public void newRating(View v){
+
+        LinearLayout view = (LinearLayout)v.getParent();
+        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        String passengerId = txtpassengerId.getText().toString();
+
+        Intent intent = new Intent(DriverPassengerListActivity.this,DriverPassengerNewRatingActivity.class);
+        intent.putExtra("passengerId",passengerId);
+        startActivity(intent);
     }
 }

@@ -134,6 +134,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(role!=null){
                     if(role.equals("passenger")){
+                        etemail.setText("shayan");
+                        etpass.setText("shayan");
                         if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
                             final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
                             snackbar.setAction("Ok", new View.OnClickListener() {
