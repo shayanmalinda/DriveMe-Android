@@ -97,7 +97,6 @@ public class DriverHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgratepassengers.startAnimation(animation);
-
             }
         });
 

@@ -48,17 +48,50 @@
         android:textSize="18sp"/>
 
     <Button
+        android:textAllCaps="false"
         android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Remove"
+        android:text="View Ratings"
         android:background="@drawable/roundbtnprimary"
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/whiteText"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
+        android:onClick="viewRatings"
+        android:textSize="19sp"
+        android:layout_marginTop="12dp"
+        android:drawableStart="@drawable/ic_format_list_bulleted_white_24dp"/>
+
+    <Button
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rate NOW!"
+        android:background="@drawable/roundbtnprimary"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/whiteText"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:onClick="newRating"
+        android:textSize="19sp"
+        android:layout_marginTop="12dp"
+        android:drawableStart="@drawable/ic_comment_white_24dp"/>
+
+    <Button
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remove Passenger"
+        android:background="@drawable/roundbtnaccent"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/whiteText"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
         android:onClick="removePassenger"
         android:textSize="19sp"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        android:drawableStart="@drawable/ic_delete_forever_white_24dp"/>
 
 </LinearLayout>
