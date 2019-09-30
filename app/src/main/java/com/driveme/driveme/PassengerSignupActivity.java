@@ -95,7 +95,8 @@ public class PassengerSignupActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Passengers passenger = new Passengers(name,email,address,phone,passEncrypt.toString());
+//                        Passengers passenger = new Passengers(name,email,address,phone,passEncrypt.toString());
+                        Passengers passenger = new Passengers(name,email,address,phone,pass1);
 
 
                         dbPassenger.add(passenger).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

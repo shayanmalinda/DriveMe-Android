@@ -239,7 +239,8 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String, Object> details = d.getData();
                         String dbemail = details.get("email").toString();
                         String dbpass = details.get("password").toString();
-                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
+//                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
+                        if(email.equals(dbemail) && password.equals(dbpass)){
                             CurrentUser usr = new CurrentUser();
                             usr.setCurrentuserID(d.getId());
                             validCredentials = true;
@@ -313,7 +314,8 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String, Object> details = d.getData();
                         String dbemail = details.get("parentemail").toString();
                         String dbpass = details.get("parentpass").toString();
-                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
+//                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
+                        if(email.equals(dbemail) && password.equals(dbpass)){
                             CurrentUser usr = new CurrentUser();
                             usr.setCurrentuserID(d.getId());
                             validCredentials = true;

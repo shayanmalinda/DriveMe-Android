@@ -88,7 +88,8 @@ public class ParentSignup1Activity extends AppCompatActivity {
                         intent.putExtra("email",email);
                         intent.putExtra("phone",phone);
                         intent.putExtra("address",address);
-                        intent.putExtra("pass",passEncrypt.toString());
+//                        intent.putExtra("pass",passEncrypt.toString());
+                        intent.putExtra("pass",pass1);
 
                         startActivity(intent);
 
