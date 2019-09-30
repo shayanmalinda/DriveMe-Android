@@ -153,10 +153,15 @@
                     android:textColor="#fff"
                     android:text="signup"
                     android:background="@drawable/roundbtnaccent"
-                    android:textSize="15dp"
+                    android:textSize="18sp"
                     android:layout_weight="1"
-                    android:layout_marginRight="3dp"
-                    android:id="@+id/btnSignup"/>
+                    android:layout_marginRight="9dp"
+                    android:id="@+id/btnSignup"
+                    android:drawableStart="@drawable/ic_person_add_white_24dp"
+                    android:paddingLeft="20dp"
+                    android:drawablePadding="-30dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"/>
 
                 <Button
                     android:layout_width="match_parent"
@@ -165,10 +170,15 @@
                     android:textColor="#fff"
                     android:text="login"
                     android:background="@drawable/roundbtnprimary"
-                    android:textSize="15dp"
+                    android:textSize="18sp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="3dp"
-                    android:id="@+id/btnLogin"/>
+                    android:layout_marginLeft="9dp"
+                    android:id="@+id/btnLogin"
+                    android:drawableStart="@drawable/ic_directions_walk_white_24dp"
+                    android:paddingLeft="20dp"
+                    android:drawablePadding="-30dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"/>
 
             </LinearLayout>
 

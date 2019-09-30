@@ -27,7 +27,7 @@ public class DriverPassengerRatingsViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_passenger_ratings_view);
 
-        setTitle("Ratings");
+        setTitle("Passenger Ratings");
 
         Bundle bundle = getIntent().getExtras();
         String passengerId = bundle.getString("passengerId");

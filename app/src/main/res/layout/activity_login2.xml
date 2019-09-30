@@ -154,10 +154,13 @@
                     android:textColor="#fff"
                     android:text="login"
                     android:background="@drawable/roundbtnaccent"
-                    android:textSize="15dp"
+                    android:textSize="19sp"
                     android:layout_weight="1"
                     android:layout_marginLeft="3dp"
-                    android:id="@+id/btnLogin"/>
+                    android:id="@+id/btnLogin"
+                    android:drawableStart="@drawable/ic_directions_walk_white_24dp"
+                    android:paddingLeft="20dp"
+                    android:drawablePadding="-30dp"/>
 
             </LinearLayout>
 

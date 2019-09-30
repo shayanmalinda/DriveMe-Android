@@ -107,7 +107,7 @@
 
     <Button
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingRight="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Details"
@@ -118,6 +118,10 @@
         android:id="@+id/btnviewdetails"
         android:onClick="viewdetails"
         android:textSize="19sp"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:drawableLeft="@drawable/ic_format_list_bulleted_white_24dp"
+        android:drawablePadding="10dp"/>
     
 </LinearLayout>

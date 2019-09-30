@@ -159,14 +159,19 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
                     android:text="Next"
                     android:background="@drawable/roundbtnaccent"
-                    android:textSize="15dp"
+                    android:textSize="19sp"
                     android:layout_weight="1"
-                    android:id="@+id/parentnextbtn"/>
+                    android:id="@+id/parentnextbtn"
+                    android:drawableEnd="@drawable/ic_navigate_next_white_24dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:drawablePadding="-30dp"/>
 
             </LinearLayout>
 

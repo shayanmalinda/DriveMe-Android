@@ -47,7 +47,7 @@ public class DriverPassengerNewRatingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide(); //<< this
         setContentView(R.layout.activity_driver_passenger_new_rating);
-        setTitle("Ratings");
+        setTitle("Rate NOW");
         flag = false;
         final int[] stars = new int[1];
 

@@ -25,14 +25,14 @@ public class PassengerHomeActivity extends AppCompatActivity {
     private CardView routesearch;
     private CardView driverlocation;
     private CardView myroute;
-    private CardView ratedriver;
+    private CardView mydriver;
     private CardView payment;
 
     private ImageView imgroutesearch;
     private ImageView imgmyprofile;
     private ImageView imgdriverlocation;
     private ImageView imgmyroute;
-    private ImageView imgratedriver;
+    private ImageView imgmydriver;
     private ImageView imgpayment;
 
 
@@ -48,14 +48,14 @@ public class PassengerHomeActivity extends AppCompatActivity {
         routesearch = findViewById(R.id.searchroute);
         driverlocation = findViewById(R.id.driverlocation);
         myroute = findViewById(R.id.myroute);
-        ratedriver = findViewById(R.id.ratedriver);
+        mydriver = findViewById(R.id.mydriver);
         payment = findViewById(R.id.payments);
 
         imgmyprofile = findViewById(R.id.imgmyprofile);
         imgroutesearch = findViewById(R.id.imgsearch);
         imgdriverlocation = findViewById(R.id.imgdriverlocation);
         imgmyroute = findViewById(R.id.imgmyroute);
-        imgratedriver = findViewById(R.id.imgratedriver);
+        imgmydriver = findViewById(R.id.imgmydriver);
         imgpayment = findViewById(R.id.imgpayment);
 
         final Animation animation = AnimationUtils.loadAnimation(PassengerHomeActivity.this,R.anim.rotate);
@@ -86,8 +86,8 @@ public class PassengerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgdriverlocation.startAnimation(animation);
-                Intent intent = new Intent(PassengerHomeActivity.this,PassengerMapActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(PassengerHomeActivity.this,PassengerMapActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -134,10 +134,47 @@ public class PassengerHomeActivity extends AppCompatActivity {
             }
         });
 
-        ratedriver.setOnClickListener(new View.OnClickListener() {
+        mydriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgratedriver.startAnimation(animation);
+                imgmydriver.startAnimation(animation);
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CurrentUser cu = new CurrentUser();
+                String userId = cu.getCurrentuserID();
+                AlertDialog.Builder builder = new AlertDialog.Builder(PassengerHomeActivity.this);
+                builder.setCancelable(false); // if you want user to wait for some process to finish,
+                builder.setView(R.layout.layout_loading_dialog);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Not Registered with a Driver", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                            imgmydriver = findViewById(R.id.imgmydriver);
+                            imgmydriver.clearAnimation();
+                        }
+                        else{
+                            Intent intent = new Intent(PassengerHomeActivity.this,PassengerDriverActivity.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
 
             }
         });
@@ -159,13 +196,13 @@ public class PassengerHomeActivity extends AppCompatActivity {
         imgroutesearch = findViewById(R.id.imgsearch);
         imgdriverlocation = findViewById(R.id.imgdriverlocation);
         imgmyroute = findViewById(R.id.imgmyroute);
-        imgratedriver = findViewById(R.id.imgratedriver);
+        imgmydriver = findViewById(R.id.imgmydriver);
         imgpayment = findViewById(R.id.imgpayment);
 
         imgmyroute.clearAnimation();
         imgmyprofile.clearAnimation();
         imgdriverlocation.clearAnimation();
-        imgratedriver.clearAnimation();
+        imgmydriver.clearAnimation();
         imgpayment.clearAnimation();
         imgroutesearch.clearAnimation();
     }

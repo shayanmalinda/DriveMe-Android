@@ -33,7 +33,7 @@
             android:orientation="vertical">
 
             <Button
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="Done"
                 android:textColor="@color/whiteText"
@@ -41,7 +41,11 @@
                 android:background="@drawable/edit_text_background"
                 android:backgroundTint="@color/colorPrimary"
                 android:layout_gravity="center"
-                android:id="@+id/btndone"/>
+                android:id="@+id/btndone"
+                android:drawableStart="@drawable/ic_done_black_24dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"/>
 
 
         </LinearLayout>

@@ -181,14 +181,19 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
                     android:text="SignUp"
                     android:background="@drawable/roundbtnaccent"
-                    android:textSize="15dp"
+                    android:textSize="19sp"
                     android:layout_weight="1"
-                    android:id="@+id/btnpassengersignup"/>
+                    android:id="@+id/btnpassengersignup"
+                    android:drawableLeft="@drawable/ic_person_add_white_24dp"
+                    android:paddingLeft="20dp"
+                    android:drawablePadding="-30dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"/>
 
             </LinearLayout>
 
