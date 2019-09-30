@@ -136,14 +136,19 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"
                     android:textColor="#fff"
                     android:text="Change Password"
                     android:background="@drawable/roundbtnprimary"
-                    android:textSize="15dp"
+                    android:textSize="18sp"
                     android:layout_weight="1"
-                    android:id="@+id/btnchangepassword"/>
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:id="@+id/btnchangepassword"
+                    android:drawableStart="@drawable/ic_lock_open_white_24dp"
+                    android:paddingLeft="20dp"
+                    android:drawablePadding="-30sp"/>
 
             </LinearLayout>
 
@@ -157,14 +162,19 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
                     android:text="Change Details"
                     android:background="@drawable/roundbtnaccent"
-                    android:textSize="15dp"
+                    android:textSize="18sp"
                     android:layout_weight="1"
-                    android:id="@+id/btneditpassengerdetails"/>
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:id="@+id/btneditpassengerdetails"
+                    android:drawableStart="@drawable/ic_edit_white_24dp"
+                    android:paddingLeft="20dp"
+                    android:drawablePadding="-30sp"/>
 
             </LinearLayout>
 

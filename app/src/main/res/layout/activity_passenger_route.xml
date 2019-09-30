@@ -189,7 +189,12 @@
             android:backgroundTint="@color/colorAccent"
             android:textSize="20sp"
             android:textColor="@color/whiteText"
-            android:id="@+id/removeRoute"/>
+            android:id="@+id/removeRoute"
+            android:drawableStart="@drawable/ic_delete_forever_white_24dp"
+            android:paddingLeft="20dp"
+            android:drawablePadding="-30sp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"/>
 
     </LinearLayout>
 

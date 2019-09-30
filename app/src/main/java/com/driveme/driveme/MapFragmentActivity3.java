@@ -74,14 +74,7 @@ public class MapFragmentActivity3 extends FragmentActivity implements OnMapReady
                 db.document("users/user/passenger/"+userId).update("driverId",driverId);
                 db.document("users/user/passenger/"+userId).update("pickupLocation",myPlace.getName());
                 finish();
-                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Route Added Successfully", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Ok", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        snackbar.dismiss();
-                    }
-                });
-                snackbar.show();
+                Toast.makeText(MapFragmentActivity3.this, "Route Added Successfully ", Toast.LENGTH_SHORT).show();
 
             }
         });

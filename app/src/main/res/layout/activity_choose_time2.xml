@@ -48,7 +48,12 @@
                 android:backgroundTint="@color/colorAccent"
                 android:layout_gravity="center"
                 android:id="@+id/btncancel"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:drawableStart="@drawable/ic_close_white_24dp"
+                android:paddingLeft="15dp"
+                android:drawablePadding="-30dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"/>
 
             <Button
                 android:layout_weight="1"
@@ -61,7 +66,12 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:layout_gravity="center"
                 android:id="@+id/btndone"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:drawableStart="@drawable/ic_done_black_24dp"
+                android:paddingLeft="15dp"
+                android:drawablePadding="-30dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"/>
 
 
         </LinearLayout>

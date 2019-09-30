@@ -72,6 +72,9 @@
             android:text="Cancel"
             android:textColor="@color/whiteText"
             android:textSize="17sp"
-            android:translationZ="10dp" />
+            android:translationZ="10dp"
+            android:drawableStart="@drawable/ic_close_white_24dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp" />
     </RelativeLayout>
 </RelativeLayout>
