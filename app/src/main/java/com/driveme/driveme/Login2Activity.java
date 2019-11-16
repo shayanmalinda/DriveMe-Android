@@ -107,13 +107,20 @@ public class Login2Activity extends AppCompatActivity {
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                     for(DocumentSnapshot d: list){
                         Map<String, Object> details = d.getData();
-                        String dbemail = details.get("email").toString();
-                        String dbpass = details.get("password").toString();
-                        if(email.equals(dbemail) && password.equals(dbpass)){
-                            CurrentUser usr = new CurrentUser();
-                            usr.setCurrentuserID(d.getId());
-                            validCredentials = true;
-                            break;
+                        try{
+
+                            String dbemail = details.get("email").toString();
+                            String dbpass = details.get("password").toString();
+
+                            if(email.equals(dbemail) && password.equals(dbpass)){
+                                CurrentUser usr = new CurrentUser();
+                                usr.setCurrentuserID(d.getId());
+                                validCredentials = true;
+                                break;
+                            }
+                        }
+                        catch(Exception e){
+
                         }
                     }
                     if(validCredentials){
