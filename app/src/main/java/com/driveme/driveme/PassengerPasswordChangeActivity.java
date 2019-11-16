@@ -89,7 +89,7 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 String dbpass = documentSnapshot.get("password").toString();
-                                if(oldEncryptpass.equals(dbpass)){
+                                if(oldpassword.equals(dbpass)){
 
                                     BigInteger passEncrypt2 = null;
                                     try{
@@ -100,29 +100,33 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                                     final String newEncryptpass = passEncrypt2.toString();
 
                                     Map<String,Object> userMap = new HashMap<>();
-                                    userMap.put("password",newEncryptpass);
+//                                    userMap.put("password",newEncryptpass);
+                                    userMap.put("password",newpass1);
+
                                     db.document("users/user/passenger/"+userId).update(userMap);
                                     finish();
                                     dialog.dismiss();
-                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Changed", Snackbar.LENGTH_LONG);
-                                    snackbar.setAction("Ok", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            snackbar.dismiss();
-                                        }
-                                    });
-                                    snackbar.show();
+                                    Toast.makeText(PassengerPasswordChangeActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
+//                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Changed", Snackbar.LENGTH_LONG);
+//                                    snackbar.setAction("Ok", new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View view) {
+//                                            snackbar.dismiss();
+//                                        }
+//                                    });
+//                                    snackbar.show();
                                 }
                                 else{
                                     dialog.dismiss();
-                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Old Password", Snackbar.LENGTH_LONG);
-                                    snackbar.setAction("Ok", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            snackbar.dismiss();
-                                        }
-                                    });
-                                    snackbar.show();
+                                    Toast.makeText(PassengerPasswordChangeActivity.this, "Invalid Old Password", Toast.LENGTH_SHORT).show();
+//                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Old Password", Snackbar.LENGTH_LONG);
+//                                    snackbar.setAction("Ok", new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View view) {
+//                                            snackbar.dismiss();
+//                                        }
+//                                    });
+//                                    snackbar.show();
                                 }
                             }
                         });
