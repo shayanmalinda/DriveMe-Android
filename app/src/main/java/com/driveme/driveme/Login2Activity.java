@@ -114,7 +114,7 @@ public class Login2Activity extends AppCompatActivity {
 
                             if(email.equals(dbemail) && password.equals(dbpass)){
                                 CurrentUser usr = new CurrentUser();
-                                usr.setCurrentuserID(d.getId());
+                                usr.setUserCredentialId(d.getId());
                                 validCredentials = true;
                                 break;
                             }

@@ -142,7 +142,7 @@ public class DriverRouteActivity2 extends AppCompatActivity {
 //                        endPlaceLat,endPlaceLng,endPlaceName,startTime,endTime);
 
                 CurrentUser cu = new CurrentUser();
-                String userId = cu.getCurrentuserID();
+                String userId = cu.getDriverId();
 
                 db.collection("users/user/driver/").document(userId).update(map);
 
@@ -190,14 +190,14 @@ public class DriverRouteActivity2 extends AppCompatActivity {
         dialog.show();
 
         CurrentUser cu = new CurrentUser();
-        String userId = cu.getCurrentuserID();
+        String userId = cu.getDriverId();
         DriverRouteDetails dr = new DriverRouteDetails();
         checkpoints = dr.getCheckpoints();
         final CollectionReference route2 = db.collection("users/user/driver/"+userId+"/checkpoints");
 
 
         CurrentUser cu2 = new CurrentUser();
-        final String userId2 = cu2.getCurrentuserID();
+        final String userId2 = cu2.getDriverId();
 
         route2.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

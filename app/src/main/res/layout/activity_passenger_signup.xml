@@ -19,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.09">
+            android:layout_weight="0.3">
 
             <TextView
                 android:layout_width="match_parent"
@@ -68,25 +68,6 @@
 
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/txtemail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Email"
-                        android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_email_accent_24dp"
-                        android:drawablePadding="10dp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/txtphone"/>
-
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -125,55 +106,18 @@
                         android:drawableLeft="@drawable/ic_home_black_24dp"
                         android:drawablePadding="10dp"
                         android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/txtpass1"/>
+                        android:singleLine="true"/>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/txtpass1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Password"
-                        android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/password_drawable_selector"
-                        android:drawablePadding="10dp"
-                        android:inputType="textPassword"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/txtpass2"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/txtpass2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Retype Password"
-                        android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/password_drawable_selector"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:inputType="textPassword"/>
-                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7"
+                android:layout_weight="2"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
                 android:paddingTop="7dp"

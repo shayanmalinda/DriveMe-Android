@@ -40,7 +40,7 @@ public class PassengerDriverActivity extends AppCompatActivity {
         dialog.show();
 
         CurrentUser cu = new CurrentUser();
-        String userId = cu.getCurrentuserID();
+        String userId = cu.getPassengerId();
 
         db = FirebaseFirestore.getInstance();
         txtDriverEmail = findViewById(R.id.driverEmail);

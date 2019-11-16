@@ -103,8 +103,7 @@
                         android:drawableLeft="@drawable/ic_home_black_24dp"
                         android:drawablePadding="10dp"
                         android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/childschoolphone"/>
+                        android:singleLine="true"/>
 
                 </LinearLayout>
 

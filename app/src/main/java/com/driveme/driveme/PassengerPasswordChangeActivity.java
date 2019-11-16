@@ -75,7 +75,7 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                         final AlertDialog dialog = builder.create();
                         dialog.show();
                         CurrentUser c = new CurrentUser();
-                        final String userId = CurrentUser.getCurrentuserID();
+                        final String userId = CurrentUser.getPassengerId();
 
                         BigInteger passEncrypt = null;
                         try{
