@@ -56,7 +56,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         FirebaseApp.initializeApp(this);
 
         CurrentUser cu = new CurrentUser();
-        final String userID = cu.getCurrentuserID();
+        final String driverId = cu.getDriverId();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -80,7 +80,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     // ...
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Driver");
                     GeoFire geoFire = new GeoFire(ref);
-                    geoFire.setLocation(userID, new GeoLocation(location.getLatitude(),location.getLongitude()),new
+                    geoFire.setLocation(driverId, new GeoLocation(location.getLatitude(),location.getLongitude()),new
                             GeoFire.CompletionListener(){
                                 @Override
                                 public void onComplete(String key, DatabaseError error) {

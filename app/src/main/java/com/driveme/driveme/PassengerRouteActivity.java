@@ -68,7 +68,7 @@ public class PassengerRouteActivity extends AppCompatActivity {
 
 
         CurrentUser cu = new CurrentUser();
-        String passengerId = cu.getCurrentuserID();
+        String passengerId = cu.getPassengerId();
 
         db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -96,7 +96,7 @@ public class PassengerRouteActivity extends AppCompatActivity {
 //                dialog2.show();
 
                 CurrentUser cu = new CurrentUser();
-                String passengerId = cu.getCurrentuserID();
+                String passengerId = cu.getPassengerId();
                 db.document("users/user/passenger/"+passengerId).update("driverId","");
                 finish();
 //                dialog2.dismiss();

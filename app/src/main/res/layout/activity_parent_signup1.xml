@@ -46,25 +46,6 @@
                 android:orientation="vertical">
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-
-                    <EditText
-                        android:id="@+id/parentemail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Email"
-                        android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_email_accent_24dp"
-                        android:drawablePadding="10dp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/parentphone"/>
-
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -104,9 +85,10 @@
                         android:drawablePadding="10dp"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:nextFocusDown="@id/parentpass1"/>
+                        android:nextFocusDown="@id/childname"/>
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -114,18 +96,40 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/parentpass1"
+                        android:id="@+id/childname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="Child's Name"
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/password_drawable_selector"
+                        android:drawableLeft="@drawable/ic_person_accent_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:nextFocusDown="@id/parentpass2"/>
+                        android:nextFocusDown="@id/childage"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/childage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Child's Age"
+                        android:padding="12dp"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_favorite_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:inputType="phone"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/childschool"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -134,24 +138,45 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/parentpass2"
+                        android:id="@+id/childschool"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Retype Password"
+                        android:hint="Child's School"
                         android:padding="12dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/password_drawable_selector"
+                        android:drawableLeft="@drawable/ic_home_black_24dp"
                         android:drawablePadding="10dp"
-                        android:inputType="textPassword"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@id/childschoolphone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/childschoolphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Child's School Phone Number"
+                        android:padding="12dp"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
+                        android:drawablePadding="10dp"
+                        android:inputType="number"
                         android:singleLine="true"/>
                 </LinearLayout>
+
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.75"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
                 android:paddingTop="7dp"
@@ -159,18 +184,18 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
-                    android:text="Next"
+                    android:text="Signup"
                     android:background="@drawable/roundbtnaccent"
-                    android:textSize="19sp"
+                    android:textSize="19dp"
                     android:layout_weight="1"
-                    android:id="@+id/parentnextbtn"
-                    android:drawableEnd="@drawable/ic_navigate_next_white_24dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="15dp"
+                    android:id="@+id/parentSignup"
                     android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:drawableStart="@drawable/ic_person_add_white_24dp"
+                    android:paddingLeft="20dp"
                     android:drawablePadding="-30dp"/>
 
             </LinearLayout>

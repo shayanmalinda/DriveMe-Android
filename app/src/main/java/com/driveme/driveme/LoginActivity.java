@@ -76,52 +76,19 @@ public class LoginActivity extends AppCompatActivity {
 
         RememberMe rm = new RememberMe();
 
-        CharacterRole c = new CharacterRole();
-        final String role = c.getRole();
-        if (role != null) {
-            if(role.equals("passenger")){
-                setTitle("DriveMe - Passenger");
-                if(rm.isPassengerCheckbox()){
-                    remembermeCheckbox.setChecked(true);
-                    etemail.setText(rm.getPassengerEmail());
-                    etpass.setText(rm.getPassengerPassword());
-                }
-            }
-            if(role.equals("parent")){
-                setTitle("DriveMe - Parent");
-                if(rm.isParentCheckbox()){
-                    remembermeCheckbox.setActivated(true);
-                    etemail.setText(rm.getParentEmail());
-                    etpass.setText(rm.getParentPassword());
-                }
-            }
-            if(role.equals("driver")){
-                setTitle("DriveMe - Driver");
-            }
-            if(role.equals("owner")){
-                setTitle("DriveMe - Owner");
-                if(rm.isOwnerCheckbox()){
-                    remembermeCheckbox.setActivated(true);
-                }
-            }
+        if(rm.isPassengerCheckbox()){
+            remembermeCheckbox.setChecked(true);
+            etemail.setText(rm.getPassengerEmail());
+            etpass.setText(rm.getPassengerPassword());
         }
 
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = null;
-                if(role!=null){
-                    if(role.equals("passenger")){
-                        intent = new Intent(LoginActivity.this, PassengerSignupActivity.class);
-                        startActivity(intent);
-                    }
-                    if(role.equals("parent")){
-                        intent = new Intent(LoginActivity.this, ParentSignup1Activity.class);
-                        startActivity(intent);
-                    }
+                Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+                startActivity(intent);
 
-                }
             }
         });
 
@@ -130,58 +97,201 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                db = FirebaseFirestore.getInstance();
 
-                if(role!=null){
-                    if(role.equals("passenger")){
-                        if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
-                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Ok", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    snackbar.dismiss();
-                                }
-                            });
-                            snackbar.show();
+                final String email = etemail.getText().toString();
+                final String password = etpass.getText().toString();
+
+                if(email.isEmpty()){
+
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Email is Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
                         }
-                        else{
-                            RememberMe rm = new RememberMe();
-                            if(remembermeCheckbox.isChecked()){
-                                rm.setPassengerCheckbox(true);
-                                rm.setPassengerEmail(etemail.getText().toString());
-                                rm.setPassengerPassword(etpass.getText().toString());
-                            }
-                            else{
-                                rm.setPassengerCheckbox(false);
-                            }
-                            authPassenger();
-                        }
-                    }
-                    if(role.equals("parent")){
-                        if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
-                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Ok", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    snackbar.dismiss();
-                                }
-                            });
-                            snackbar.show();
-                        }
-                        else{
-                            RememberMe rm = new RememberMe();
-                            if(remembermeCheckbox.isChecked()){
-                                rm.setParentCheckbox(true);
-                                rm.setParentEmail(etemail.getText().toString());
-                                rm.setParentPassword(etpass.getText().toString());
-                            }
-                            else{
-                                rm.setParentCheckbox(false);
-                            }
-                            authParent();
-                        }
-                    }
+                    });
+                    snackbar.show();
                 }
+
+                else if(password.isEmpty()){
+
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password is Empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
+                }
+
+                else{
+
+                    CurrentUser usr = new CurrentUser();
+                    usr.setParentId(null);
+                    usr.setPassengerId(null);
+                    usr.setDriverId(null);
+                    usr.setOwnerID(null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setCancelable(false); // if you want user to wait for some process to finish,
+                    builder.setView(R.layout.layout_loading_dialog);
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
+
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("userCredentials").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            if(!queryDocumentSnapshots.isEmpty()) {
+                                Boolean validCredentials = false;
+                                List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                for(DocumentSnapshot d: list){
+                                    Map<String, Object> details = d.getData();
+                                    String dbemail = details.get("email").toString();
+                                    String dbpass = details.get("password").toString();
+
+
+                                    if(email.equals(dbemail) && password.equals(dbpass)){
+                                        CurrentUser usr = new CurrentUser();
+                                        usr.setUserCredentialId(d.getId());
+                                        if(details.containsKey("driverId")) {
+                                            usr.setDriverId(d.get("driverId").toString());
+                                            Log.d("userId driver= ",d.get("driverId").toString());
+                                        }
+                                        if(details.containsKey("passengerId")) {
+                                            usr.setPassengerId(d.get("passengerId").toString());
+                                            Log.d("userId passenger= ",d.get("passengerId").toString());
+                                        }
+                                        if(details.containsKey("parentId")) {
+                                            usr.setParentId(d.get("parentId").toString());
+                                            Log.d("userId parent= ",d.get("parentId").toString());
+                                        }
+                                        if(details.containsKey("ownerId")) {
+                                            usr.setOwnerID(d.get("ownerId").toString());
+                                            Log.d("userId owner= ",d.get("ownerId").toString());
+                                        }
+
+
+//                                    Log.d("userID= ",d.getId());
+                                        validCredentials = true;
+                                        break;
+                                    }
+                                }
+                                if(validCredentials){
+                                    CurrentUser usr = new CurrentUser();
+                                    String driverId = usr.getDriverId();
+                                    String passengerId = usr.getPassengerId();
+                                    String parentId = usr.getParentId();
+                                    String ownerId = usr.getOwnerID();
+
+                                    if(driverId!=null){
+//                                    Log.d("userId driver= ",driverId);
+                                        Intent intent = new Intent(LoginActivity.this,DriverHomeActivity.class);
+                                        startActivity(intent);
+
+                                    }
+                                    else if(passengerId!=null){
+//                                    Log.d("userId passenger= ",passengerId);
+                                        Intent intent = new Intent(LoginActivity.this,PassengerHomeActivity.class);
+                                        startActivity(intent);
+
+                                    }
+                                    else if(parentId!=null){
+//                                    Log.d("userId parent= ",parentId);
+                                        Intent intent = new Intent(LoginActivity.this,ParentHomeActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else if(ownerId!=null){
+//                                    Log.d("userId owner= ",ownerId);
+//                                    Intent intent = new Intent(LoginActivity.this,DriverHomeActivity.class);
+//                                    startActivity(intent);
+
+                                    }
+                                    else{
+                                        Intent intent = new Intent(LoginActivity.this,UserRegister.class);
+                                        intent.putExtra("email",email);
+                                        intent.putExtra("password",password);
+                                        startActivity(intent);
+                                    }
+
+//                                    finish();
+                                    dialog.dismiss();
+                                }
+                                else{
+                                    dialog.dismiss();
+                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Email or Password", Snackbar.LENGTH_LONG);
+                                    snackbar.setAction("Ok", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            snackbar.dismiss();
+                                        }
+                                    });
+                                    snackbar.show();
+                                }
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(LoginActivity.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+
+//                if(role!=null){
+//                    if(role.equals("passenger")){
+//                        if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
+//                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
+//                            snackbar.setAction("Ok", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    snackbar.dismiss();
+//                                }
+//                            });
+//                            snackbar.show();
+//                        }
+//                        else{
+//                            RememberMe rm = new RememberMe();
+//                            if(remembermeCheckbox.isChecked()){
+//                                rm.setPassengerCheckbox(true);
+//                                rm.setPassengerEmail(etemail.getText().toString());
+//                                rm.setPassengerPassword(etpass.getText().toString());
+//                            }
+//                            else{
+//                                rm.setPassengerCheckbox(false);
+//                            }
+//                            authPassenger();
+//                        }
+//                    }
+//                    if(role.equals("parent")){
+//                        if(etemail.getText().toString().isEmpty() || etpass.getText().toString().isEmpty()){
+//                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs cannot be Empty", Snackbar.LENGTH_LONG);
+//                            snackbar.setAction("Ok", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    snackbar.dismiss();
+//                                }
+//                            });
+//                            snackbar.show();
+//                        }
+//                        else{
+//                            RememberMe rm = new RememberMe();
+//                            if(remembermeCheckbox.isChecked()){
+//                                rm.setParentCheckbox(true);
+//                                rm.setParentEmail(etemail.getText().toString());
+//                                rm.setParentPassword(etpass.getText().toString());
+//                            }
+//                            else{
+//                                rm.setParentCheckbox(false);
+//                            }
+//                            authParent();
+//                        }
+//                    }
+//                }
 
 
             }
@@ -240,7 +350,7 @@ public class LoginActivity extends AppCompatActivity {
 //                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
                         if(email.equals(dbemail) && password.equals(dbpass)){
                             CurrentUser usr = new CurrentUser();
-                            usr.setCurrentuserID(d.getId());
+                            usr.setUserCredentialId(d.getId());
                             validCredentials = true;
                             break;
                         }
@@ -315,7 +425,7 @@ public class LoginActivity extends AppCompatActivity {
 //                        if(email.equals(dbemail) && passEncryptString.equals(dbpass)){
                         if(email.equals(dbemail) && password.equals(dbpass)){
                             CurrentUser usr = new CurrentUser();
-                            usr.setCurrentuserID(d.getId());
+                            usr.setUserCredentialId(d.getId());
                             validCredentials = true;
                             break;
                         }

@@ -82,7 +82,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         final CurrentUser cu = new CurrentUser();
-        userId = cu.getCurrentuserID();
+        userId = cu.getPassengerId();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(PassengerRouteSearchActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,

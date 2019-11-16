@@ -44,7 +44,7 @@ public class DriverPassengerListActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         CurrentUser cu = new CurrentUser();
-        final String userId = cu.getCurrentuserID();
+        final String userId = cu.getDriverId();
         final List<HashMap<String, String>> list = new ArrayList<>();
         final ListView lv = findViewById(R.id.passenger_list);
 

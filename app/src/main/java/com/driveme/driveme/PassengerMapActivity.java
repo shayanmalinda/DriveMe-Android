@@ -55,7 +55,7 @@ public class PassengerMapActivity extends FragmentActivity implements OnMapReady
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CurrentUser cu = new CurrentUser();
-        String userId = cu.getCurrentuserID();
+        String userId = cu.getPassengerId();
 
         db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

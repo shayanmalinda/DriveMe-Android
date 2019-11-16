@@ -55,7 +55,7 @@ public class PassengerProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 CurrentUser usr = new CurrentUser();
-                String userID = usr.getCurrentuserID();
+                String userID = usr.getPassengerId();
                 Intent intent = new Intent(PassengerProfileActivity.this, PassengerProfileEditActivity.class);
                 intent.putExtra("userId",userID);
                 intent.putExtra("email",etemail.getText().toString());
@@ -96,7 +96,7 @@ public class PassengerProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 CurrentUser usr = new CurrentUser();
-                String userID = usr.getCurrentuserID();
+                String userID = usr.getPassengerId();
                 Intent intent = new Intent(PassengerProfileActivity.this, PassengerProfileEditActivity.class);
                 intent.putExtra("userId",userID);
                 intent.putExtra("email",etemail.getText().toString());
@@ -125,7 +125,7 @@ public class PassengerProfileActivity extends AppCompatActivity {
         dialog.show();
 
         CurrentUser usr = new CurrentUser();
-        String userID = usr.getCurrentuserID();
+        String userID = usr.getPassengerId();
 
         db.document("users/user/passenger/"+userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

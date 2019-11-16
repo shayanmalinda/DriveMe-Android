@@ -122,7 +122,7 @@ public class PassengerRouteSearch3Activity extends AppCompatActivity {
         });
 
         CurrentUser cu = new CurrentUser();
-        final String userId = cu.getCurrentuserID();
+        final String userId = cu.getPassengerId();
 
         btnAddRoute.setOnClickListener(new View.OnClickListener() {
             @Override

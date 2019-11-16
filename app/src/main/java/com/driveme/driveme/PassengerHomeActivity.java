@@ -103,7 +103,7 @@ public class PassengerHomeActivity extends AppCompatActivity {
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 CurrentUser cu = new CurrentUser();
-                String passengerId = cu.getCurrentuserID();
+                String passengerId = cu.getPassengerId();
 
                 db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -140,7 +140,7 @@ public class PassengerHomeActivity extends AppCompatActivity {
                 imgmydriver.startAnimation(animation);
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 CurrentUser cu = new CurrentUser();
-                String userId = cu.getCurrentuserID();
+                String userId = cu.getPassengerId();
                 AlertDialog.Builder builder = new AlertDialog.Builder(PassengerHomeActivity.this);
                 builder.setCancelable(false); // if you want user to wait for some process to finish,
                 builder.setView(R.layout.layout_loading_dialog);
