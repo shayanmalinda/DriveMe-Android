@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DriveMe</string>
     <string name="title_activity_map_fragment">Map</string>
+    <string name="title_activity_passenger_home_page">PassengerHomePage</string>
+    <string name="title_activity_driver_home_page">DriverHomePage</string>
+    <string name="title_activity_parent_home_page">ParentHomePage</string>
 </resources>

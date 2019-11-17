@@ -1,0 +1,67 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.driveme.driveme.PassengerHomePage">
+
+    <item
+        android:id="@+id/switchToDriver"
+        android:orderInCategory="100"
+        android:title="Switch to Driver"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/switchToPassenger"
+        android:orderInCategory="100"
+        android:title="Switch to Passenger"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/switchToParent"
+        android:orderInCategory="100"
+        android:title="Switch to Parent"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/switchToOwner"
+        android:orderInCategory="100"
+        android:title="Switch to Owner"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/registerAsPassenger"
+        android:orderInCategory="100"
+        android:title="Register as Passenger"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/registerAsParent"
+        android:orderInCategory="100"
+        android:title="Register as Parent"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/registerAsDriver"
+        android:orderInCategory="100"
+        android:title="Register as Driver"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/registerAsOwner"
+        android:orderInCategory="100"
+        android:title="Register as Owner"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never"/>
+</menu>
