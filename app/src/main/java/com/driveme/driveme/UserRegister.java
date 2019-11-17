@@ -57,14 +57,16 @@ public class UserRegister extends AppCompatActivity {
         btnDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(UserRegister.this,VisitDrivMe.class);
+                startActivity(intent);
             }
         });
 
         btnOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(UserRegister.this,VisitDrivMe.class);
+                startActivity(intent);
             }
         });
     }
