@@ -185,7 +185,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
                                                         endOrder=d2.getDouble("order");
                                                     }
                                                 }
-                                                if(isStart && isEnd && (endOrder>=startOrder)){
+                                                if(isStart && isEnd && (endOrder>startOrder)){
                                                     filterRoute(driverId);
                                                 }
 
