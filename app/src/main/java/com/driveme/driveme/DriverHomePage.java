@@ -139,6 +139,8 @@ public class DriverHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgmyprofile.startAnimation(animation);
+                Intent intent = new Intent(DriverHomePage.this,DriverProfileActivity.class);
+                startActivity(intent);
 
             }
         });

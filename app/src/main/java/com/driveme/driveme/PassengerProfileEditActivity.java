@@ -30,20 +30,17 @@ public class PassengerProfileEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_profile_edit);
         final String userId = getIntent().getStringExtra("userId");
-        String email = getIntent().getStringExtra("email");
         String phone = getIntent().getStringExtra("phone");
         String address = getIntent().getStringExtra("address");
         String name = getIntent().getStringExtra("name");
         setTitle("Edit Profile");
 
         db = FirebaseFirestore.getInstance();
-        etemail = findViewById(R.id.txtemail);
         etphone = findViewById(R.id.txtphone);
         etaddress = findViewById(R.id.txtaddress);
         etname = findViewById(R.id.txtname);
         savedetails = findViewById(R.id.btnsavedetails);
 
-        etemail.setText(email);
         etphone.setText(phone);
         etaddress.setText(address);
         etname.setText(name);
@@ -57,7 +54,6 @@ public class PassengerProfileEditActivity extends AppCompatActivity {
                 final AlertDialog dialog = builder.create();
                 dialog.show();
                 Map<String,Object> userMap = new HashMap<>();
-                userMap.put("name",etname.getText().toString());
                 userMap.put("phone",etphone.getText().toString());
                 userMap.put("address",etaddress.getText().toString());
                 userMap.put("email",etemail.getText().toString());
@@ -83,20 +79,17 @@ public class PassengerProfileEditActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         final String userId = getIntent().getStringExtra("userId");
-        String email = getIntent().getStringExtra("email");
         String phone = getIntent().getStringExtra("phone");
         String address = getIntent().getStringExtra("address");
         String name = getIntent().getStringExtra("name");
         setTitle("Edit Profile");
 
         db = FirebaseFirestore.getInstance();
-        etemail = findViewById(R.id.txtemail);
         etphone = findViewById(R.id.txtphone);
         etaddress = findViewById(R.id.txtaddress);
         etname = findViewById(R.id.txtname);
         savedetails = findViewById(R.id.btnsavedetails);
 
-        etemail.setText(email);
         etphone.setText(phone);
         etaddress.setText(address);
         etname.setText(name);
@@ -113,7 +106,6 @@ public class PassengerProfileEditActivity extends AppCompatActivity {
                 userMap.put("name",etname.getText().toString());
                 userMap.put("phone",etphone.getText().toString());
                 userMap.put("address",etaddress.getText().toString());
-                userMap.put("email",etemail.getText().toString());
                 db.document("users/user/passenger/"+userId).update(userMap);
                 Intent intent2 = new Intent(PassengerProfileEditActivity.this,PassengerProfileActivity.class);
                 finish();

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,7 +19,8 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PassengerPasswordChangeActivity extends AppCompatActivity {
+public class DriverPasswordChangeActivity extends AppCompatActivity {
+
 
     private Button btndone;
     private EditText etold;
@@ -30,9 +30,8 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_password_change);
+        setContentView(R.layout.activity_driver_password_change);
 
         setTitle("Change Password");
         btndone = findViewById(R.id.btndone);
@@ -69,7 +68,7 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                 }
                 else{
                     if(newpass1.equals(newpass2)){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(PassengerPasswordChangeActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(DriverPasswordChangeActivity.this);
                         builder.setCancelable(false); // if you want user to wait for some process to finish,
                         builder.setView(R.layout.layout_loading_dialog);
                         final AlertDialog dialog = builder.create();
@@ -106,7 +105,7 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                                     db.document("userCredentials/"+userId).update(userMap);
                                     finish();
                                     dialog.dismiss();
-                                    Toast.makeText(PassengerPasswordChangeActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DriverPasswordChangeActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
 //                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Password Changed", Snackbar.LENGTH_LONG);
 //                                    snackbar.setAction("Ok", new View.OnClickListener() {
 //                                        @Override
@@ -118,7 +117,7 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                                 }
                                 else{
                                     dialog.dismiss();
-                                    Toast.makeText(PassengerPasswordChangeActivity.this, "Invalid Old Password", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DriverPasswordChangeActivity.this, "Invalid Old Password", Toast.LENGTH_SHORT).show();
 //                                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Invalid Old Password", Snackbar.LENGTH_LONG);
 //                                    snackbar.setAction("Ok", new View.OnClickListener() {
 //                                        @Override

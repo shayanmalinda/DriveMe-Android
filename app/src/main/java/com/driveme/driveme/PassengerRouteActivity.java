@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -97,7 +98,7 @@ public class PassengerRouteActivity extends AppCompatActivity {
 
                 CurrentUser cu = new CurrentUser();
                 String passengerId = cu.getPassengerId();
-                db.document("users/user/passenger/"+passengerId).update("driverId","");
+                db.document("users/user/passenger/"+passengerId).update("driverId", FieldValue.delete());
                 finish();
 //                dialog2.dismiss();
                 final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Route Removed", Snackbar.LENGTH_LONG);

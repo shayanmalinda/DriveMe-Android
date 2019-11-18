@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -58,24 +59,41 @@ public class DriverPassengerListActivity extends AppCompatActivity {
         db.collection("users/user/passenger").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot querySnapshot: queryDocumentSnapshots){
-                    if(querySnapshot.getString("driverId").equals(userId)){
-                        HashMap<String,String> map  = new HashMap();
-                        map.put("passengerId",querySnapshot.getId());
-                        map.put("name","Name  :   "+querySnapshot.getString("name"));
-                        map.put("email","Email  :   "+querySnapshot.getString("email"));
-                        map.put("address","Address  :   "+querySnapshot.getString("address"));
-                        map.put("phone","Phone  :   "+querySnapshot.getString("phone"));
-                        map.put("pickupLocation","Pickup Location  :   "+querySnapshot.getString("pickupLocation"));
-                        list.add(map);
+                boolean flag = false;
+                if(!queryDocumentSnapshots.isEmpty()){
+                    for(QueryDocumentSnapshot querySnapshot: queryDocumentSnapshots){
+                        if(querySnapshot.getString("driverId")!=null && querySnapshot.getString("driverId").equals(userId)){
+                            HashMap<String,String> map  = new HashMap();
+                            flag = true;
+                            map.put("passengerId",querySnapshot.getId());
+                            map.put("name","Name  :   "+querySnapshot.getString("name"));
+                            map.put("email","Email  :   "+querySnapshot.getString("email"));
+                            map.put("address","Address  :   "+querySnapshot.getString("address"));
+                            map.put("phone","Phone  :   "+querySnapshot.getString("phone"));
+                            map.put("pickupLocation","Pickup Location  :   "+querySnapshot.getString("pickupLocation"));
+                            list.add(map);
+                        }
+                        int layout = R.layout.item_passenger;
+                        String[] cols = {"passengerId","name","email","address","phone","pickupLocation"};
+                        int[] views = {R.id.passengerId,R.id.passengerName,R.id.passengerEmail,R.id.passengerAddress,R.id.passengerPhone,R.id.pickupLocation};
+                        SimpleAdapter adapter = new SimpleAdapter(DriverPassengerListActivity.this,list,layout,cols,views);
+                        lv.setAdapter(adapter);
+                        dialog.dismiss();
                     }
-                    int layout = R.layout.item_passenger;
-                    String[] cols = {"passengerId","name","email","address","phone","pickupLocation"};
-                    int[] views = {R.id.passengerId,R.id.passengerName,R.id.passengerEmail,R.id.passengerAddress,R.id.passengerPhone,R.id.pickupLocation};
-                    SimpleAdapter adapter = new SimpleAdapter(DriverPassengerListActivity.this,list,layout,cols,views);
-                    lv.setAdapter(adapter);
-                    dialog.dismiss();
                 }
+                if(!flag){
+//                    finish();
+
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Any Passengers", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
+                }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
