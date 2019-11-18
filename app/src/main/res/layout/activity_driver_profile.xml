@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PassengerProfileActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@color/colorAccent"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarStyle="outsideOverlay">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:src="@drawable/person"
+                android:scaleType="fitCenter"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:orientation="vertical"
+                android:paddingTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawableLeft="@drawable/ic_person_accent_24dp"
+                            android:drawablePadding="10dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtemail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawableLeft="@drawable/ic_email_accent_24dp"
+                            android:drawablePadding="10dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtphone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
+                            android:drawablePadding="10dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:inputType="phone"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtaddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawableLeft="@drawable/ic_home_black_24dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:drawablePadding="10dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtNIC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
+                            android:drawableLeft="@drawable/ic_perm_identity_accent_24dp"
+                            android:drawablePadding="10dp"
+                            android:padding="12dp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtLicense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawableLeft="@drawable/ic_credit_card_accent_24dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:drawablePadding="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:paddingTop="7dp">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:textColor="#fff"
+                        android:text="Change Password"
+                        android:background="@drawable/roundbtnprimary"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:id="@+id/btnchangepassword"
+                        android:drawableStart="@drawable/ic_lock_open_white_24dp"
+                        android:paddingLeft="20dp"
+                        android:drawablePadding="-30sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:paddingTop="7dp">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorAccent"
+                        android:textColor="#fff"
+                        android:text="View Vehicle Details"
+                        android:background="@drawable/roundbtnaccent"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp"
+                        android:id="@+id/btnviewvehicledetails"
+                        android:drawableStart="@drawable/ic_directions_car_white_24dp"
+                        android:paddingLeft="20dp"
+                        android:drawablePadding="-30sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

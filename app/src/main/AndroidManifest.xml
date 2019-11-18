@@ -9,24 +9,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DriverPasswordChangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.CustomeTheme" />
+        <activity android:name=".DriverViewVehicleDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DriverProfileActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ParentHomePage"
             android:label="@string/title_activity_parent_home_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DriverHomePage"
             android:label="@string/title_activity_driver_home_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PassengerHomePage"
             android:label="@string/title_activity_passenger_home_page"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".VisitDrivMe" />
-        <activity android:name=".UserRegister" />
-        <activity android:name=".PassengerDriverRatingsViewActivity" />
-        <activity android:name=".PassengerDriverNewRatingActivity" />
-        <activity android:name=".PassengerDriverActivity" />
-        <activity android:name=".DriverPassengerRatingsViewActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VisitDrivMe"
+            android:screenOrientation="portrait" />
+        <activity android:name=".UserRegister"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PassengerDriverRatingsViewActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PassengerDriverNewRatingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PassengerDriverActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DriverPassengerRatingsViewActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DriverPassengerNewRatingActivity"
             android:screenOrientation="portrait"

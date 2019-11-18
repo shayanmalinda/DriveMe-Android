@@ -138,7 +138,7 @@ public class PassengerHomePage extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String driverId = documentSnapshot.getString("driverId");
-                        if(driverId.isEmpty()){
+                        if(driverId==null || driverId.isEmpty()){
                             final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Route have been Added", Snackbar.LENGTH_LONG);
                             snackbar.setAction("Ok", new View.OnClickListener() {
                                 @Override

@@ -4,22 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PassengerProfileEditActivity"
+    tools:context=".DriverViewVehicleDetailsActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:src="@drawable/person"
-            android:scaleType="fitCenter"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +14,8 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:orientation="vertical"
-        android:layout_weight="2">
+        android:layout_weight="2"
+        android:paddingTop="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,97 +34,102 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="bottom">
+                    android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/txtname"
+                    <TextView
+                        android:id="@+id/txtVehicleNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_person_accent_24dp"
+                        android:background="@drawable/edit_text_background_accent"
                         android:drawablePadding="10dp"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/txtemail"
                         />
 
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/txtphone"
+                    <TextView
+                        android:id="@+id/txtChassisNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_local_phone_accent_24dp"
+                        android:background="@drawable/edit_text_background_accent"
                         android:drawablePadding="10dp"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:inputType="phone"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:nextFocusDown="@id/txtaddress"/>
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtVehicleType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:background="@drawable/edit_text_background_accent"
+                        android:drawablePadding="10dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:inputType="phone"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="top">
+                    android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/txtaddress"
+                    <TextView
+                        android:id="@+id/txtAvailableSeats"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:drawableLeft="@drawable/ic_home_black_24dp"
+                        android:background="@drawable/edit_text_background_accent"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"/>
+                        android:drawablePadding="10dp"/>
 
                 </LinearLayout>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
+                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
                 android:paddingTop="7dp">
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="#fff"
-                    android:text="Save Details"
+                    android:text="Go back"
                     android:background="@drawable/roundbtnaccent"
                     android:textSize="18sp"
                     android:layout_weight="1"
                     android:paddingBottom="15dp"
                     android:paddingTop="15dp"
-                    android:id="@+id/btnsavedetails"
-                    android:drawableStart="@drawable/ic_save_white_24dp"
+                    android:id="@+id/btngoback"
+                    android:drawableStart="@drawable/ic_arrow_back_white_24dp"
                     android:paddingLeft="20dp"
                     android:drawablePadding="-30sp"/>
 
