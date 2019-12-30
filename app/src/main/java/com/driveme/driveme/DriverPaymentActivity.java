@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -25,16 +23,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DriverPassengerListActivity extends AppCompatActivity {
+public class DriverPaymentActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_passenger_list);
+        setContentView(R.layout.activity_driver_payment);
 
-        setTitle("Passenger List");
+        setTitle("Payments");
 
         getPassengerList();
 
@@ -47,9 +45,9 @@ public class DriverPassengerListActivity extends AppCompatActivity {
         CurrentUser cu = new CurrentUser();
         final String userId = cu.getDriverId();
         final List<HashMap<String, String>> list = new ArrayList<>();
-        final ListView lv = findViewById(R.id.passenger_list);
+        final ListView lv = findViewById(R.id.passenger_payment_list);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(DriverPassengerListActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(DriverPaymentActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
         builder.setView(R.layout.layout_loading_dialog);
         final AlertDialog dialog = builder.create();
@@ -76,7 +74,7 @@ public class DriverPassengerListActivity extends AppCompatActivity {
                         int layout = R.layout.item_passenger_payment;
                         String[] cols = {"passengerId","name","email","address","phone","pickupLocation"};
                         int[] views = {R.id.passengerId,R.id.passengerName,R.id.passengerEmail,R.id.passengerAddress,R.id.passengerPhone,R.id.pickupLocation};
-                        SimpleAdapter adapter = new SimpleAdapter(DriverPassengerListActivity.this,list,layout,cols,views);
+                        SimpleAdapter adapter = new SimpleAdapter(DriverPaymentActivity.this,list,layout,cols,views);
                         lv.setAdapter(adapter);
                         dialog.dismiss();
                     }
@@ -104,40 +102,30 @@ public class DriverPassengerListActivity extends AppCompatActivity {
 
     }
 
-    public void removePassenger(View v){
+    public void addPayment(View v){
 
-        db = FirebaseFirestore.getInstance();
-
-        LinearLayout view = (LinearLayout)v.getParent();
-        TextView txtpassengerId = view.findViewById(R.id.passengerId);
-        String passengerId = txtpassengerId.getText().toString();
-
-        db.document("users/user/passenger/"+passengerId).update("driverId","");
-        getPassengerList();
+//        db = FirebaseFirestore.getInstance();
+//
+//        LinearLayout view = (LinearLayout)v.getParent();
+//        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+//        String passengerId = txtpassengerId.getText().toString();
+//
+//        db.document("users/user/passenger/"+passengerId).update("driverId","");
+//        getPassengerList();
     }
 
-    public void viewRatings(View v){
+    public void viewPayments(View v){
 
-        db = FirebaseFirestore.getInstance();
-
-        LinearLayout view = (LinearLayout)v.getParent();
-        TextView txtpassengerId = view.findViewById(R.id.passengerId);
-        String passengerId = txtpassengerId.getText().toString();
-
-        Intent intent = new Intent(DriverPassengerListActivity.this,DriverPassengerRatingsViewActivity.class);
-        intent.putExtra("passengerId",passengerId);
-        startActivity(intent);
+//        db = FirebaseFirestore.getInstance();
+//
+//        LinearLayout view = (LinearLayout)v.getParent();
+//        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+//        String passengerId = txtpassengerId.getText().toString();
+//
+//        Intent intent = new Intent(DriverPassengerListActivity.this,DriverPassengerRatingsViewActivity.class);
+//        intent.putExtra("passengerId",passengerId);
+//        startActivity(intent);
 
     }
 
-    public void newRating(View v){
-
-        LinearLayout view = (LinearLayout)v.getParent();
-        TextView txtpassengerId = view.findViewById(R.id.passengerId);
-        String passengerId = txtpassengerId.getText().toString();
-
-        Intent intent = new Intent(DriverPassengerListActivity.this,DriverPassengerNewRatingActivity.class);
-        intent.putExtra("passengerId",passengerId);
-        startActivity(intent);
-    }
 }

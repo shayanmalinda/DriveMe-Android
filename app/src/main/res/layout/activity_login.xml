@@ -77,6 +77,7 @@
                     android:nextFocusDown="@id/loginpassword"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
+                    android:text="admin@gmail.com"
                     />
 
             </LinearLayout>
@@ -97,6 +98,7 @@
                     android:drawableLeft="@drawable/password_drawable_selector"
                     android:drawablePadding="10dp"
                     android:inputType="textPassword"
+                    android:text="admin"
                     android:singleLine="true"/>
 
             </LinearLayout>
