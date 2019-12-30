@@ -4,9 +4,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,6 +24,7 @@ public class DriverProfileActivity extends AppCompatActivity {
     private TextView etname;
     private TextView etlicense;
     private TextView etnic;
+    private ImageView driverImage;
 
     private Button btnchangepass;
     private Button btnviewvehicledetails;
@@ -39,6 +42,7 @@ public class DriverProfileActivity extends AppCompatActivity {
         etname = findViewById(R.id.txtname);
         etlicense = findViewById(R.id.txtLicense);
         etnic = findViewById(R.id.txtNIC);
+        driverImage = findViewById(R.id.driverImage);
 
         btnchangepass = findViewById(R.id.btnchangepassword);
         btnviewvehicledetails = findViewById(R.id.btnviewvehicledetails);
@@ -86,6 +90,7 @@ public class DriverProfileActivity extends AppCompatActivity {
                     etaddress.setText(documentSnapshot.get("driverAddress").toString());
                     etlicense.setText("License Number : "+documentSnapshot.get("driverLicense").toString());
                     etnic.setText("NIC : "+documentSnapshot.get("driverNIC").toString());
+                    driverImage.setImageURI(Uri.parse(documentSnapshot.get("imgURL").toString()));
                 }
                 dialog.dismiss();
             }
