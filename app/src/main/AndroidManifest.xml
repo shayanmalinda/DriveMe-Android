@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.driveme.driveme">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DriverNewPaymentActivity"></activity>
+        <activity android:name=".DriverAddNewPaymentActivity"></activity>
+        <activity android:name=".DriverNewPaymentActivity" />
         <activity android:name=".DriverPaymentActivity" />
         <activity
             android:name=".DriverPasswordChangeActivity"
@@ -159,7 +162,5 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCEwsWLe6soyNWGG0JTqJVKk4KnGFx_Ax8" />
     </application>
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

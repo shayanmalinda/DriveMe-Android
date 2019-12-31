@@ -102,22 +102,25 @@ public class DriverPaymentActivity extends AppCompatActivity {
 
     }
 
-    public void addPayment(View v){
+    public void addNewPayment(View v){
 
-//        db = FirebaseFirestore.getInstance();
-//
-//        LinearLayout view = (LinearLayout)v.getParent();
-//        TextView txtpassengerId = view.findViewById(R.id.passengerId);
-//        String passengerId = txtpassengerId.getText().toString();
-//
-//        db.document("users/user/passenger/"+passengerId).update("driverId","");
-//        getPassengerList();
+        db = FirebaseFirestore.getInstance();
+
+        LinearLayout view = (LinearLayout)v.getParent();
+        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        String passengerId = txtpassengerId.getText().toString();
+
+        Intent intent = new Intent(DriverPaymentActivity.this,DriverAddNewPaymentActivity.class);
+        intent.putExtra("passengerId",passengerId);
+        startActivity(intent);
+
+
     }
 
     public void viewPayments(View v){
 
-//        db = FirebaseFirestore.getInstance();
-//
+        db = FirebaseFirestore.getInstance();
+
 //        LinearLayout view = (LinearLayout)v.getParent();
 //        TextView txtpassengerId = view.findViewById(R.id.passengerId);
 //        String passengerId = txtpassengerId.getText().toString();
