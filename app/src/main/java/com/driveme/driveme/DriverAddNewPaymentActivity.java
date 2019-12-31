@@ -55,7 +55,7 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
                 dialog.show();
 
                 int year = datePicker.getYear();
-                int month = datePicker.getMonth();
+                int month = datePicker.getMonth()+1;
                 int day = datePicker.getDayOfMonth();
 
                 String dateString = year+"-"+month+"-"+day;
