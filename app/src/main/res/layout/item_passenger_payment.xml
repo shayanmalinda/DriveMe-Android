@@ -58,7 +58,7 @@
         android:textColor="@color/whiteText"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:onClick="removePassenger"
+        android:onClick="addNewPayment"
         android:textSize="19sp"
         android:layout_marginTop="12dp"
         android:drawableStart="@drawable/ic_add_circle_outline_white_24dp"/>
@@ -74,7 +74,7 @@
         android:textColor="@color/whiteText"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:onClick="viewRatings"
+        android:onClick="viewPayments"
         android:textSize="19sp"
         android:layout_marginTop="12dp"
         android:drawableStart="@drawable/ic_format_list_bulleted_white_24dp"/>
