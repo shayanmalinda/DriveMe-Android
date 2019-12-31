@@ -57,7 +57,7 @@
             android:gravity="center"
             android:background="@drawable/edit_text_background_accent"
             android:id="@+id/etPayment"
-            android:hint="Enter Your Payment"
+            android:hint="Enter Your Payment (Rs)"
             android:textSize="20sp"
             android:paddingTop="18dp"
             android:paddingBottom="18dp"
