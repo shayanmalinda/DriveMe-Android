@@ -28,7 +28,7 @@ public class PassengerHomePage extends AppCompatActivity {
 
     private CardView myprofile;
     private CardView routesearch;
-    private CardView driverlocation;
+    private CardView notifications;
     private CardView myroute;
     private CardView mydriver;
     private CardView payment;
@@ -69,7 +69,7 @@ public class PassengerHomePage extends AppCompatActivity {
 
         myprofile = findViewById(R.id.myprofile);
         routesearch = findViewById(R.id.searchroute);
-        driverlocation = findViewById(R.id.driverlocation);
+        notifications = findViewById(R.id.notifications);
         myroute = findViewById(R.id.myroute);
         mydriver = findViewById(R.id.mydriver);
         payment = findViewById(R.id.payments);
@@ -111,12 +111,12 @@ public class PassengerHomePage extends AppCompatActivity {
             }
         });
 
-        driverlocation.setOnClickListener(new View.OnClickListener() {
+        notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 imgdriverlocation.startAnimation(animation);
-//                Intent intent = new Intent(PassengerHomeActivity.this,PassengerMapActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(PassengerHomePage.this,PassengerNotificationsActivity.class);
+                startActivity(intent);
             }
         });
 
