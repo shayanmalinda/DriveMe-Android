@@ -73,7 +73,7 @@ public class DriverPassengerListActivity extends AppCompatActivity {
                             map.put("pickupLocation","Pickup Location  :   "+querySnapshot.getString("pickupLocation"));
                             list.add(map);
                         }
-                        int layout = R.layout.item_passenger_payment;
+                        int layout = R.layout.item_passenger;
                         String[] cols = {"passengerId","name","email","address","phone","pickupLocation"};
                         int[] views = {R.id.passengerId,R.id.passengerName,R.id.passengerEmail,R.id.passengerAddress,R.id.passengerPhone,R.id.pickupLocation};
                         SimpleAdapter adapter = new SimpleAdapter(DriverPassengerListActivity.this,list,layout,cols,views);
