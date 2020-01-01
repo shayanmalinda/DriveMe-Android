@@ -97,14 +97,26 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
         String driverPaymentId = txtdriverPaymentId.getText().toString();
 
         db.document("users/user/passenger/"+passengerId+"/payments/"+paymentId).update("isAccepted",true);
-//        db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+driverPaymentId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                Toast.makeText(PassengerNotificationsActivity.this, ""+documentSnapshot.getString("date"), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
         db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+driverPaymentId).update("isAccepted",true);
         Toast.makeText(this, "Payment Accepted", Toast.LENGTH_SHORT).show();
+        getPaymentList();
+    }
+
+    public void declinePayment(View v){
+
+        LinearLayout view = (LinearLayout)v.getParent().getParent();
+        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        TextView txtpaymentId = view.findViewById(R.id.paymentId);
+        TextView txtdriverPaymentId = view.findViewById(R.id.driverPaymentId);
+        String passengerId = txtpassengerId.getText().toString();
+        String paymentId = txtpaymentId.getText().toString();
+        String driverPaymentId = txtdriverPaymentId.getText().toString();
+
+        db.document("users/user/passenger/"+passengerId+"/payments/"+paymentId).delete();
+
+        db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+driverPaymentId).delete();
+        Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
         getPaymentList();
     }
 }
