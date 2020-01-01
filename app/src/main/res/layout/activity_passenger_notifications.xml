@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PassengerNotificationsActivity"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/paymentRequests"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment Requests"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/payment_request_list"
+                android:clickable="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="20.0sp"
+                android:paddingTop="10sp">
+            </ListView>
+
+        </LinearLayout>
+
+
+</LinearLayout>

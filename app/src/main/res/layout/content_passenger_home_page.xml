@@ -112,7 +112,7 @@
         android:padding="10dp"
         android:orientation="horizontal">
         <androidx.cardview.widget.CardView
-            android:id="@+id/driverlocation"
+            android:id="@+id/notifications"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

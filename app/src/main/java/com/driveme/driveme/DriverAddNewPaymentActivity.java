@@ -70,11 +70,15 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
                 objPayment.put("value",paymentValue);
                 objPayment.put("isAccepted",false);
 
-                db.collection("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/").add(objPayment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                DocumentReference ref = db.collection("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/").document();
+                final String docId = ref.getId();
+
+                db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+docId).set(objPayment).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
 
                         objPayment.put("driverId",driverId);
+                        objPayment.put("driverPaymentId",docId);
                         db.collection("users/user/passenger/"+passengerId+"/payments/").add(objPayment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
@@ -82,8 +86,8 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
 
                                 Toast.makeText(DriverAddNewPaymentActivity.this, "Payment Added", Toast.LENGTH_SHORT).show();
                                 DriverAddNewPaymentActivity.this.finish();
-                            }
-                        });
+                    }
+                });
 
 
 
