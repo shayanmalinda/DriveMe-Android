@@ -112,6 +112,31 @@ public class DriverPassengerListActivity extends AppCompatActivity {
         TextView txtpassengerId = view.findViewById(R.id.passengerId);
         String passengerId = txtpassengerId.getText().toString();
 
+        CurrentUser cu = new CurrentUser();
+        String driverId = cu.getDriverId();
+
+        db.collection("users/user/passenger/"+passengerId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                    q.getReference().delete();
+                }
+            }
+        });
+
+
+        db.collection("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                    q.getReference().delete();
+                }
+            }
+        });
+
+
+
+
         db.document("users/user/passenger/"+passengerId).update("driverId","");
         getPassengerList();
     }

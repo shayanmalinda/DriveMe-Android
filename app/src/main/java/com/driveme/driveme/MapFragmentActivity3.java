@@ -19,6 +19,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
@@ -26,6 +27,8 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Arrays;
 
@@ -70,6 +73,24 @@ public class MapFragmentActivity3 extends FragmentActivity implements OnMapReady
             public void onClick(View view) {
 //                SelectedPlace s = new SelectedPlace();
 //                s.setPlace(myPlace);
+                db.collection("users/user/passenger/"+userId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                            q.getReference().delete();
+                        }
+                    }
+                });
+
+
+                db.collection("users/user/driver/"+driverId+"/payments/"+userId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                            q.getReference().delete();
+                        }
+                    }
+                });
 
                 db.document("users/user/passenger/"+userId).update("driverId",driverId);
                 db.document("users/user/passenger/"+userId).update("pickupLocation",myPlace.getName());
