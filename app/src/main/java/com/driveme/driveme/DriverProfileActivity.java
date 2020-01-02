@@ -4,13 +4,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -68,7 +71,14 @@ public class DriverProfileActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+
+//        driverImage.setImageURI(Uri.parse("https://firebasestorage.googleapis.com/v0/b/driveme-9bd2a.appspot.com/o/driverImages%2Fdriveravatar2.png?alt=media&token=1392605b-0c26-461c-9434-319f4ca00780"));
+
+    }
 
     private void getDriverDetails(){
         AlertDialog.Builder builder = new AlertDialog.Builder(DriverProfileActivity.this);
@@ -90,7 +100,10 @@ public class DriverProfileActivity extends AppCompatActivity {
                     etaddress.setText(documentSnapshot.get("driverAddress").toString());
                     etlicense.setText("License Number : "+documentSnapshot.get("driverLicense").toString());
                     etnic.setText("NIC : "+documentSnapshot.get("driverNIC").toString());
-                    driverImage.setImageURI(Uri.parse(documentSnapshot.get("imgURL").toString()));
+                    String imgUrl =  documentSnapshot.get("imgURL").toString();
+                    if(imgUrl!=null){
+                        Glide.with(getApplicationContext()).load(imgUrl).into(driverImage);
+                    }
                 }
                 dialog.dismiss();
             }
