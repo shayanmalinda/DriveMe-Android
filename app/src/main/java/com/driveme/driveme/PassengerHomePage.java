@@ -212,6 +212,8 @@ public class PassengerHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgpayment.startAnimation(animation);
+                Intent intent = new Intent(PassengerHomePage.this,PassengerPaymentViewActivity.class);
+                startActivity(intent);
 
             }
         });

@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.units.qual.C;
@@ -98,7 +99,7 @@ public class PassengerRouteActivity extends AppCompatActivity {
 
                 CurrentUser cu = new CurrentUser();
                 String passengerId = cu.getPassengerId();
-                db.document("users/user/passenger/"+passengerId).update("driverId", FieldValue.delete());
+                final String pId = passengerId;
                 finish();
 //                dialog2.dismiss();
                 final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Route Removed", Snackbar.LENGTH_LONG);
@@ -109,6 +110,41 @@ public class PassengerRouteActivity extends AppCompatActivity {
                     }
                 });
                 snackbar.show();
+
+                db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String driverId = documentSnapshot.getString("driverId");
+
+                        db.collection("users/user/passenger/"+pId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                                    q.getReference().delete();
+                                }
+                            }
+                        });
+
+                        Toast.makeText(PassengerRouteActivity.this, ""+driverId, Toast.LENGTH_SHORT).show();
+
+                        db.collection("users/user/driver/"+driverId+"/payments/"+pId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                                    q.getReference().delete();
+                                }
+                            }
+                        });
+
+                        db.document("users/user/passenger/"+pId).update("driverId", FieldValue.delete());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
 
