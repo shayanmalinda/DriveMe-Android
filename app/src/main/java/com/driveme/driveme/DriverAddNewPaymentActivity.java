@@ -58,7 +58,17 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
                 int month = datePicker.getMonth()+1;
                 int day = datePicker.getDayOfMonth();
 
-                String dateString = year+"-"+month+"-"+day;
+                String dateString=null;
+                if(month<10 && day<10){
+                    dateString = year+"-"+"0"+month+"-"+"0"+day;
+                }
+                else if(month<10){
+                    dateString = year+"-"+"0"+month+"-"+day;
+                }
+                else if(day<10){
+                    dateString = year+"-"+month+"0"+"-"+day;
+                }
+
 
                 final String paymentValue = etPayment.getText().toString();
                 CurrentUser cu = new CurrentUser();
