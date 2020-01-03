@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassengerPaymentViewActivity"></activity>
+        <activity android:name=".PassengerMyRouteActivity"></activity>
+        <activity android:name=".PassengerAvailabilityActivity" />
+        <activity android:name=".PassengerPaymentViewActivity" />
         <activity android:name=".PassengerNotificationsActivity" />
         <activity android:name=".DriverPaymentsViewActivity" />
         <activity android:name=".DriverAddNewPaymentActivity" />
