@@ -19,7 +19,7 @@ public class PassengerMyRouteActivity extends AppCompatActivity {
 
     private CardView viewRoute;
     private CardView dailyAvailability;
-
+    private CardView viewPassengers;
 
 
     @Override
@@ -31,6 +31,7 @@ public class PassengerMyRouteActivity extends AppCompatActivity {
 
         viewRoute = findViewById(R.id.viewRoute);
         dailyAvailability = findViewById(R.id.dailyAvailability);
+        viewPassengers = findViewById(R.id.viewPassengers);
 
         viewRoute.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +78,14 @@ public class PassengerMyRouteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PassengerMyRouteActivity.this, PassengerAvailabilityActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewPassengers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PassengerMyRouteActivity.this, PassengerPassengerListActivity.class);
                 startActivity(intent);
             }
         });
