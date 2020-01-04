@@ -3,48 +3,91 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/edit_text_background_accent"
+    android:background="@drawable/edit_text_background"
     android:layout_margin="15dp"
     android:padding="15dp"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     android:gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/passengerId"
-        android:textSize="18sp"
-        android:visibility="invisible"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/passengerName"
-        android:textSize="18sp"/>
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/passengerEmail"
-        android:textSize="18sp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/passengerAddress"
-        android:textSize="18sp"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_person_white_24dp"
+                android:padding="10dp"
+                android:background="@drawable/bg_shape6"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/passengerPhone"
-        android:textSize="18sp"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pickupLocation"
-        android:textSize="18sp"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/passengerId"
+                android:textSize="18sp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passengerName"
+                android:textSize="18sp"
+                android:textColor="#444"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passengerEmail"
+                android:textSize="18sp"
+                android:textColor="#444"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passengerAddress"
+                android:textSize="18sp"
+                android:textColor="#444"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passengerPhone"
+                android:textSize="18sp"
+                android:textColor="#444"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pickupLocation"
+                android:textSize="18sp"
+                android:textColor="#444"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>
+
+
+
