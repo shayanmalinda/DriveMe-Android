@@ -123,6 +123,7 @@ public class PassengerHomePage extends AppCompatActivity {
         myroute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                imgmyroute.startAnimation(animation);
                 Intent intent = new Intent(PassengerHomePage.this,PassengerMyRouteActivity.class);
                 startActivity(intent);
             }
