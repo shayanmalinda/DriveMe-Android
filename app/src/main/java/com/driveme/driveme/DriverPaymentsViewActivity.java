@@ -50,7 +50,7 @@ public class DriverPaymentsViewActivity extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot querySnapshot: queryDocumentSnapshots){
-                    if(querySnapshot.getBoolean("isAccepted")){
+                        if(querySnapshot.getBoolean("isAccepted")){
                         HashMap<String,String> map  = new HashMap();
                         map.put("date","Date  :   "+querySnapshot.getString("date"));
                         map.put("value","Payment  :   Rs. "+querySnapshot.getString("value")+ " /=");

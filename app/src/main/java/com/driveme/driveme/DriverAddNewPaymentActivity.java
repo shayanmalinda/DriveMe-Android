@@ -68,6 +68,9 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
                 else if(day<10){
                     dateString = year+"-"+month+"0"+"-"+day;
                 }
+                else{
+                    dateString = year+"-"+month+"-"+day;
+                }
 
 
                 final String paymentValue = etPayment.getText().toString();

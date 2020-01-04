@@ -135,6 +135,14 @@ public class DriverPassengerListActivity extends AppCompatActivity {
         });
 
 
+        db.collection("users/user/driver/"+driverId+"/availability/"+passengerId+"/availability").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                    q.getReference().delete();
+                }
+            }
+        });
 
 
         db.document("users/user/passenger/"+passengerId).update("driverId","");

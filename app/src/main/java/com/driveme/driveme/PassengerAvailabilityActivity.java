@@ -76,6 +76,10 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
                 final Map<String, Object> objAvailability = new HashMap<>();
                 objAvailability.put("availabilty",isAvailable);
 
+
+                final Map<String, Object> objExist = new HashMap<>();
+                objAvailability.put("exists",true);
+
                 db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -90,9 +94,13 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
                         else if(day<10){
                             dateString = year+month+"0"+day;
                         }
+                        else{
+                            dateString = ""+year+month+day;
+                        }
 
                         String driverId = documentSnapshot.getString("driverId");
                         db.collection("users/user/passenger/"+passengerId+"/availability").document(dateString).set(objAvailability);
+                        db.collection("users/user/driver/"+driverId+"/availability/").document(passengerId).set(objExist);
                         db.collection("users/user/driver/"+driverId+"/availability/"+passengerId+"/availability").document(dateString).set(objAvailability);
 
                         final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Availability Added", Snackbar.LENGTH_LONG);
