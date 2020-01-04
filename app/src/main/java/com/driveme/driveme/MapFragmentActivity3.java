@@ -92,6 +92,16 @@ public class MapFragmentActivity3 extends FragmentActivity implements OnMapReady
                     }
                 });
 
+
+                db.collection("users/user/driver/"+driverId+"/availability/"+userId+"/availability").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot q: queryDocumentSnapshots){
+                            q.getReference().delete();
+                        }
+                    }
+                });
+
                 db.document("users/user/passenger/"+userId).update("driverId",driverId);
                 db.document("users/user/passenger/"+userId).update("pickupLocation",myPlace.getName());
                 finish();

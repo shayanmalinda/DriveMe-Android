@@ -31,7 +31,7 @@ public class DriverHomePage extends AppCompatActivity {
     private CardView driverroute;
     private CardView livelocation;
     private CardView passengerlist;
-    private CardView ratepassengers;
+    private CardView notifications;
     private CardView payments;
     private CardView myprofile;
 
@@ -39,7 +39,7 @@ public class DriverHomePage extends AppCompatActivity {
     private ImageView imgroute;
     private ImageView imgsharelocation;
     private ImageView imgpassengerlist;
-    private ImageView imgratepassengers;
+    private ImageView imgnotifications;
     private ImageView imgpayments;
     private ImageView imgmyprofile;
 
@@ -69,14 +69,14 @@ public class DriverHomePage extends AppCompatActivity {
         driverroute = findViewById(R.id.driverroute);
         livelocation = findViewById(R.id.livelocation);
         passengerlist = findViewById(R.id.passengerlist);
-        ratepassengers = findViewById(R.id.ratepassengers);
+        notifications = findViewById(R.id.notifications);
         payments = findViewById(R.id.payments);
         myprofile = findViewById(R.id.myprofile);
 
         imgroute = findViewById(R.id.imgroute);
         imgsharelocation = findViewById(R.id.imgsharelocation);
         imgpassengerlist = findViewById(R.id.imgpassengerlist);
-        imgratepassengers = findViewById(R.id.imgratepassenger);
+        imgnotifications = findViewById(R.id.imgnotifications);
         imgpayments = findViewById(R.id.imgpayments);
         imgmyprofile = findViewById(R.id.imgmyprofile);
 
@@ -115,10 +115,12 @@ public class DriverHomePage extends AppCompatActivity {
             }
         });
 
-        ratepassengers.setOnClickListener(new View.OnClickListener() {
+        notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgratepassengers.startAnimation(animation);
+                imgnotifications.startAnimation(animation);
+                Intent intent = new Intent(DriverHomePage.this,DriverNotificationsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -151,14 +153,14 @@ public class DriverHomePage extends AppCompatActivity {
         imgroute = findViewById(R.id.imgroute);
         imgsharelocation = findViewById(R.id.imgsharelocation);
         imgpassengerlist = findViewById(R.id.imgpassengerlist);
-        imgratepassengers = findViewById(R.id.imgratepassenger);
+        imgnotifications = findViewById(R.id.imgnotifications);
         imgpayments = findViewById(R.id.imgpayments);
         imgmyprofile = findViewById(R.id.imgmyprofile);
 
         imgroute.clearAnimation();
         imgsharelocation.clearAnimation();
         imgpassengerlist.clearAnimation();
-        imgratepassengers.clearAnimation();
+        imgnotifications.clearAnimation();
         imgpayments.clearAnimation();
         imgmyprofile.clearAnimation();
     }

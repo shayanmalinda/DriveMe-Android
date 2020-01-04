@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -99,8 +100,16 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
         db.document("users/user/passenger/"+passengerId+"/payments/"+paymentId).update("isAccepted",true);
 
         db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+driverPaymentId).update("isAccepted",true);
-        Toast.makeText(this, "Payment Accepted", Toast.LENGTH_SHORT).show();
         getPaymentList();
+
+        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Payment Accepted", Snackbar.LENGTH_LONG);
+        snackbar.setAction("Ok", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                snackbar.dismiss();
+            }
+        });
+        snackbar.show();
     }
 
     public void declinePayment(View v){
@@ -116,7 +125,15 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
         db.document("users/user/passenger/"+passengerId+"/payments/"+paymentId).delete();
 
         db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+driverPaymentId).delete();
-        Toast.makeText(this, "Payment Declined", Toast.LENGTH_SHORT).show();
         getPaymentList();
+
+        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Payment Declined", Snackbar.LENGTH_LONG);
+        snackbar.setAction("Ok", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                snackbar.dismiss();
+            }
+        });
+        snackbar.show();
     }
 }

@@ -123,43 +123,8 @@ public class PassengerHomePage extends AppCompatActivity {
         myroute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgmyroute.startAnimation(animation);
-                AlertDialog.Builder builder = new AlertDialog.Builder(PassengerHomePage.this);
-                builder.setCancelable(false); // if you want user to wait for some process to finish,
-                builder.setView(R.layout.layout_loading_dialog);
-                final AlertDialog dialog = builder.create();
-                dialog.show();
-
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                CurrentUser cu = new CurrentUser();
-                String passengerId = cu.getPassengerId();
-
-                db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String driverId = documentSnapshot.getString("driverId");
-                        if(driverId==null || driverId.isEmpty()){
-                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Route have been Added", Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Ok", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    snackbar.dismiss();
-                                }
-                            });
-                            snackbar.show();
-                        }
-                        else{
-                            Intent intent = new Intent(PassengerHomePage.this,PassengerRouteActivity.class);
-                            startActivity(intent);
-                        }
-                        dialog.dismiss();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                    }
-                });
-
+                Intent intent = new Intent(PassengerHomePage.this,PassengerMyRouteActivity.class);
+                startActivity(intent);
             }
         });
 
