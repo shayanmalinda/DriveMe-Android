@@ -68,7 +68,6 @@
                             android:drawablePadding="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
                             />
 
                     </LinearLayout>
@@ -89,7 +88,6 @@
                             android:drawablePadding="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
                             />
 
                     </LinearLayout>
@@ -110,7 +108,6 @@
                             android:drawablePadding="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
                             android:inputType="phone"/>
 
                     </LinearLayout>
@@ -129,7 +126,6 @@
                             android:drawableLeft="@drawable/ic_home_black_24dp"
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
                             android:drawablePadding="10dp"/>
 
                     </LinearLayout>
@@ -148,8 +144,7 @@
                             android:drawablePadding="10dp"
                             android:padding="12dp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textSize="20sp"/>
 
                     </LinearLayout>
 
@@ -167,7 +162,6 @@
                             android:drawableLeft="@drawable/ic_credit_card_accent_24dp"
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
                             android:drawablePadding="10dp"/>
 
                     </LinearLayout>
