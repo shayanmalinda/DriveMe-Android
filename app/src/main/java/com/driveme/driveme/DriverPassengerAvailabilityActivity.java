@@ -117,8 +117,8 @@ public class DriverPassengerAvailabilityActivity extends AppCompatActivity {
                                     list.add(map);
                                 }
 
-                                dialog.dismiss();
                             }
+                            dialog.dismiss();
 
                             int layout = R.layout.item_availability;
                             String[] cols = {"date","availability"};

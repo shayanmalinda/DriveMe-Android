@@ -216,7 +216,7 @@
                 android:padding="10dp">
 
                 <ImageView
-                    android:id="@+id/imgdriverlocation"
+                    android:id="@+id/imgnotifications"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/bg_shape5"

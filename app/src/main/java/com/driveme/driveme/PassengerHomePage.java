@@ -35,7 +35,7 @@ public class PassengerHomePage extends AppCompatActivity {
 
     private ImageView imgroutesearch;
     private ImageView imgmyprofile;
-    private ImageView imgdriverlocation;
+    private ImageView imgnotifications;
     private ImageView imgmyroute;
     private ImageView imgmydriver;
     private ImageView imgpayment;
@@ -76,7 +76,7 @@ public class PassengerHomePage extends AppCompatActivity {
 
         imgmyprofile = findViewById(R.id.imgmyprofile);
         imgroutesearch = findViewById(R.id.imgsearch);
-        imgdriverlocation = findViewById(R.id.imgdriverlocation);
+        imgnotifications = findViewById(R.id.imgnotifications);
         imgmyroute = findViewById(R.id.imgmyroute);
         imgmydriver = findViewById(R.id.imgmydriver);
         imgpayment = findViewById(R.id.imgpayment);
@@ -114,9 +114,47 @@ public class PassengerHomePage extends AppCompatActivity {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgdriverlocation.startAnimation(animation);
-                Intent intent = new Intent(PassengerHomePage.this,PassengerNotificationsActivity.class);
-                startActivity(intent);
+                imgnotifications.startAnimation(animation);
+
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CurrentUser cu = new CurrentUser();
+                String userId = cu.getPassengerId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(PassengerHomePage.this);
+                builder.setCancelable(false); // if you want user to wait for some process to finish,
+                builder.setView(R.layout.layout_loading_dialog);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Any Notifications", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                            imgmydriver = findViewById(R.id.imgmydriver);
+                            imgmydriver.clearAnimation();
+                        }
+                        else{
+
+                            Intent intent = new Intent(PassengerHomePage.this,PassengerNotificationsActivity.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
 
@@ -146,8 +184,8 @@ public class PassengerHomePage extends AppCompatActivity {
                 db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.getString("driverId").isEmpty()){
-                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Not Registered with a Driver", Snackbar.LENGTH_LONG);
+                        if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Not Registered with a Route", Snackbar.LENGTH_LONG);
                             snackbar.setAction("Ok", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -178,8 +216,45 @@ public class PassengerHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgpayment.startAnimation(animation);
-                Intent intent = new Intent(PassengerHomePage.this,PassengerPaymentViewActivity.class);
-                startActivity(intent);
+
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CurrentUser cu = new CurrentUser();
+                String userId = cu.getPassengerId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(PassengerHomePage.this);
+                builder.setCancelable(false); // if you want user to wait for some process to finish,
+                builder.setView(R.layout.layout_loading_dialog);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Not Registered with a Route", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                            imgmydriver = findViewById(R.id.imgmydriver);
+                            imgmydriver.clearAnimation();
+                        }
+                        else{
+                            Intent intent = new Intent(PassengerHomePage.this,PassengerPaymentViewActivity.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
 
             }
         });
@@ -192,14 +267,14 @@ public class PassengerHomePage extends AppCompatActivity {
 
         imgmyprofile = findViewById(R.id.imgmyprofile);
         imgroutesearch = findViewById(R.id.imgsearch);
-        imgdriverlocation = findViewById(R.id.imgdriverlocation);
+        imgnotifications = findViewById(R.id.imgnotifications);
         imgmyroute = findViewById(R.id.imgmyroute);
         imgmydriver = findViewById(R.id.imgmydriver);
         imgpayment = findViewById(R.id.imgpayment);
 
         imgmyroute.clearAnimation();
         imgmyprofile.clearAnimation();
-        imgdriverlocation.clearAnimation();
+        imgnotifications.clearAnimation();
         imgmydriver.clearAnimation();
         imgpayment.clearAnimation();
         imgroutesearch.clearAnimation();
