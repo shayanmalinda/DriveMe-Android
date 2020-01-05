@@ -45,7 +45,6 @@
                         android:drawablePadding="10dp"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
                         />
 
                 </LinearLayout>
@@ -65,7 +64,6 @@
                         android:drawablePadding="10dp"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
                         />
 
                 </LinearLayout>
@@ -85,7 +83,6 @@
                         android:drawablePadding="10dp"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
                         android:inputType="phone"/>
 
                 </LinearLayout>
@@ -103,7 +100,6 @@
                         android:background="@drawable/edit_text_background_accent"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
                         android:drawablePadding="10dp"/>
 
                 </LinearLayout>
