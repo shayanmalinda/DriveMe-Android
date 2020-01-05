@@ -102,7 +102,8 @@ public class MapFragmentActivity3 extends FragmentActivity implements OnMapReady
                     }
                 });
 
-                db.document("users/user/passenger/"+userId).update("driverId",driverId);
+                db.document("users/user/passenger/"+userId).update("driverId","");
+                db.document("users/user/passenger/"+userId).update("tempDriverId",driverId);
                 db.document("users/user/passenger/"+userId).update("pickupLocation",myPlace.getName());
                 finish();
                 Toast.makeText(MapFragmentActivity3.this, "Route Added Successfully ", Toast.LENGTH_SHORT).show();

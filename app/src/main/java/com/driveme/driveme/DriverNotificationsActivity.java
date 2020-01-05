@@ -10,6 +10,7 @@ import android.view.View;
 public class DriverNotificationsActivity extends AppCompatActivity {
 
     private CardView dailyAvailability;
+    private CardView passengerRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +20,20 @@ public class DriverNotificationsActivity extends AppCompatActivity {
         setTitle("Notifications");
 
         dailyAvailability = findViewById(R.id.dailyAvailability);
+        passengerRequests = findViewById(R.id.passengerRequests);
 
         dailyAvailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DriverNotificationsActivity.this,DriverPassengerAvailabilityActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        passengerRequests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DriverNotificationsActivity.this,DriverPassengerRequestsActivity.class);
                 startActivity(intent);
             }
         });

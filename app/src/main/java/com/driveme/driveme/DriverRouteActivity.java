@@ -124,7 +124,7 @@ public class DriverRouteActivity extends AppCompatActivity {
         if(requestCode==2){
             SelectedPlace s = new SelectedPlace();
             endPlace = s.getPlace();
-            if(endLocation!=null){
+            if(endPlace!=null){
                 endLocation.setText(endPlace.getName().toString());
             }
         }
