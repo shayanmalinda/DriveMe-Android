@@ -3,17 +3,41 @@ package com.driveme.driveme;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 public class ParentHomePage extends AppCompatActivity {
+
+    private CardView myprofile;
+    private CardView routesearch;
+    private CardView notifications;
+    private CardView myroute;
+    private CardView mydriver;
+    private CardView payment;
+
+    private ImageView imgroutesearch;
+    private ImageView imgmyprofile;
+    private ImageView imgnotifications;
+    private ImageView imgmyroute;
+    private ImageView imgmydriver;
+    private ImageView imgpayment;
 
     MenuItem switchToDriver;
     MenuItem switchToPassenger;
@@ -43,11 +67,215 @@ public class ParentHomePage extends AppCompatActivity {
         email = extras.getString("email");
         password = extras.getString("password");
 
+        myprofile = findViewById(R.id.myprofile);
+        routesearch = findViewById(R.id.searchroute);
+        notifications = findViewById(R.id.notifications);
+        myroute = findViewById(R.id.myroute);
+        mydriver = findViewById(R.id.mydriver);
+        payment = findViewById(R.id.payments);
+
+        imgmyprofile = findViewById(R.id.imgmyprofile);
+        imgroutesearch = findViewById(R.id.imgsearch);
+        imgnotifications = findViewById(R.id.imgnotifications);
+        imgmyroute = findViewById(R.id.imgmyroute);
+        imgmydriver = findViewById(R.id.imgmydriver);
+        imgpayment = findViewById(R.id.imgpayment);
+
+
         CurrentUser usr = new CurrentUser();
         driverId = usr.getDriverId();
         passengerId = usr.getPassengerId();
         ownerId = usr.getOwnerID();
+        final Animation animation = AnimationUtils.loadAnimation(ParentHomePage.this,R.anim.rotate);
 
+        myprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgmyprofile.startAnimation(animation);
+                Intent intent = new Intent(ParentHomePage.this,PassengerProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        routesearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgroutesearch.startAnimation(animation);
+                Intent intent = new Intent(ParentHomePage.this,PassengerRouteSearchActivity.class);
+                startActivity(intent);
+
+//                Intent intent = new Intent(PassengerHomeActivity.this,MapFragmentActivity.class);
+//                startActivity(intent);
+
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgnotifications.startAnimation(animation);
+
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CurrentUser cu = new CurrentUser();
+                String userId = cu.getPassengerId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ParentHomePage.this);
+                builder.setCancelable(false); // if you want user to wait for some process to finish,
+                builder.setView(R.layout.layout_loading_dialog);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Any Notifications", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                            imgmydriver = findViewById(R.id.imgmydriver);
+                            imgmydriver.clearAnimation();
+                        }
+                        else{
+
+                            Intent intent = new Intent(ParentHomePage.this,PassengerNotificationsActivity.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
+        myroute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgmyroute.startAnimation(animation);
+                Intent intent = new Intent(ParentHomePage.this,PassengerMyRouteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mydriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgmydriver.startAnimation(animation);
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CurrentUser cu = new CurrentUser();
+                String userId = cu.getPassengerId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ParentHomePage.this);
+                builder.setCancelable(false); // if you want user to wait for some process to finish,
+                builder.setView(R.layout.layout_loading_dialog);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Not Registered with a Route", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                            imgmydriver = findViewById(R.id.imgmydriver);
+                            imgmydriver.clearAnimation();
+                        }
+                        else{
+                            Intent intent = new Intent(ParentHomePage.this,PassengerDriverActivity.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgpayment.startAnimation(animation);
+
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CurrentUser cu = new CurrentUser();
+                String userId = cu.getPassengerId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ParentHomePage.this);
+                builder.setCancelable(false); // if you want user to wait for some process to finish,
+                builder.setView(R.layout.layout_loading_dialog);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
+                            final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Not Registered with a Route", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                            imgmydriver = findViewById(R.id.imgmydriver);
+                            imgmydriver.clearAnimation();
+                        }
+                        else{
+                            Intent intent = new Intent(ParentHomePage.this,PassengerPaymentViewActivity.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+            }
+        });
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        imgmyprofile = findViewById(R.id.imgmyprofile);
+        imgroutesearch = findViewById(R.id.imgsearch);
+        imgnotifications = findViewById(R.id.imgnotifications);
+        imgmyroute = findViewById(R.id.imgmyroute);
+        imgmydriver = findViewById(R.id.imgmydriver);
+        imgpayment = findViewById(R.id.imgpayment);
+
+        imgmyroute.clearAnimation();
+        imgmyprofile.clearAnimation();
+        imgnotifications.clearAnimation();
+        imgmydriver.clearAnimation();
+        imgpayment.clearAnimation();
+        imgroutesearch.clearAnimation();
     }
 
     @Override
