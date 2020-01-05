@@ -92,7 +92,7 @@ public class ParentHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgmyprofile.startAnimation(animation);
-                Intent intent = new Intent(ParentHomePage.this,PassengerProfileActivity.class);
+                Intent intent = new Intent(ParentHomePage.this,ParentProfileActivity.class);
                 startActivity(intent);
             }
         });
