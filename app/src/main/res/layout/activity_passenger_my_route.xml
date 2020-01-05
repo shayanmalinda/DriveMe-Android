@@ -38,13 +38,24 @@
             android:layout_marginLeft="6dp">
 
 
+
+            <FrameLayout
+                android:background="@color/green"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"/>
+            <FrameLayout
+                android:background="@color/green"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="25dp"
+                >
 
                 <ImageView
                     android:id="@+id/imgViewRoute"
@@ -90,8 +101,17 @@
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp"
             android:layout_marginTop="1dp"
-            android:layout_marginLeft="6dp">
-
+            android:layout_marginLeft="6dp"
+            >
+            <FrameLayout
+                android:background="@color/yellow"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"/>
+            <FrameLayout
+                android:background="@color/yellow"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,7 +119,8 @@
                 android:padding="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="25dp"
+                >
 
                 <ImageView
                     android:id="@+id/imgViewPassengers"
@@ -150,14 +171,24 @@
             android:layout_marginLeft="6dp">
 
 
+            <FrameLayout
+                android:background="@color/orange"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"/>
+            <FrameLayout
+                android:background="@color/orange"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginLeft="10dp">
-
+                android:layout_marginLeft="25dp"
+                >
                 <ImageView
                     android:id="@+id/imgDailyAvailability"
                     android:layout_width="100dp"

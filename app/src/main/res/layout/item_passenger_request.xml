@@ -16,11 +16,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="5dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        android:gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_gravity="center"
@@ -43,6 +45,13 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:id="@+id/passengerId"
+                android:textSize="18sp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/tempDriverId"
                 android:textSize="18sp"
                 android:visibility="invisible"/>
 
@@ -81,6 +90,39 @@
                 android:textSize="18sp"
                 android:textColor="#444"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:textAllCaps="false"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#fff"
+                    android:text="Accept"
+                    android:background="@drawable/roundbtnprimary"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="9dp"
+                    android:onClick="acceptRequest"/>
+
+                <Button
+                    android:textAllCaps="false"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="#fff"
+                    android:text="Decline"
+                    android:background="@drawable/roundbtnaccent"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="9dp"
+                    android:onClick="declineRequest"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
