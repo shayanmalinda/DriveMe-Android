@@ -99,15 +99,18 @@ public class ParentProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                CurrentUser usr = new CurrentUser();
-//                String userID = usr.getPassengerId();
-//                Intent intent = new Intent(PassengerProfileActivity.this, PassengerProfileEditActivity.class);
-//                intent.putExtra("userId",userID);
-//                intent.putExtra("email",etemail.getText().toString());
-//                intent.putExtra("phone",etphone.getText().toString());
-//                intent.putExtra("address",etaddress.getText().toString());
-//                intent.putExtra("name",etname.getText().toString());
-//                startActivity(intent);
+                CurrentUser usr = new CurrentUser();
+                String userID = usr.getParentId();
+                Intent intent = new Intent(ParentProfileActivity.this, ParentProfileEditActivity.class);
+                intent.putExtra("userId",userID);
+                intent.putExtra("parentEmail",txtParentEmail.getText().toString());
+                intent.putExtra("parentPhone",txtParentPhone.getText().toString());
+                intent.putExtra("parentAddress",txtParentAddress.getText().toString());
+                intent.putExtra("childAge",txtChildAge.getText().toString());
+                intent.putExtra("childName",txtChildName.getText().toString());
+                intent.putExtra("schoolName",txtSchoolName.getText().toString());
+                intent.putExtra("schoolPhone",txtSchoolPhone.getText().toString());
+                startActivity(intent);
 
             }
         });
@@ -115,8 +118,8 @@ public class ParentProfileActivity extends AppCompatActivity {
         btnchangepass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(PassengerProfileActivity.this,PassengerPasswordChangeActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(ParentProfileActivity.this,ParentPasswordChangeActivity.class);
+                startActivity(intent);
             }
         });
     }
