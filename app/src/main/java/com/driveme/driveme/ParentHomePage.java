@@ -161,7 +161,7 @@ public class ParentHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgmyroute.startAnimation(animation);
-                Intent intent = new Intent(ParentHomePage.this,PassengerMyRouteActivity.class);
+                Intent intent = new Intent(ParentHomePage.this,ParentChildRouteActivity.class);
                 startActivity(intent);
             }
         });
@@ -172,7 +172,7 @@ public class ParentHomePage extends AppCompatActivity {
                 imgmydriver.startAnimation(animation);
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 CurrentUser cu = new CurrentUser();
-                String userId = cu.getPassengerId();
+                String userId = cu.getParentId();
                 AlertDialog.Builder builder = new AlertDialog.Builder(ParentHomePage.this);
                 builder.setCancelable(false); // if you want user to wait for some process to finish,
                 builder.setView(R.layout.layout_loading_dialog);
@@ -180,7 +180,7 @@ public class ParentHomePage extends AppCompatActivity {
                 dialog.show();
 
 
-                db.document("users/user/passenger/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                db.document("users/user/parent/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(!documentSnapshot.contains("driverId") || documentSnapshot.getString("driverId").isEmpty()){
@@ -196,7 +196,7 @@ public class ParentHomePage extends AppCompatActivity {
                             imgmydriver.clearAnimation();
                         }
                         else{
-                            Intent intent = new Intent(ParentHomePage.this,PassengerDriverActivity.class);
+                            Intent intent = new Intent(ParentHomePage.this,ParentDriverActivity.class);
                             startActivity(intent);
                         }
                         dialog.dismiss();
