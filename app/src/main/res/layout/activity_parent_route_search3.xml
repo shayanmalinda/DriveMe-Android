@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ParentRouteSearch3Activity"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/edit_text_background_accent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/driverId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            />
+
+        <TextView
+            android:id="@+id/allowedPassengers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            />
+
+        <TextView
+            android:id="@+id/currentPassengers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            />
+
+        <TextView
+            android:id="@+id/startPlace"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/startTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/endPlace"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/endTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/driverEmail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/driverTelephone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/vehicleType"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/isAC"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/vehicleNumber"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkpoints"
+            android:textAllCaps="false"
+            android:textSize="23sp"
+            android:textColor="@color/colorPrimary"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Place"
+                    android:textSize="19sp"
+                    android:textColor="@color/blackText"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Time"
+                    android:textSize="19sp"
+                    android:textColor="@color/blackText"/>
+
+            </LinearLayout>
+
+            <ListView
+                android:paddingTop="20dp"
+                android:id="@+id/checkpoint_list"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="20.0sp"
+                android:focusable="true">
+
+            </ListView>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose a pickup Location"
+            android:background="@drawable/roundbtnaccent"
+            android:backgroundTint="@color/colorAccent"
+            android:textSize="19sp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textColor="@color/whiteText"
+            android:id="@+id/addRoute"
+            android:drawableLeft="@drawable/ic_location_on_white_24dp"
+            android:paddingLeft="20dp"
+            android:drawablePadding="-30dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
