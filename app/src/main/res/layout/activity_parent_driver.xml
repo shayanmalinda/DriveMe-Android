@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ParentDriverActivity"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:background="@drawable/edit_text_background_accent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/person"
+            android:layout_weight="2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/driverName"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textColor="#333"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/driverEmail"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textColor="#333"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/driverTelephone"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textColor="#333"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Driver Location"
+            android:background="@drawable/roundbtnprimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/ic_location_on_white_24dp"
+            android:paddingLeft="20dp"
+            android:textAllCaps="false"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:id="@+id/viewDriverLocation"
+            android:drawablePadding="-30sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Driver Ratings"
+            android:background="@drawable/roundbtnaccent"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/ic_format_list_bulleted_white_24dp"
+            android:paddingLeft="20dp"
+            android:textAllCaps="false"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:id="@+id/viewDriverRatings"
+            android:drawablePadding="-30sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rate NOW!"
+            android:background="@drawable/roundbtnaccent"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/ic_rate_review_white_24dp"
+            android:paddingLeft="20dp"
+            android:textAllCaps="false"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:id="@+id/rateNow"
+            android:drawablePadding="-30sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

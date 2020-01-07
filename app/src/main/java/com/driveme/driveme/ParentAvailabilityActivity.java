@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -19,16 +18,16 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PassengerAvailabilityActivity extends AppCompatActivity {
+public class ParentAvailabilityActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     private Button btnAddAvailability;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_availability);
-
+        setContentView(R.layout.activity_parent_availability);
         setTitle("Daily Availability");
 
         db = FirebaseFirestore.getInstance();
@@ -46,17 +45,11 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
         datePicker.setMinDate(System.currentTimeMillis());
 
 
-
-
-
-
-
-
         btnAddAvailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(PassengerAvailabilityActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ParentAvailabilityActivity.this);
                 builder.setCancelable(false); // if you want user to wait for some process to finish,
                 builder.setView(R.layout.layout_loading_dialog);
                 final AlertDialog dialog = builder.create();
@@ -74,7 +67,7 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
                     isAvailable = false;
                 }
                 CurrentUser cu = new CurrentUser();
-                final String passengerId = cu.getPassengerId();
+                final String parentId = cu.getParentId();
                 final Map<String, Object> objAvailability = new HashMap<>();
                 objAvailability.put("availabilty",isAvailable);
 
@@ -82,7 +75,7 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
                 final Map<String, Object> objExist = new HashMap<>();
                 objAvailability.put("exists",true);
 
-                db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                db.document("users/user/parent/"+parentId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
@@ -101,9 +94,9 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
                         }
 
                         String driverId = documentSnapshot.getString("driverId");
-                        db.collection("users/user/passenger/"+passengerId+"/availability").document(dateString).set(objAvailability);
-                        db.collection("users/user/driver/"+driverId+"/availability/").document(passengerId).set(objExist);
-                        db.collection("users/user/driver/"+driverId+"/availability/"+passengerId+"/availability").document(dateString).set(objAvailability);
+                        db.collection("users/user/parent/"+parentId+"/availability").document(dateString).set(objAvailability);
+                        db.collection("users/user/driver/"+driverId+"/availability/").document(parentId).set(objExist);
+                        db.collection("users/user/driver/"+driverId+"/availability/"+parentId+"/availability").document(dateString).set(objAvailability);
 
                         final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Availability Added", Snackbar.LENGTH_LONG);
                         snackbar.setAction("Ok", new View.OnClickListener() {

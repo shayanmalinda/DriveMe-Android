@@ -102,7 +102,7 @@ public class ParentChildRouteActivity extends AppCompatActivity {
                             snackbar.show();
                         }
                         else{
-                            Intent intent = new Intent(ParentChildRouteActivity.this, PassengerAvailabilityActivity.class);
+                            Intent intent = new Intent(ParentChildRouteActivity.this, ParentAvailabilityActivity.class);
                             startActivity(intent);
                         }
                         dialog.dismiss();
@@ -146,7 +146,7 @@ public class ParentChildRouteActivity extends AppCompatActivity {
                             snackbar.show();
                         }
                         else{
-                            Intent intent = new Intent(ParentChildRouteActivity.this, PassengerPassengerListActivity.class);
+                            Intent intent = new Intent(ParentChildRouteActivity.this, ParentPassengerListActivity.class);
                             startActivity(intent);
                         }
                         dialog.dismiss();
