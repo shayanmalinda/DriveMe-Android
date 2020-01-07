@@ -48,6 +48,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     boolean zoomFlag = true;
     private LocationCallback    locationCallback;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
