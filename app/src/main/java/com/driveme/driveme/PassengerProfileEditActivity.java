@@ -62,14 +62,16 @@ public class PassengerProfileEditActivity extends AppCompatActivity {
                 finish();
                 startActivity(intent2);
                 dialog.dismiss();
-                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Changes Success", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Ok", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        snackbar.dismiss();
-                    }
-                });
-                snackbar.show();
+                Toast.makeText(PassengerProfileEditActivity.this, "Change Success", Toast.LENGTH_SHORT).show();
+
+//                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Changes Success", Snackbar.LENGTH_LONG);
+//                snackbar.setAction("Ok", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        snackbar.dismiss();
+//                    }
+//                });
+//                snackbar.show();
             }
         });
 
@@ -111,14 +113,15 @@ public class PassengerProfileEditActivity extends AppCompatActivity {
                 finish();
 //                startActivity(intent2);
                 dialog.dismiss();
-                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Changes Success", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Ok", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        snackbar.dismiss();
-                    }
-                });
-                snackbar.show();
+                Toast.makeText(PassengerProfileEditActivity.this, "Change Success", Toast.LENGTH_SHORT).show();
+//                final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Changes Success", Snackbar.LENGTH_LONG);
+//                snackbar.setAction("Ok", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        snackbar.dismiss();
+//                    }
+//                });
+//                snackbar.show();
             }
         });
     }

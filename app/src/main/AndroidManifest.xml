@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ParentProfileActivity"></activity>
+        <activity android:name=".ParentPasswordChangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.CustomeTheme" />
+        <activity android:name=".ParentProfileEditActivity" />
+        <activity android:name=".ParentProfileActivity" />
         <activity android:name=".DriverPassengerRequestsActivity" />
         <activity android:name=".PassengerPassengerListActivity" />
         <activity android:name=".DriverPassengerAvailabilityActivity" />
