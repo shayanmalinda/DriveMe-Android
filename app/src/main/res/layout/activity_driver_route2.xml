@@ -74,7 +74,10 @@
             android:paddingTop="5dp"
             android:id="@+id/checkpointlist"
             android:backgroundTint="#eee"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5.0sp"
+            >
 
 
         </ListView>
