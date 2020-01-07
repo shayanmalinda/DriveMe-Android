@@ -161,7 +161,7 @@ public class ParentHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgmyroute.startAnimation(animation);
-                Intent intent = new Intent(ParentHomePage.this,PassengerMyRouteActivity.class);
+                Intent intent = new Intent(ParentHomePage.this,ParentChildRouteActivity.class);
                 startActivity(intent);
             }
         });

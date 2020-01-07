@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MapFragmentActivity4"></activity>
+        <activity android:name=".ParentRouteActivity"></activity>
+        <activity android:name=".ParentChildRouteActivity" />
+        <activity android:name=".MapFragmentActivity4" />
         <activity android:name=".ParentRouteSearch3Activity" />
         <activity android:name=".ParentRouteSearch2Activity" />
         <activity android:name=".ParentRouteSearchActivity" />
