@@ -61,7 +61,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:nextFocusDown="@id/txtemail"
+                        android:nextFocusDown="@id/txtphone"
                         />
 
                 </LinearLayout>
