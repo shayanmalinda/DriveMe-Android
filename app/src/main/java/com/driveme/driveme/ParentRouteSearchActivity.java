@@ -7,38 +7,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
-public class PassengerRouteSearchActivity extends AppCompatActivity {
+public class ParentRouteSearchActivity extends AppCompatActivity {
 
     private TextView startLocationtxt;
     private TextView endLocationtxt;
@@ -65,10 +51,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_route_search);
-
-
-
+        setContentView(R.layout.activity_parent_route_search);
         setTitle("Route Search");
 
         SelectedPlace sp = new SelectedPlace();
@@ -82,9 +65,9 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         final CurrentUser cu = new CurrentUser();
-        userId = cu.getPassengerId();
+        userId = cu.getParentId();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(PassengerRouteSearchActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ParentRouteSearchActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
         builder.setView(R.layout.layout_loading_dialog);
         final AlertDialog dialog = builder.create();
@@ -124,7 +107,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
         startLocationtxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PassengerRouteSearchActivity.this,MapFragmentActivity.class);
+                Intent intent = new Intent(ParentRouteSearchActivity.this,MapFragmentActivity.class);
                 startActivityForResult(intent,1);
             }
         });
@@ -132,7 +115,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
         endLocationtxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PassengerRouteSearchActivity.this,MapFragmentActivity.class);
+                Intent intent = new Intent(ParentRouteSearchActivity.this,MapFragmentActivity.class);
                 startActivityForResult(intent,2);
             }
         });
@@ -143,7 +126,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
                 readData(new FirestoreCallback() {
                     @Override
                     public void onCallback() {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(PassengerRouteSearchActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ParentRouteSearchActivity.this);
                         builder.setCancelable(false); // if you want user to wait for some process to finish,
                         builder.setView(R.layout.layout_loading_dialog);
                         final AlertDialog dialog = builder.create();
@@ -208,8 +191,7 @@ public class PassengerRouteSearchActivity extends AppCompatActivity {
                                         }
                                         Log.e("counts",count1[0]+" "+count2[0]);
                                         if(count2[0]==count1[0]){
-
-                                            Intent intent = new Intent(PassengerRouteSearchActivity.this,PassengerRouteSearch2Activity.class);
+                                            Intent intent = new Intent(ParentRouteSearchActivity.this,ParentRouteSearch2Activity.class);
                                             intent.putStringArrayListExtra("filteredRoutes",filteredRoutes);
                                             startActivity(intent);
                                             dialog.dismiss();
