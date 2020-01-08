@@ -84,7 +84,7 @@ public class ParentDriverActivity extends AppCompatActivity {
         btndriverLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ParentDriverActivity.this,PassengerMapActivity.class);
+                Intent intent = new Intent(ParentDriverActivity.this,ParentMapActivity.class);
                 startActivity(intent);
             }
         });

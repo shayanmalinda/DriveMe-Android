@@ -110,7 +110,7 @@ public class DriverHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgpassengerlist.startAnimation(animation);
-                Intent intent = new Intent(DriverHomePage.this,DriverPassengerListActivity.class);
+                Intent intent = new Intent(DriverHomePage.this,DriverUserListActivity.class);
                 startActivity(intent);
             }
         });
