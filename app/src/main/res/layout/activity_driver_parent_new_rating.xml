@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DriverParentNewRatingActivity"
+    android:orientation="vertical"
+    android:paddingRight="40dp"
+    android:paddingLeft="40dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:id="@+id/scrollview"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_star_border_grey_24dp"
+            android:id="@+id/btnstar1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_star_border_grey_24dp"
+            android:id="@+id/btnstar2"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"/>
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_star_border_grey_24dp"
+            android:id="@+id/btnstar3"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"/>
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_star_border_grey_24dp"
+            android:id="@+id/btnstar4"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"/>
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_star_border_grey_24dp"
+            android:id="@+id/btnstar5"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/roundbtnprimary"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:background="@drawable/edit_text_background_accent"
+            android:id="@+id/etRating"
+            android:hint="Enter Your Comment"
+            android:textSize="28sp"
+            android:nextFocusDown="@id/btnrateNow"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="50dp">
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtnprimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Rate Now!"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"
+            android:id="@+id/btnrateNow"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:drawableStart="@drawable/ic_done_black_24dp"
+            android:paddingLeft="20dp"
+            android:drawablePadding="-30dp"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtnaccent"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Cancel"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"
+            android:id="@+id/btncancel"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:drawableStart="@drawable/ic_close_white_24dp"
+            android:paddingLeft="20dp"
+            android:drawablePadding="-30dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
