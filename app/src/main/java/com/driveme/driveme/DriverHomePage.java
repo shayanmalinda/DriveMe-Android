@@ -128,7 +128,7 @@ public class DriverHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgpayments.startAnimation(animation);
-                Intent intent = new Intent(DriverHomePage.this,DriverPaymentActivity.class);
+                Intent intent = new Intent(DriverHomePage.this,DriverPaymentsSelectUserActivity.class);
                 startActivity(intent);
 
             }

@@ -32,7 +32,7 @@ public class DriverPaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_payment);
 
-        setTitle("Payments");
+        setTitle("Passenger Payments");
 
         getPassengerList();
 

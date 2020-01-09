@@ -23,36 +23,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DriverParentListActivity extends AppCompatActivity {
+public class DriverParentPaymentActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
-    boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_parent_list);
+        setContentView(R.layout.activity_driver_parent_payment);
 
-        setTitle("Parent List");
+        setTitle("Passenger Payments");
 
-        getParentList();
+        getPassengerList();
 
 
     }
 
-    public void getParentList(){
+    public void getPassengerList(){
 
         db = FirebaseFirestore.getInstance();
         CurrentUser cu = new CurrentUser();
         final String userId = cu.getDriverId();
-        final List<HashMap<String, String>> list2 = new ArrayList<>();
-        final ListView lv = findViewById(R.id.parent_list);
-        AlertDialog.Builder builder = new AlertDialog.Builder(DriverParentListActivity.this);
+        final List<HashMap<String, String>> list = new ArrayList<>();
+        final ListView lv = findViewById(R.id.parent_payment_list);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(DriverParentPaymentActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
         builder.setView(R.layout.layout_loading_dialog);
         final AlertDialog dialog = builder.create();
         dialog.show();
-
 
 
         db.collection("users/user/parent").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -73,15 +72,15 @@ public class DriverParentListActivity extends AppCompatActivity {
                             map.put("parentPhone","Parent's Phone  :   "+querySnapshot.getString("parentPhone"));
                             map.put("parentAddress","Parent's Address  :   "+querySnapshot.getString("parentAddress"));
                             map.put("pickupLocation","Pickup Location  :   "+querySnapshot.getString("pickupLocation"));
-                            list2.add(map);
+                            list.add(map);
                         }
-                        int layout = R.layout.item_parent2;
+                        int layout = R.layout.item_parent_payment;
                         String[] cols = {"parentId","childName","childAge","childSchool","childSchoolPhone","parentEmail","parentPhone","parentAddress","pickupLocation"};
                         int[] views = {R.id.parentId,R.id.childName,R.id.childAge,R.id.childSchool,R.id.childSchoolPhone,R.id.parentEmail,R.id.parentPhone,R.id.parentAddress,R.id.pickupLocation};
-                        SimpleAdapter adapter = new SimpleAdapter(DriverParentListActivity.this,list2,layout,cols,views);
+                        SimpleAdapter adapter = new SimpleAdapter(DriverParentPaymentActivity.this,list,layout,cols,views);
                         lv.setAdapter(adapter);
+                        dialog.dismiss();
                     }
-                    dialog.dismiss();
                 }
                 if(!flag){
 //                    finish();
@@ -106,75 +105,29 @@ public class DriverParentListActivity extends AppCompatActivity {
 
     }
 
-    public void removeParent(View v){
-
-        db = FirebaseFirestore.getInstance();
+    public void addNewPayment(View v){
 
         LinearLayout view = (LinearLayout)v.getParent();
-        TextView txtParentId = view.findViewById(R.id.parentId);
-        String parentId = txtParentId.getText().toString();
+        TextView txtpassengerId = view.findViewById(R.id.parentId);
+        String passengerId = txtpassengerId.getText().toString();
 
-        CurrentUser cu = new CurrentUser();
-        String driverId = cu.getDriverId();
-
-        db.collection("users/user/parent/"+parentId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
-                    q.getReference().delete();
-                }
-            }
-        });
+        Intent intent = new Intent(DriverParentPaymentActivity.this,DriverParentPaymentAddActivity.class);
+        intent.putExtra("parentId",passengerId);
+        startActivity(intent);
 
 
-        db.collection("users/user/driver/"+driverId+"/payments/"+parentId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
-                    q.getReference().delete();
-                }
-            }
-        });
-
-
-        db.collection("users/user/driver/"+driverId+"/availability/"+parentId+"/availability").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot q: queryDocumentSnapshots){
-                    q.getReference().delete();
-                }
-            }
-        });
-
-
-        db.document("users/user/parent/"+parentId).update("driverId","");
-        getParentList();
     }
 
-    public void viewRatings(View v){
-
-        db = FirebaseFirestore.getInstance();
+    public void viewPayments(View v){
 
         LinearLayout view = (LinearLayout)v.getParent();
-        TextView txtparentId = view.findViewById(R.id.parentId);
-        String parentId = txtparentId.getText().toString();
+        TextView txtpassengerId = view.findViewById(R.id.parentId);
+        String passengerId = txtpassengerId.getText().toString();
 
-        Intent intent = new Intent(DriverParentListActivity.this,DriverParentRatingsActivity.class);
-        intent.putExtra("parentId",parentId);
+        Intent intent = new Intent(DriverParentPaymentActivity.this,DriverParentPaymentViewActivity.class);
+        intent.putExtra("parentId",passengerId);
         startActivity(intent);
 
     }
 
-    public void newRating(View v){
-
-        db = FirebaseFirestore.getInstance();
-
-        LinearLayout view = (LinearLayout)v.getParent();
-        TextView txtparentId = view.findViewById(R.id.parentId);
-        String parentId = txtparentId.getText().toString();
-
-        Intent intent = new Intent(DriverParentListActivity.this,DriverParentNewRatingActivity.class);
-        intent.putExtra("parentId",parentId);
-        startActivity(intent);
-    }
 }

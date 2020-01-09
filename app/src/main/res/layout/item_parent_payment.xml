@@ -10,83 +10,102 @@
     android:paddingRight="25dp"
     android:gravity="center_horizontal">
 
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/passengerId"
+        android:id="@+id/parentId"
         android:textSize="18sp"
         android:visibility="invisible"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/childName"
+        android:textSize="18sp"
+        android:textColor="#444"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/passengerEmail"
-        android:textSize="18sp"/>
+        android:id="@+id/childAge"
+        android:textSize="18sp"
+        android:textColor="#444"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/passengerAddress"
-        android:textSize="18sp"/>
+        android:id="@+id/childSchool"
+        android:textSize="18sp"
+        android:textColor="#444"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/passengerPhone"
-        android:textSize="18sp"/>
+        android:id="@+id/childSchoolPhone"
+        android:textSize="18sp"
+        android:textColor="#444"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/parentEmail"
+        android:textSize="18sp"
+        android:textColor="#444"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/parentPhone"
+        android:textSize="18sp"
+        android:textColor="#444"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/parentAddress"
+        android:textSize="18sp"
+        android:textColor="#444"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pickupLocation"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textColor="#444"/>
 
     <Button
         android:textAllCaps="false"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Ratings"
+        android:text="Add New Payment"
         android:background="@drawable/roundbtnprimary"
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/whiteText"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:onClick="viewRatings"
+        android:onClick="addNewPayment"
         android:textSize="19sp"
         android:layout_marginTop="12dp"
-        android:drawableStart="@drawable/ic_format_list_bulleted_white_24dp"/>
+        android:drawableStart="@drawable/ic_add_circle_outline_white_24dp"/>
 
     <Button
         android:textAllCaps="false"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rate NOW!"
-        android:background="@drawable/roundbtnprimary"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/whiteText"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:onClick="newRating"
-        android:textSize="19sp"
-        android:layout_marginTop="12dp"
-        android:drawableStart="@drawable/ic_comment_white_24dp"/>
-
-    <Button
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Remove Passenger"
+        android:text="View Payments"
         android:background="@drawable/roundbtnaccent"
         android:backgroundTint="@color/colorAccent"
         android:textColor="@color/whiteText"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:onClick="removePassenger"
+        android:onClick="viewPayments"
         android:textSize="19sp"
         android:layout_marginTop="12dp"
-        android:drawableStart="@drawable/ic_delete_forever_white_24dp"/>
+        android:drawableStart="@drawable/ic_format_list_bulleted_white_24dp"/>
+
+
+
 
 </LinearLayout>
