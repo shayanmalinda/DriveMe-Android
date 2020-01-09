@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DriverParentPaymentAddActivity"
+    android:orientation="vertical"
+    android:paddingRight="40dp"
+    android:paddingLeft="40dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:id="@+id/scrollview"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:paddingBottom="23dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select the Date"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <DatePicker android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/edit_text_background_accent"
+            android:id="@+id/etPayment"
+            android:hint="Enter Your Payment (Rs)"
+            android:textSize="20sp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:inputType="numberDecimal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="40dp">
+
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtnprimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Add Payment"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"
+            android:id="@+id/btnaddpayment"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:drawableStart="@drawable/ic_done_black_24dp"
+            android:paddingLeft="20dp"
+            android:drawablePadding="-30dp"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
