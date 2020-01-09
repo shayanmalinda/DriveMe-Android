@@ -83,6 +83,7 @@ public class DriverPassengerAvailabilityActivity extends AppCompatActivity {
                             for(QueryDocumentSnapshot querySnapshot2: queryDocumentSnapshots2){
                                 String dbDateString = querySnapshot2.getId();
                                 int dbDateInt = Integer.parseInt(dbDateString);
+                                Log.d("aaa",""+dbDateInt);
                                 if(dbDateInt>=currentDateInt){
                                     Log.d("dbb",""+dbDateInt);
                                     int dbYear = dbDateInt/10000;
@@ -109,20 +110,23 @@ public class DriverPassengerAvailabilityActivity extends AppCompatActivity {
                                     String date =
                                     map.put("date","Date  :   "+dateString);
                                     if(querySnapshot2.getBoolean("availabilty")){
-                                        map.put("availability","Status  :   Available");
+//                                        map.put("availability","Availability  :   Present");
+
                                     }
                                     else{
-                                        map.put("availability","Status  :   Unavailable");
+                                        map.put("availability","Availability  :   Absent");
+                                        map.put("name","Name  :   "+querySnapshot2.getString("name"));
+
+                                        list.add(map);
                                     }
-                                    list.add(map);
                                 }
 
                             }
                             dialog.dismiss();
 
                             int layout = R.layout.item_availability;
-                            String[] cols = {"date","availability"};
-                            int[] views = {R.id.date,R.id.availability};
+                            String[] cols = {"name","date","availability"};
+                            int[] views = {R.id.name,R.id.date,R.id.availability};
                             SimpleAdapter adapter = new SimpleAdapter(DriverPassengerAvailabilityActivity.this,list,layout,cols,views);
                             lv.setAdapter(adapter);
                         }

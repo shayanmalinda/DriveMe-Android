@@ -82,9 +82,14 @@ public class PassengerAvailabilityActivity extends AppCompatActivity {
                 final Map<String, Object> objExist = new HashMap<>();
                 objAvailability.put("exists",true);
 
+
+
                 db.document("users/user/passenger/"+passengerId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        String passengerName = documentSnapshot.getString("name");
+                        objAvailability.put("name",passengerName);
 
                         String dateString=null;
                         if(month<10 && day<10){

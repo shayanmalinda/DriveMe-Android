@@ -78,6 +78,7 @@ public class ParentAvailabilityActivity extends AppCompatActivity {
                 db.document("users/user/parent/"+parentId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        objAvailability.put("name",documentSnapshot.getString("childName"));
 
                         String dateString=null;
                         if(month<10 && day<10){

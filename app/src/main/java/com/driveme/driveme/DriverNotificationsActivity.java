@@ -11,6 +11,7 @@ public class DriverNotificationsActivity extends AppCompatActivity {
 
     private CardView dailyAvailability;
     private CardView passengerRequests;
+    private CardView parentRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class DriverNotificationsActivity extends AppCompatActivity {
 
         dailyAvailability = findViewById(R.id.dailyAvailability);
         passengerRequests = findViewById(R.id.passengerRequests);
+        parentRequests = findViewById(R.id.parentRequests);
 
         dailyAvailability.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +36,14 @@ public class DriverNotificationsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DriverNotificationsActivity.this,DriverPassengerRequestsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        parentRequests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DriverNotificationsActivity.this,DriverParentRequestActivity.class);
                 startActivity(intent);
             }
         });
