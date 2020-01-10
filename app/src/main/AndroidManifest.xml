@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DriverParentRequestActivity"></activity>
+        <activity android:name=".ParentPaymentViewActivity"></activity>
+        <activity android:name=".ParentNotificationActivity" />
+        <activity android:name=".DriverParentRequestActivity" />
         <activity android:name=".DriverParentPaymentViewActivity" />
         <activity android:name=".DriverParentPaymentAddActivity" />
         <activity android:name=".DriverParentPaymentActivity" />
