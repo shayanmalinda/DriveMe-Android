@@ -50,16 +50,20 @@ public class DriverPaymentsViewActivity extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot querySnapshot: queryDocumentSnapshots){
-                        if(querySnapshot.getBoolean("isAccepted")){
-                        HashMap<String,String> map  = new HashMap();
-                        map.put("date","Date  :   "+querySnapshot.getString("date"));
-                        map.put("value","Payment  :   Rs. "+querySnapshot.getString("value")+ " /=");
-                        list.add(map);
+                    HashMap<String,String> map  = new HashMap();
+                    map.put("date","Date  :   "+querySnapshot.getString("date"));
+                    map.put("value","Payment  :   Rs. "+querySnapshot.getString("value")+ " /=");
+                    if(querySnapshot.getBoolean("isAccepted")){
+                        map.put("isAccepted","Passenger Accepted");
                     }
+                    else{
+                        map.put("isAccepted","Passenger Not Accepted");
+                    }
+                    list.add(map);
                 }
-                int layout = R.layout.item_payment;
-                String[] cols = {"date","value"};
-                int[] views = {R.id.date,R.id.value};
+                int layout = R.layout.item_payment2;
+                String[] cols = {"date","value","isAccepted"};
+                int[] views = {R.id.date,R.id.value,R.id.isAccepted};
                 SimpleAdapter adapter = new SimpleAdapter(DriverPaymentsViewActivity.this,list,layout,cols,views);
                 lv.setAdapter(adapter);
                 dialog.dismiss();

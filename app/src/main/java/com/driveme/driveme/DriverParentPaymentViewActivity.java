@@ -4,15 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +43,8 @@ public class DriverParentPaymentViewActivity extends AppCompatActivity {
         final List<HashMap<String, String>> list = new ArrayList<>();
         final ListView lv = findViewById(R.id.payment_list);
 
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(DriverParentPaymentViewActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
         builder.setView(R.layout.layout_loading_dialog);
@@ -50,16 +58,20 @@ public class DriverParentPaymentViewActivity extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot querySnapshot: queryDocumentSnapshots){
+                    HashMap<String,String> map  = new HashMap();
+                    map.put("date","Date  :   "+querySnapshot.getString("date"));
+                    map.put("value","Payment  :   Rs. "+querySnapshot.getString("value")+ " /=");
                     if(querySnapshot.getBoolean("isAccepted")){
-                        HashMap<String,String> map  = new HashMap();
-                        map.put("date","Date  :   "+querySnapshot.getString("date"));
-                        map.put("value","Payment  :   Rs. "+querySnapshot.getString("value")+ " /=");
-                        list.add(map);
+                        map.put("isAccepted","Parent Accepted");
                     }
+                    else{
+                        map.put("isAccepted","Parent Not Accepted");
+                    }
+                    list.add(map);
                 }
-                int layout = R.layout.item_payment;
-                String[] cols = {"date","value"};
-                int[] views = {R.id.date,R.id.value};
+                int layout = R.layout.item_payment2;
+                String[] cols = {"date","value","isAccepted"};
+                int[] views = {R.id.date,R.id.value,R.id.isAccepted};
                 SimpleAdapter adapter = new SimpleAdapter(DriverParentPaymentViewActivity.this,list,layout,cols,views);
                 lv.setAdapter(adapter);
                 dialog.dismiss();
