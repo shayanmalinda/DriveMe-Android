@@ -1,9 +1,5 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,27 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -101,6 +90,12 @@ public class LoginActivity extends AppCompatActivity {
                 final String email = etemail.getText().toString();
                 final String password = etpass.getText().toString();
 
+                md5 md5 = new md5();
+//                byte[] bytes = password.getBytes(StandardCharsets.UTF_8);
+                final String hashedPassword = md5.md5Hash(password);
+                Log.d("passworddd",hashedPassword);
+
+
                 if(email.isEmpty()){
 
                     final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Email is Empty", Snackbar.LENGTH_LONG);
@@ -154,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String dbpass = details.get("password").toString();
 
 
-                                    if(email.equals(dbemail) && password.equals(dbpass)){
+                                    if(email.equals(dbemail) && hashedPassword.equals(dbpass)){
                                         CurrentUser usr = new CurrentUser();
                                         usr.setUserCredentialId(d.getId());
                                         if(details.containsKey("driverId")) {
@@ -191,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
 //                                    Log.d("userId passenger= ",passengerId);
                                         Intent intent = new Intent(LoginActivity.this,PassengerHomePage.class);
                                         intent.putExtra("email",email);
-                                        intent.putExtra("password",password);
+                                        intent.putExtra("password",hashedPassword);
                                         startActivity(intent);
 
                                     }
@@ -199,14 +194,14 @@ public class LoginActivity extends AppCompatActivity {
 //                                    Log.d("userId parent= ",parentId);
                                         Intent intent = new Intent(LoginActivity.this,ParentHomePage.class);
                                         intent.putExtra("email",email);
-                                        intent.putExtra("password",password);
+                                        intent.putExtra("password",hashedPassword);
                                         startActivity(intent);
                                     }
                                     else if(driverId!=null){
 //                                    Log.d("userId driver= ",driverId);
                                         Intent intent = new Intent(LoginActivity.this,DriverHomePage.class);
                                         intent.putExtra("email",email);
-                                        intent.putExtra("password",password);
+                                        intent.putExtra("password",hashedPassword);
                                         startActivity(intent);
 
                                     }
@@ -221,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                                     else{
                                         Intent intent = new Intent(LoginActivity.this,UserRegister.class);
                                         intent.putExtra("email",email);
-                                        intent.putExtra("password",password);
+                                        intent.putExtra("password",hashedPassword);
                                         startActivity(intent);
                                     }
 

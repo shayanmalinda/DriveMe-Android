@@ -1,8 +1,5 @@
 package com.driveme.driveme;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -11,12 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +56,12 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                 final String oldpassword = etold.getText().toString();
                 final String newpass1 = etnew1.getText().toString();
                 final String newpass2 = etnew2.getText().toString();
+
+
+                md5 md5 = new md5();
+                final String oldhashpassword = md5.md5Hash(oldpassword);
+                final String newhashpassword = md5.md5Hash(newpass1);
+
                 if(oldpassword.isEmpty() || newpass1.isEmpty() || newpass2.isEmpty()){
                     final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Inputs Are Empty", Snackbar.LENGTH_LONG);
                     snackbar.setAction("Ok", new View.OnClickListener() {
@@ -77,31 +82,31 @@ public class PassengerPasswordChangeActivity extends AppCompatActivity {
                         CurrentUser c = new CurrentUser();
                         final String userId = CurrentUser.getuUserCredentialId();
 
-                        BigInteger passEncrypt = null;
-                        try{
-                            passEncrypt = new BigInteger(1, md5.encryptMD5(oldpassword.getBytes()));
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                        final String oldEncryptpass = passEncrypt.toString();
+//                        BigInteger passEncrypt = null;
+//                        try{
+//                            passEncrypt = new BigInteger(1, md5.encryptMD5(oldpassword.getBytes()));
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                        }
+//                        final String oldEncryptpass = passEncrypt.toString();
 
                         db.document("userCredentials/"+userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 String dbpass = documentSnapshot.get("password").toString();
-                                if(oldpassword.equals(dbpass)){
+                                if(oldhashpassword.equals(dbpass)){
 
-                                    BigInteger passEncrypt2 = null;
-                                    try{
-                                        passEncrypt2 = new BigInteger(1, md5.encryptMD5(newpass1.getBytes()));
-                                    }catch (Exception e){
-                                        e.printStackTrace();
-                                    }
-                                    final String newEncryptpass = passEncrypt2.toString();
+//                                    BigInteger passEncrypt2 = null;
+//                                    try{
+//                                        passEncrypt2 = new BigInteger(1, md5.encryptMD5(newpass1.getBytes()));
+//                                    }catch (Exception e){
+//                                        e.printStackTrace();
+//                                    }
+//                                    final String newEncryptpass = passEncrypt2.toString();
 
                                     Map<String,Object> userMap = new HashMap<>();
 //                                    userMap.put("password",newEncryptpass);
-                                    userMap.put("password",newpass1);
+                                    userMap.put("password",newhashpassword);
 
                                     db.document("userCredentials/"+userId).update(userMap);
                                     finish();
