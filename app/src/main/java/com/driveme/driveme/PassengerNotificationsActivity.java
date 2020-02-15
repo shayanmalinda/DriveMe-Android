@@ -1,22 +1,19 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -72,7 +69,7 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
                 }
                 int layout = R.layout.item_payment_request;
                 String[] cols = {"paymentId","passengerId","driverPaymentId","date","value"};
-                int[] views = {R.id.paymentId,R.id.passengerId,R.id.driverPaymentId,R.id.date,R.id.value,};
+                int[] views = {R.id.paymentId,R.id.parentId,R.id.driverPaymentId,R.id.date,R.id.value,};
                 SimpleAdapter adapter = new SimpleAdapter(PassengerNotificationsActivity.this,list,layout,cols,views);
                 lv.setAdapter(adapter);
 
@@ -90,7 +87,7 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
     public void acceptPayment(View v){
 
         LinearLayout view = (LinearLayout)v.getParent().getParent();
-        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        TextView txtpassengerId = view.findViewById(R.id.parentId);
         TextView txtpaymentId = view.findViewById(R.id.paymentId);
         TextView txtdriverPaymentId = view.findViewById(R.id.driverPaymentId);
         String passengerId = txtpassengerId.getText().toString();
@@ -115,7 +112,7 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
     public void declinePayment(View v){
 
         LinearLayout view = (LinearLayout)v.getParent().getParent();
-        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        TextView txtpassengerId = view.findViewById(R.id.parentId);
         TextView txtpaymentId = view.findViewById(R.id.paymentId);
         TextView txtdriverPaymentId = view.findViewById(R.id.driverPaymentId);
         String passengerId = txtpassengerId.getText().toString();
