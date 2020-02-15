@@ -1,16 +1,15 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -82,7 +81,7 @@ public class DriverPassengerRequestsActivity extends AppCompatActivity {
                 if(!flag){
 //                    finish();
 
-                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Any Passengers", Snackbar.LENGTH_LONG);
+                    final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No Any Requests", Snackbar.LENGTH_LONG);
                     snackbar.setAction("Ok", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

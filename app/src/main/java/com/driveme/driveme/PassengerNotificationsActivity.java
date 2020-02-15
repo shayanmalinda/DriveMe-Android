@@ -112,7 +112,7 @@ public class PassengerNotificationsActivity extends AppCompatActivity {
     public void declinePayment(View v){
 
         LinearLayout view = (LinearLayout)v.getParent().getParent();
-        TextView txtpassengerId = view.findViewById(R.id.passengerId);
+        TextView txtpassengerId = view.findViewById(R.id.parentId);
         TextView txtpaymentId = view.findViewById(R.id.paymentId);
         TextView txtdriverPaymentId = view.findViewById(R.id.driverPaymentId);
         String passengerId = txtpassengerId.getText().toString();

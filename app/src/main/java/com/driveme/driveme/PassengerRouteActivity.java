@@ -1,9 +1,5 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +7,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,8 +20,6 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,7 +122,6 @@ public class PassengerRouteActivity extends AppCompatActivity {
                             }
                         });
 
-                        Toast.makeText(PassengerRouteActivity.this, ""+driverId, Toast.LENGTH_SHORT).show();
 
                         db.collection("users/user/driver/"+driverId+"/payments/"+pId+"/payments").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
