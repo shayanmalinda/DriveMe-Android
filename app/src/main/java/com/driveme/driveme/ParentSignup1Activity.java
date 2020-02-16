@@ -1,16 +1,15 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,6 +37,7 @@ public class ParentSignup1Activity extends AppCompatActivity {
 
     private String email;
     private String password;
+    private String hashedPassword;
     private String parentPhone;
     private String parentAddress;
     private String childName;
@@ -108,11 +108,11 @@ public class ParentSignup1Activity extends AppCompatActivity {
                     CollectionReference dbParent = db.collection("users/user/parent");
                     BigInteger passEncrypt = null;
 
-                    try{
-                        passEncrypt = new BigInteger(1, md5.encryptMD5(password.getBytes()));
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+
+
+
+                    md5 md5 = new md5();
+                    hashedPassword = md5.md5Hash(password);
 
 //                        Passengers passenger = new Passengers(name,email,address,phone,passEncrypt.toString());
 
@@ -159,7 +159,7 @@ public class ParentSignup1Activity extends AppCompatActivity {
                             Map<String, Object> userCredential = new HashMap<>();
                             userCredential.put("parentId",parentId);
                             userCredential.put("email",email);
-                            userCredential.put("password",password);
+                            userCredential.put("password",hashedPassword);
 
                             CurrentUser cu = new CurrentUser();
                             String userCredentialId = cu.getuUserCredentialId();
