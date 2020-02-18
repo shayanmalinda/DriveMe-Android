@@ -1,29 +1,27 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.math.BigInteger;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PassengerSignupActivity extends AppCompatActivity {
@@ -34,6 +32,7 @@ public class PassengerSignupActivity extends AppCompatActivity {
     private EditText etaddress;
     private EditText etpass1;
     private EditText etpass2;
+    private TextView telephoneError;
 
     private Button signup;
 
@@ -44,6 +43,8 @@ public class PassengerSignupActivity extends AppCompatActivity {
     private String phone;
     private String address;
     private String password;
+    private String hashedPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,38 @@ public class PassengerSignupActivity extends AppCompatActivity {
         etaddress = findViewById(R.id.txtaddress);
         etname = findViewById(R.id.txtname);
         signup = findViewById(R.id.btnpassengersignup);
+        telephoneError = findViewById(R.id.telephoneError);
+
+        etphone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                final String tp = etphone.getText().toString().trim();
+                if(etphone.getText().toString().length()==9 && tp.charAt(0)=='0'){
+                    telephoneError.setText("");
+
+                    signup.setClickable(true);
+                    signup.setEnabled(true);
+
+                }
+                else{
+                    telephoneError.setText("Please Enter Valid Phone Number");
+                    telephoneError.setTextColor(getResources().getColor(R.color.colorAccent));
+
+                    signup.setClickable(false);
+                    signup.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,11 +126,9 @@ public class PassengerSignupActivity extends AppCompatActivity {
                     CollectionReference dbPassenger = db.collection("users/user/passenger");
                     BigInteger passEncrypt = null;
 
-                    try{
-                        passEncrypt = new BigInteger(1, md5.encryptMD5(password.getBytes()));
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+
+                    md5 md5 = new md5();
+                    hashedPassword = md5.md5Hash(password);
 
 //                        Passengers passenger = new Passengers(name,email,address,phone,passEncrypt.toString());
                     Passengers passenger = new Passengers(name,email,address,phone);
@@ -137,7 +168,7 @@ public class PassengerSignupActivity extends AppCompatActivity {
                             Map<String, Object> userCredential = new HashMap<>();
                             userCredential.put("passengerId",passengerId);
                             userCredential.put("email",email);
-                            userCredential.put("password",password);
+                            userCredential.put("password",hashedPassword);
 
                             CurrentUser cu = new CurrentUser();
                             String userCredentialId = cu.getuUserCredentialId();

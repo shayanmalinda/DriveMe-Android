@@ -1,30 +1,21 @@
 package com.driveme.driveme;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.internal.et;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PassengerRouteSearch2Activity extends AppCompatActivity {
 
@@ -92,8 +82,8 @@ public class PassengerRouteSearch2Activity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     HashMap<String,String> map  = new HashMap();
                     map.put("driverId",documentSnapshot.getId());
-                    map.put("allowedPassengers: ",String.valueOf(documentSnapshot.getDouble("allowedPassengers")));
-                    map.put("currentPassengers: ",String.valueOf(documentSnapshot.getDouble("currentPassengers")));
+                    map.put("allowedPassengers: ",documentSnapshot.getString("allowedPassengers"));
+                    map.put("currentPassengers: ",documentSnapshot.getString("currentPassengers"));
                     map.put("startPlace","Start Place  :  "+documentSnapshot.getString("startPlaceName"));
                     map.put("endPlace","End Place  :  "+documentSnapshot.getString("endPlaceName"));
                     map.put("startTime","Start Time  :  "+documentSnapshot.getString("startTime"));
@@ -108,7 +98,7 @@ public class PassengerRouteSearch2Activity extends AppCompatActivity {
                         map.put("isAC","Air Condition  :  "+"No");
                     }
                     map.put("vehicleNumber","Vehicle Number  :  "+documentSnapshot.getString("vehicleNumber"));
-                    if(documentSnapshot.getDouble("allowedPassengers")>documentSnapshot.getDouble("currentPassengers")){
+                    if(Integer.parseInt(documentSnapshot.getString("allowedPassengers"))>Integer.parseInt(documentSnapshot.getString("currentPassengers"))){
                         list.add(map);
                     }
 

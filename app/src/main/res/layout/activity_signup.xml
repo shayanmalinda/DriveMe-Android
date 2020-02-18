@@ -79,6 +79,17 @@
                     android:singleLine="true"
                     />
 
+                <TextView
+                    android:id="@+id/emailError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:layout_gravity="top"
+                    android:textColor="#ff0000"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:textSize="18sp"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -98,6 +109,17 @@
                     android:drawablePadding="10dp"
                     android:inputType="textPassword"
                     android:singleLine="true"/>
+
+                <TextView
+                    android:id="@+id/passwordError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:layout_gravity="top"
+                    android:textColor="#ff0000"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -114,11 +115,21 @@ public class DriverParentRequestActivity extends AppCompatActivity {
         TextView txtpassengerId = view.findViewById(R.id.parentId);
         TextView txttempDriverId = view.findViewById(R.id.tempDriverId);
         String parentId = txtpassengerId.getText().toString();
-        String tempDriverId = txttempDriverId.getText().toString();
+        final String tempDriverId = txttempDriverId.getText().toString();
 
         db.document("users/user/parent/"+parentId).update("driverId",tempDriverId);
         db.document("users/user/parent/"+parentId).update("tempDriverId","");
 
+        db.document("users/user/driver/"+tempDriverId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String currentPassengers = documentSnapshot.getString("currentPassengers");
+                Integer current = Integer.parseInt(currentPassengers);
+                current = current+1;
+                String newPassengers = current+"";
+                db.document("users/user/driver/"+tempDriverId).update("currentPassengers",newPassengers);
+            }
+        });
         getParentRequestList();
 
         final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Parent Accepted", Snackbar.LENGTH_LONG);

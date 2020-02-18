@@ -1,14 +1,14 @@
 package com.driveme.driveme;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -60,16 +60,16 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
 
                 String dateString=null;
                 if(month<10 && day<10){
-                    dateString = year+"-"+"0"+month+"-"+"0"+day;
+                    dateString = year+" / "+"0"+month+" / "+"0"+day;
                 }
                 else if(month<10){
-                    dateString = year+"-"+"0"+month+"-"+day;
+                    dateString = year+" / "+"0"+month+" / "+day;
                 }
                 else if(day<10){
-                    dateString = year+"-"+month+"0"+"-"+day;
+                    dateString = year+" / "+month+"0"+" / "+day;
                 }
                 else{
-                    dateString = year+"-"+month+"-"+day;
+                    dateString = year+" / "+month+" / "+day;
                 }
 
 
@@ -85,6 +85,9 @@ public class DriverAddNewPaymentActivity extends AppCompatActivity {
 
                 DocumentReference ref = db.collection("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/").document();
                 final String docId = ref.getId();
+                Map<String, Object> exist = new HashMap<>();
+                exist.put("exist", true);
+                db.document("users/user/driver/"+driverId+"/payments/"+passengerId).set(exist);
 
                 db.document("users/user/driver/"+driverId+"/payments/"+passengerId+"/payments/"+docId).set(objPayment).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
