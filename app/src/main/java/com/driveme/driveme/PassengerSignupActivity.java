@@ -1,9 +1,12 @@
 package com.driveme.driveme;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,7 @@ public class PassengerSignupActivity extends AppCompatActivity {
     private EditText etaddress;
     private EditText etpass1;
     private EditText etpass2;
+    private TextView telephoneError;
 
     private Button signup;
 
@@ -55,6 +59,38 @@ public class PassengerSignupActivity extends AppCompatActivity {
         etaddress = findViewById(R.id.txtaddress);
         etname = findViewById(R.id.txtname);
         signup = findViewById(R.id.btnpassengersignup);
+        telephoneError = findViewById(R.id.telephoneError);
+
+        etphone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                final String tp = etphone.getText().toString().trim();
+                if(etphone.getText().toString().length()==9 && tp.charAt(0)=='0'){
+                    telephoneError.setText("");
+
+                    signup.setClickable(true);
+                    signup.setEnabled(true);
+
+                }
+                else{
+                    telephoneError.setText("Please Enter Valid Phone Number");
+                    telephoneError.setTextColor(getResources().getColor(R.color.colorAccent));
+
+                    signup.setClickable(false);
+                    signup.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
